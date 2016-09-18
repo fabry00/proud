@@ -15,3 +15,6 @@ hs_err_pid*
 /node/target/
 /parentprj/node/target/
 /parentprj/commons/target/
+/broker/kafka-logs/
+/broker/zookeper-data
+
