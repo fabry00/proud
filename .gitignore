@@ -18,4 +18,5 @@ hs_err_pid*
 /broker/kafka-logs/
 /broker/zookeper-data
 /broker/kafka_2.11-0.10.0.1/
+broker/kafka_2.11-0.10.0.1/
 
