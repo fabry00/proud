@@ -1,8 +1,7 @@
 package com.mycompany.nodeproducer;
 
+import com.mycompany.commons.ConfigUtils;
 import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
 import java.util.Properties;
 import java.util.Scanner;
 import java.util.concurrent.Executors;
@@ -21,15 +20,16 @@ public class App {
     private static final String NODE_CONF = "node.properties";
     private static final String PRODUCER_CONF = "producer.properties";
     private static final int INITIAL_SLEEP = 3; //seconds
-    private static final int SCHEDULE_EVERY = 5; //seconds
-    
+    private static final int SCHEDULE_EVERY = 10; //seconds
+
     private final Logger logger = Logger.getLogger(App.class);
     private ScheduledExecutorService executor = null;
 
     public static void main(String[] args) throws InterruptedException {
 
         new App().start();
-
+        String javaLibPath = System.getProperty("java.library.path");
+        System.out.println("The java library path is: "+javaLibPath);
         System.out.println("Type \"exit\" to stop the application");
 
         Scanner in = new Scanner(System.in);
@@ -41,9 +41,10 @@ public class App {
 
     public void start() throws InterruptedException {
         initLogger();
-        Properties producerProp = getProducerProperties();
-        Properties nodeProperties = getNodeProperties();
-        MyKafkaProducer producer = new MyKafkaProducer(producerProp);
+        ConfigUtils utils = new ConfigUtils();
+        Properties producerProp = utils.getProp(PRODUCER_CONF);
+        Properties nodeProperties = utils.getProp(NODE_CONF);
+        MsgProducer producer = new MsgProducer(producerProp);
         ResourceReader resourceReader = new ResourceReader(nodeProperties, producer);
 
         executor = Executors.newScheduledThreadPool(1);
@@ -53,45 +54,8 @@ public class App {
     private void initLogger() {
         File log4jfile = new File(LOG_CONF);
         if (!log4jfile.exists()) {
-            System.err.println(LOG_CONF);
+            logger.error("file not found: " + LOG_CONF);
         }
         PropertyConfigurator.configure(log4jfile.getAbsolutePath());
-    }
-
-    private Properties getNodeProperties() {
-        File confFile = new File(NODE_CONF);
-        if (!confFile.exists()) {
-            System.err.println(NODE_CONF);
-        }
-        try {
-            //Configure the Producer from external file
-            Properties configProperties = new Properties();
-            InputStream in = this.getClass().getClassLoader().getResourceAsStream(NODE_CONF);
-            configProperties.load(in);
-            in.close();
-            return configProperties;
-        } catch (IOException ex) {
-            logger.error(ex);
-        }
-        return null;
-    }
-    
-    private Properties getProducerProperties() {
-        File confFile = new File(PRODUCER_CONF);
-        if (!confFile.exists()) {
-            System.err.println(PRODUCER_CONF);
-        }
-        try {
-            //Configure the Producer from external file
-            Properties configProperties = new Properties();
-            InputStream in = this.getClass().getClassLoader().getResourceAsStream(PRODUCER_CONF);
-            configProperties.load(in);
-            in.close();
-            return configProperties;
-        } catch (IOException ex) {
-            logger.error(ex);
-        }
-        return null;
-
     }
 }

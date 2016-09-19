@@ -18,12 +18,12 @@ public class ResourceReader implements Runnable {
 
     private static final String NODE_NAME_CONF = "node.name";
     private final Logger logger = Logger.getLogger(ResourceReader.class);
-    private final MyKafkaProducer sender;
+    private final MsgProducer sender;
     private final String nodeName;
     private final Sigar sigar = new Sigar();
     private final DateUtil dateUtil = new DateUtil();
 
-    public ResourceReader(Properties nodeProperties, MyKafkaProducer sender) {
+    public ResourceReader(Properties nodeProperties, MsgProducer sender) {
         this.sender = sender;
         nodeName = nodeProperties.getProperty(NODE_NAME_CONF);      
     }
