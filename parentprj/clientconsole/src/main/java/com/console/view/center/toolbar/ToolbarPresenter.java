@@ -105,6 +105,7 @@ public class ToolbarPresenter implements Initializable {
                 nodesSelectedChange();
             }
         });
+        
     }
 
     private void addMetricChooser() {
