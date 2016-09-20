@@ -51,7 +51,7 @@ public class DashboardPresenter implements Initializable {
         //fetched from followme.properties
         //logger.error(rb.getString("theEnd"));
         setCenterPane();
-        setLeftPane();
+        //setLeftPane();
         setBottomPane();
 
         initApp();

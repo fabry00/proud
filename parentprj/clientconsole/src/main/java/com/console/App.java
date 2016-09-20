@@ -23,7 +23,7 @@ import org.apache.log4j.PropertyConfigurator;
 public class App extends Application {
 
     private final Logger logger = Logger.getLogger(App.class);
-    private static final String APP_TITLE = "Console";
+    private static final String APP_TITLE = "PrOud - Predicting Cloud Failures Online";
     private static final String APP_CSS = "app.css";
     private static final String LOG_CONF = "log4j.properties";
 
