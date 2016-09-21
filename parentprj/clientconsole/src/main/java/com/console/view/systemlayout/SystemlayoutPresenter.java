@@ -67,7 +67,7 @@ public class SystemlayoutPresenter implements Initializable, IAppStateListener {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
+// TODO clean
         /* DoubleProperty startX = new SimpleDoubleProperty(100);
         DoubleProperty startY = new SimpleDoubleProperty(100);
         DoubleProperty endX   = new SimpleDoubleProperty(300);
@@ -231,7 +231,7 @@ public class SystemlayoutPresenter implements Initializable, IAppStateListener {
         SystemLayoutFactory factory = new SystemLayoutFactory();
         factory.draw(canvas, nodeGestures, currentState);
     }
-
+// TODO clean
     class BoundLine extends Line {
 
         BoundLine(DoubleProperty startX, DoubleProperty startY, DoubleProperty endX, DoubleProperty endY) {
