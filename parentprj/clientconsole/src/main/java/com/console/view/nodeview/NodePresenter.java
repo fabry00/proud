@@ -1,6 +1,6 @@
 package com.console.view.nodeview;
 
-import com.console.domain.Node;
+import com.console.domain.AppNode;
 import com.console.util.AppImage;
 import com.console.util.AppPath;
 import javafx.beans.value.ChangeListener;
@@ -25,14 +25,14 @@ public class NodePresenter implements Initializable {
     @FXML
     ImageView nodeImage;
 
-    private Node node;
+    private AppNode node;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
     }
 
-    public void setNode(Node node) {
+    public void setNode(AppNode node) {
         this.node = node;
         nodeLabel.textProperty().set(node.getNode());
         nodeImage.setImage(getNodeImage(node));
@@ -46,7 +46,7 @@ public class NodePresenter implements Initializable {
 
     }
 
-    public Image getNodeImage(Node node) {
+    public Image getNodeImage(AppNode node) {
         /* if(node.IsFine()){
             return FINE;
         }

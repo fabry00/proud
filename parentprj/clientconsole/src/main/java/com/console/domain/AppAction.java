@@ -1,15 +1,15 @@
 package com.console.domain;
 
-public class Action<T extends ActionType, V> {
+public class AppAction<T extends ActionType, V> {
 
     public final T type;
     public final V value;
 
-    public Action(T type) {
+    public AppAction(T type) {
         this(type, null);
     }
 
-    public Action(T type, V value) {
+    public AppAction(T type, V value) {
         this.type = type;
         this.value = value;
     }

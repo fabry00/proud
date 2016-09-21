@@ -2,8 +2,8 @@ package com.console.view.tree;
 
 import com.console.domain.AppState;
 import com.console.domain.IAppStateListener;
-import com.console.domain.Node;
-import com.console.domain.Node.NodeInfo;
+import com.console.domain.AppNode;
+import com.console.domain.AppNode.NodeInfo;
 import com.console.domain.State;
 import com.console.service.appservice.ApplicationService;
 import java.net.URL;
@@ -48,7 +48,7 @@ public class TreePresenter implements Initializable/*, IAppStateListener*/ {
     @FXML
     private ListView nodeList;
 
-    protected ListProperty<Node> listProperty = new SimpleListProperty<>();
+    protected ListProperty<AppNode> listProperty = new SimpleListProperty<>();
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -89,7 +89,7 @@ public class TreePresenter implements Initializable/*, IAppStateListener*/ {
     }
 
     private void showPopup(ListCell<Item> cell) {
-        Node node = (Node) cell.getItem();
+        AppNode node = (AppNode) cell.getItem();
         statusPopOver.setTitle("Node " + node.getNode() + " Info");
         String ipAddressStr = node.getInfo().get(NodeInfo.Type.IP).getValue();
         ipAddress.setText("IP ADDRESS: " + ipAddressStr);
@@ -125,8 +125,8 @@ public class TreePresenter implements Initializable/*, IAppStateListener*/ {
             if (empty) {
                 setText(null);
                 setGraphic(null);
-            } else if (item instanceof Node) {
-                Node node = (Node) item;
+            } else if (item instanceof AppNode) {
+                AppNode node = (AppNode) item;
                 setText(node.getNode());
                 if (node.FailureDetected()) {
                     System.out.println("################################################### FailureDetected "+node.getNode());

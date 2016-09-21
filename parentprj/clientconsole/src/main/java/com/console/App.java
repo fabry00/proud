@@ -2,7 +2,7 @@ package com.console;
 
 import com.console.view.dashboard.DashboardView;
 import com.airhacks.afterburner.injection.Injector;
-import com.console.domain.Action;
+import com.console.domain.AppAction;
 import com.console.domain.ActionType;
 import com.console.view.dashboard.DashboardPresenter;
 import java.io.File;
@@ -62,7 +62,7 @@ public class App extends Application {
         Injector.forgetAll();
 
         DashboardPresenter presenter = appView.getRealPresenter();
-        presenter.getAppService().dispatch(new Action<>(ActionType.CLOSE, null));
+        presenter.getAppService().dispatch(new AppAction<>(ActionType.CLOSE, null));
 
     }
 

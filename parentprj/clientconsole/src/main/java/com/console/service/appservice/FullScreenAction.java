@@ -1,6 +1,6 @@
 package com.console.service.appservice;
 
-import com.console.domain.Action;
+import com.console.domain.AppAction;
 import com.console.domain.AppState;
 
 /**
@@ -10,7 +10,7 @@ import com.console.domain.AppState;
 public class FullScreenAction implements IActionHandler {
 
     @Override
-    public void execute(AppState currentState, Action action, ApplicationService appService) {
+    public void execute(AppState currentState, AppAction action, ApplicationService appService) {
         appService.getMainApp().switchToFullScreen((boolean) action.value);
     }
 

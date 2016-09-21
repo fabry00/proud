@@ -1,8 +1,8 @@
 package com.console.service.appservice;
 
-import com.console.domain.Action;
+import com.console.domain.AppAction;
 import com.console.domain.AppState;
-import com.console.domain.Node;
+import com.console.domain.AppNode;
 import com.console.domain.State;
 
 /**
@@ -14,9 +14,9 @@ class ProcessDataAction implements IActionHandler {
     //private Logger logger = Logger.getLogger(ProcessDataAction.class);
     @Override
     public void execute(AppState currentState,
-            Action action, ApplicationService appService) {
+            AppAction action, ApplicationService appService) {
 
-        Node node = (Node) action.value;
+        AppNode node = (AppNode) action.value;
         if (node.AnomalyDetected() || node.FailureDetected()) {
             currentState.addAbnormalNode(node);
         } else {

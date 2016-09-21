@@ -2,8 +2,8 @@ package com.console.view.graphdata;
 
 import java.net.URL;
 import java.util.*;
-import com.console.domain.Metric;
-import com.console.domain.Node;
+import com.console.domain.AppMetric;
+import com.console.domain.AppNode;
 import com.console.service.appservice.ApplicationService;
 import com.console.util.NodeUtil;
 import com.console.view.graphdata.toolbar.IToolbarListener;
@@ -65,7 +65,7 @@ public class GraphdataPresenter implements Initializable, IToolbarListener {
     }
 
     @Override
-    public void metricSelected(Metric metric) {
+    public void metricSelected(AppMetric metric) {
         removeAllSeries();
         // Fire node nodesSelectedChanged to re-add all the series with the right metric
         nodesSelectedChanged();
@@ -128,17 +128,17 @@ public class GraphdataPresenter implements Initializable, IToolbarListener {
     @Override
     public void nodesSelectedChanged() {
         logger.debug("nodeSelectedChange");
-        List<Node> nodeSelected = tbPresenter.getNodesSelected();
+        List<AppNode> nodeSelected = tbPresenter.getNodesSelected();
 
         removeSeriesFromChart(nodeSelected);
         addSeriesToChart(nodeSelected);
     }
 
-    private void addSeriesToChart(List<Node> nodeSelected) {
+    private void addSeriesToChart(List<AppNode> nodeSelected) {
         List<XYChart.Series<Date, Object>> serieToAdd = new ArrayList<>();
 
         // Check Serie to add
-        for (Node node : nodeSelected) {
+        for (AppNode node : nodeSelected) {
             boolean toAdd = true;
             for (XYChart.Series<Date, Object> serie : seriesList) {
 
@@ -159,7 +159,7 @@ public class GraphdataPresenter implements Initializable, IToolbarListener {
         seriesList.addAll(serieToAdd);
     }
 
-    private void removeSeriesFromChart(List<Node> nodeSelected) {
+    private void removeSeriesFromChart(List<AppNode> nodeSelected) {
         List<Integer> serieToRemove = new ArrayList<>();
         // Check Serie to remove
         if (nodeSelected.isEmpty()) {
@@ -169,7 +169,7 @@ public class GraphdataPresenter implements Initializable, IToolbarListener {
             int index = 0;
             for (XYChart.Series<Date, Object> serie : seriesList) {
                 boolean toRemove = false;
-                for (Node node : nodeSelected) {
+                for (AppNode node : nodeSelected) {
                     if (serie.getName().equals(node.getNode())) {
                         toRemove = true;
                         break;
@@ -199,14 +199,14 @@ public class GraphdataPresenter implements Initializable, IToolbarListener {
         });
     }
 
-    private String getSerieName(Node node) {
+    private String getSerieName(AppNode node) {
         return node.getNode();
     }
 
-    private XYChart.Series<Date, Object> getSerieToShow(Node node) {
+    private XYChart.Series<Date, Object> getSerieToShow(AppNode node) {
         XYChart.Series<Date, Object> serie = new XYChart.Series();
         serie.setName(getSerieName(node));
-        Metric metricSelected = tbPresenter.getSelectedMetric();
+        AppMetric metricSelected = tbPresenter.getSelectedMetric();
         serie.setData(node.getMetric(metricSelected));
 
         return serie;

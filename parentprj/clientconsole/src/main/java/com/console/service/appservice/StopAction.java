@@ -1,6 +1,6 @@
 package com.console.service.appservice;
 
-import com.console.domain.Action;
+import com.console.domain.AppAction;
 import com.console.domain.AppState;
 import com.console.domain.State;
 import org.apache.log4j.Logger;
@@ -14,7 +14,7 @@ class StopAction implements IActionHandler {
     private Logger logger = Logger.getLogger(StopAction.class);
 
     @Override
-    public void execute(AppState currentState, Action action, ApplicationService appService) {
+    public void execute(AppState currentState, AppAction action, ApplicationService appService) {
         logger.debug("Stop action execution");
 
         /*if (!currentState.getState().equals(State.STARTED)

@@ -1,6 +1,6 @@
 package com.console.service.appservice;
 
-import com.console.domain.Action;
+import com.console.domain.AppAction;
 import com.console.domain.AppState;
 
 /**
@@ -10,5 +10,5 @@ import com.console.domain.AppState;
 interface IActionHandler {
 
     public void execute(AppState currentState,
-            Action action, ApplicationService appService);
+            AppAction action, ApplicationService appService);
 }

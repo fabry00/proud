@@ -10,7 +10,7 @@ import javafx.scene.chart.XYChart;
 /**
  * Created by exfaff on 15/09/2016.
  */
-public class Node {
+public class AppNode {
 
     private static final int MAX_METRICS_COUNT = 50;
 
@@ -18,14 +18,14 @@ public class Node {
         FINE, ANOMALY_DETECTED, FAILURE_PREDICTED
     }
     private final String node;
-    private final Map<Metric, ObservableList<XYChart.Data<Date, Object>>> metrics
+    private final Map<AppMetric, ObservableList<XYChart.Data<Date, Object>>> metrics
             = new HashMap<>();
     private NodeState state = NodeState.FINE;
 
     private final Map<NodeInfo.Type, NodeInfo> info = new HashMap<>();
     private BooleanProperty isFineProp = new SimpleBooleanProperty(true);
 
-    private Node(Builder builder) {
+    private AppNode(Builder builder) {
         this.node = builder.node;
         this.metrics.putAll(builder.metrics);
         this.state = builder.state;
@@ -37,11 +37,11 @@ public class Node {
         return this.node;
     }
 
-    public ObservableList<XYChart.Data<Date, Object>> getMetric(Metric type) {
+    public ObservableList<XYChart.Data<Date, Object>> getMetric(AppMetric type) {
         return this.metrics.get(type);
     }
 
-    public void addMetricValue(Metric metric, Object key, Object value) {
+    public void addMetricValue(AppMetric metric, Object key, Object value) {
         this.metrics.get(metric).add(new XYChart.Data(key, value));
     }
 
@@ -77,7 +77,7 @@ public class Node {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        final Node other = (Node) o;
+        final AppNode other = (AppNode) o;
         return Objects.equals(this.node, other.node);
     }
 
@@ -89,7 +89,7 @@ public class Node {
     public static class Builder {
 
         private final String node;
-        private final Map<Metric, ObservableList<XYChart.Data<Date, Object>>> metrics = new HashMap<>();
+        private final Map<AppMetric, ObservableList<XYChart.Data<Date, Object>>> metrics = new HashMap<>();
         private NodeState state = NodeState.FINE;
 
         private Map<NodeInfo.Type, NodeInfo> info = new HashMap<>();
@@ -98,7 +98,7 @@ public class Node {
             this.node = node;
         }
 
-        public Builder withMetricValue(Metric metric, Date key, Object value) {
+        public Builder withMetricValue(AppMetric metric, Date key, Object value) {
             ObservableList<XYChart.Data<Date, Object>> serie;
             if (!metrics.containsKey(metric)) {
                 serie = FXCollections.synchronizedObservableList(FXCollections.observableArrayList());
@@ -125,8 +125,8 @@ public class Node {
             return this;
         }
 
-        public Node build() {
-            Node node = new Node(this);
+        public AppNode build() {
+            AppNode node = new AppNode(this);
 
             if (node.getNode().isEmpty()) {
                 // thread-safe
@@ -136,7 +136,7 @@ public class Node {
             return node;
         }
 
-        public static void syncNewData(Node node, Node newData) {
+        public static void syncNewData(AppNode node, AppNode newData) {
             node.state = newData.state;
 
             node.isFineProp.set(node.IsFine());

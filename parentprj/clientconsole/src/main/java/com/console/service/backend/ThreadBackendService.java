@@ -1,9 +1,9 @@
 package com.console.service.backend;
 
-import com.console.domain.Action;
+import com.console.domain.AppAction;
 import com.console.domain.ActionType;
-import com.console.domain.Metric;
-import com.console.domain.Node;
+import com.console.domain.AppMetric;
+import com.console.domain.AppNode;
 import com.console.service.appservice.ApplicationService;
 
 import com.console.util.MessageUtil;
@@ -72,7 +72,7 @@ public class ThreadBackendService implements IBackendService {
 
         MessageUtil util = new MessageUtil();
         String msg = util.getMsg("Started successfully");
-        Platform.runLater(() -> appService.dispatch(new Action<>(ActionType.NEW_MESSAGE, msg)));
+        Platform.runLater(() -> appService.dispatch(new AppAction<>(ActionType.NEW_MESSAGE, msg)));
 
     }
 
@@ -127,15 +127,15 @@ public class ThreadBackendService implements IBackendService {
                     + factor + " tot cpu: " + cpu2 + " ram: " + ram);
 
             Date xValue = dateUtil.getNowDate();
-            Node.Builder builder = new Node.Builder(node)
-                    .withInfo(new Node.NodeInfo(Node.NodeInfo.Type.IP, ip))
-                    .withMetricValue(Metric.CPU, xValue, cpu2)
-                    .withMetricValue(Metric.MEMORY, xValue, ram2);
+            AppNode.Builder builder = new AppNode.Builder(node)
+                    .withInfo(new AppNode.NodeInfo(AppNode.NodeInfo.Type.IP, ip))
+                    .withMetricValue(AppMetric.CPU, xValue, cpu2)
+                    .withMetricValue(AppMetric.MEMORY, xValue, ram2);
 
             getNodeStatus(builder);
 
-            Node dataReceived = builder.build();
-            this.appService.dispatch(new Action<>(ActionType.DATA_RECEIVED, dataReceived));
+            AppNode dataReceived = builder.build();
+            this.appService.dispatch(new AppAction<>(ActionType.DATA_RECEIVED, dataReceived));
 
         }
 
@@ -160,7 +160,7 @@ public class ThreadBackendService implements IBackendService {
             return null;
         }
 
-        private void getNodeStatus(Node.Builder builder) {
+        private void getNodeStatus(AppNode.Builder builder) {
             if (!failureDetected) {
                 Random random = new Random();
                 int rand = random.nextInt(100);

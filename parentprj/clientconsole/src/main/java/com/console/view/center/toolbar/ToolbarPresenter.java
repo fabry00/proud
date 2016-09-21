@@ -1,7 +1,7 @@
 package com.console.view.center.toolbar;
 
-import com.console.domain.Metric;
-import com.console.domain.Node;
+import com.console.domain.AppMetric;
+import com.console.domain.AppNode;
 import com.console.service.appservice.ApplicationService;
 import java.net.URL;
 import java.util.ArrayList;
@@ -39,7 +39,7 @@ public class ToolbarPresenter implements Initializable {
     @FXML
     private ToolBar graphToolbar;
 
-    private CheckComboBox<Node> graphNodeChooser;
+    private CheckComboBox<AppNode> graphNodeChooser;
 
     private ComboBox<String> metricSelector;
 
@@ -75,25 +75,25 @@ public class ToolbarPresenter implements Initializable {
             nodesInComboBox.add(node);
         }
     }*/
-    public boolean isChecked(Node node) {
+    public boolean isChecked(AppNode node) {
         return graphNodeChooser.checkModelProperty().get().isChecked(node);
     }
 
-    public List<Node> getNodesSelected() {
-        List<Node> nodesSelected = new ArrayList<>();
+    public List<AppNode> getNodesSelected() {
+        List<AppNode> nodesSelected = new ArrayList<>();
         nodesSelected.addAll(graphNodeChooser.checkModelProperty().get().getCheckedItems());
         return Collections.unmodifiableList(nodesSelected);
     }
 
-    public Metric getSelectedMetric() {
-        return Metric.valueOf(metricSelector.getSelectionModel().getSelectedItem());
+    public AppMetric getSelectedMetric() {
+        return AppMetric.valueOf(metricSelector.getSelectionModel().getSelectedItem());
     }
 
     private void addNodesChooser() {
         Label label = new Label("Nodes: ");
         graphToolbar.getItems().add(label);
 
-        ObservableList<Node> nodesInComboBox = appService.getCurrentState().getNodes();
+        ObservableList<AppNode> nodesInComboBox = appService.getCurrentState().getNodes();
 
         graphNodeChooser = new CheckComboBox<>(nodesInComboBox);
 
@@ -125,7 +125,7 @@ public class ToolbarPresenter implements Initializable {
         buttonRemoveAll.setOnAction(e -> removeAll());
 
         ObservableList<String> options
-                = FXCollections.observableArrayList(getMetricsList(Metric.class));
+                = FXCollections.observableArrayList(getMetricsList(AppMetric.class));
 
         metricSelector = new ComboBox<>();
         metricSelector.getItems().setAll(options);
@@ -156,7 +156,7 @@ public class ToolbarPresenter implements Initializable {
     }
 
     private void metricSelected() {
-        Metric metric = Metric.valueOf(metricSelector.getSelectionModel().getSelectedItem());
+        AppMetric metric = AppMetric.valueOf(metricSelector.getSelectionModel().getSelectedItem());
         listeners.forEach((listener) -> {
             Platform.runLater(() -> listener.metricSelected(metric));
         });

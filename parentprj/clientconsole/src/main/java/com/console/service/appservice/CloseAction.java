@@ -1,6 +1,6 @@
 package com.console.service.appservice;
 
-import com.console.domain.Action;
+import com.console.domain.AppAction;
 import com.console.domain.ActionType;
 import com.console.domain.AppState;
 import com.console.domain.State;
@@ -16,11 +16,11 @@ class CloseAction implements IActionHandler {
     private final Logger logger = Logger.getLogger(CloseAction.class);
 
     @Override
-    public void execute(AppState currentState, Action action, ApplicationService appService) {
+    public void execute(AppState currentState, AppAction action, ApplicationService appService) {
         logger.debug("Close Action execution");
         if (!currentState.getState().equals(State.STOPPED)) {
             logger.debug("Application not stopped, stopping");
-            appService.dispatch(new Action<>(ActionType.STOP, null));
+            appService.dispatch(new AppAction<>(ActionType.STOP, null));
         }
 
         try {

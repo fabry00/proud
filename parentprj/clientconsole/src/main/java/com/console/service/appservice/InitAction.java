@@ -1,6 +1,6 @@
 package com.console.service.appservice;
 
-import com.console.domain.Action;
+import com.console.domain.AppAction;
 import com.console.domain.AppState;
 import com.console.domain.ServiceName;
 import com.console.domain.State;
@@ -19,7 +19,7 @@ class InitAction implements IActionHandler {
 
     @Override
     public void execute(AppState currentState,
-            Action action, ApplicationService appService) {
+            AppAction action, ApplicationService appService) {
         logger.debug("Init action execution");
 
         IBackendService backendService = (IBackendService) appService.getService(ServiceName.BACKEND);

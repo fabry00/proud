@@ -1,7 +1,7 @@
 package com.console.service.appservice;
 
 import com.console.App;
-import com.console.domain.Action;
+import com.console.domain.AppAction;
 import com.console.domain.ActionType;
 import com.console.domain.AppState;
 import com.console.domain.IAppStateListener;
@@ -50,7 +50,7 @@ public class ApplicationService {
         return currentState;
     }
 
-    public void dispatch(final Action<ActionType, Object> action) {
+    public void dispatch(final AppAction<ActionType, Object> action) {
         logger.debug("New action: " + action);
         final ApplicationService self = this;
 
