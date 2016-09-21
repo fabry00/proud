@@ -34,7 +34,7 @@ public class NodePresenter implements Initializable {
 
     public void setNode(AppNode node) {
         this.node = node;
-        nodeLabel.textProperty().set(node.getNode());
+        nodeLabel.textProperty().set(node.getName());
         nodeImage.setImage(getNodeImage(node));
         node.IsFineProp().addListener(new ChangeListener<Boolean>() {
             @Override

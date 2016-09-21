@@ -232,41 +232,6 @@ public class SystemlayoutPresenter implements Initializable, IAppStateListener {
         factory.draw(canvas, nodeGestures, currentState);
     }
 
-    private VBox getNode(String name, NodeGestures nodeGestures, double x, double y) {
-        NodeUtil util = new NodeUtil();
-        VBox p2 = new VBox();
-        p2.setPrefWidth(84);
-        p2.setPrefHeight(118);
-        p2.getStylesheets().add("node.css");
-        p2.getStyleClass().add("record-sales");
-        p2.setTranslateX(x);
-        p2.setTranslateY(y);
-
-        Label nodeName = new Label(name);
-        nodeName.prefHeightProperty().bind(p2.prefHeightProperty());
-        nodeName.prefWidthProperty().bind(p2.prefWidthProperty());
-        nodeName.setWrapText(true);
-        nodeName.setTextAlignment(TextAlignment.CENTER);
-        /*  util.ancorToPaneLeft(nodeName,0.5);
-        util.ancorToPaneTop(nodeName,0.5);
-        util.ancorToPaneRight(nodeName,0.5);*/
-        p2.getChildren().add(nodeName);
-
-        ImageView imgView = new ImageView();
-        imgView.setFitHeight(80);
-        imgView.setFitWidth(80);
-        imgView.setLayoutX(2);
-        imgView.setLayoutY(28);
-        imgView.pickOnBoundsProperty().setValue(true);
-        imgView.setPreserveRatio(true);
-        Image img = AppImage.IMG_PC_GREEN_64;
-        imgView.setImage(img);
-        p2.getChildren().add(imgView);
-        p2.addEventFilter(MouseEvent.MOUSE_PRESSED, nodeGestures.getOnMousePressedEventHandler());
-        p2.addEventFilter(MouseEvent.MOUSE_DRAGGED, nodeGestures.getOnMouseDraggedEventHandler());
-        return p2;
-    }
-
     class BoundLine extends Line {
 
         BoundLine(DoubleProperty startX, DoubleProperty startY, DoubleProperty endX, DoubleProperty endY) {

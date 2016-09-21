@@ -21,25 +21,34 @@ public class AppStateProvider {
         Platform.runLater(() -> {
             AppState state = new AppState.Builder().build();
 
-            state.addNodeData(new AppNode.Builder("Homer")
+            AppNode homer = new AppNode.Builder("Homer")
                     .withInfo(new AppNode.NodeInfo(AppNode.NodeInfo.Type.IP, "192.168.1.101"))
-                    .build());
+                    .build();
 
-            state.addNodeData(new AppNode.Builder("Lisa")
-                    .withInfo(new AppNode.NodeInfo(AppNode.NodeInfo.Type.IP, "192.168.1.102"))
-                    .build());
+            AppNode lisa = new AppNode.Builder("Lisa")
+                    .withInfo(new AppNode.NodeInfo(AppNode.NodeInfo.Type.IP, "192.168.1.101"))
+                    .build();
 
-            state.addNodeData(new AppNode.Builder("Marge")
-                    .withInfo(new AppNode.NodeInfo(AppNode.NodeInfo.Type.IP, "192.168.1.103"))
-                    .build());
+            AppNode marge = new AppNode.Builder("Marge")
+                    .withInfo(new AppNode.NodeInfo(AppNode.NodeInfo.Type.IP, "192.168.1.101"))
+                    .build();
 
-            state.addNodeData(new AppNode.Builder("Bart")
-                    .withInfo(new AppNode.NodeInfo(AppNode.NodeInfo.Type.IP, "192.168.1.104"))
-                    .build());
+            AppNode bart = new AppNode.Builder("Bart")
+                    .withInfo(new AppNode.NodeInfo(AppNode.NodeInfo.Type.IP, "192.168.1.101"))
+                    .build();
 
-            state.addNodeData(new AppNode.Builder("Meggie")
-                    .withInfo(new AppNode.NodeInfo(AppNode.NodeInfo.Type.IP, "192.168.1.105"))
-                    .build());
+            AppNode meggie = new AppNode.Builder("Meggie")
+                    .withInfo(new AppNode.NodeInfo(AppNode.NodeInfo.Type.IP, "192.168.1.101"))
+                    .build();
+
+            homer.getConnections().add(bart);
+            lisa.getConnections().add(meggie);
+
+            state.addNodeData(homer);
+            state.addNodeData(lisa);
+            state.addNodeData(marge);
+            state.addNodeData(bart);
+            state.addNodeData(meggie);
 
             callback.success(state);
         });

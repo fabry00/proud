@@ -17,24 +17,25 @@ public class AppNode {
     private enum NodeState {
         FINE, ANOMALY_DETECTED, FAILURE_PREDICTED
     }
-    private final String node;
-    private final Map<AppMetric, ObservableList<XYChart.Data<Date, Object>>> metrics
-            = new HashMap<>();
+    private final String name;
     private NodeState state = NodeState.FINE;
+    private final Map<AppMetric, ObservableList<XYChart.Data<Date, Object>>> metrics = new HashMap<>();
+    private final Set<AppNode> connectedTo = new HashSet<>();
 
     private final Map<NodeInfo.Type, NodeInfo> info = new HashMap<>();
     private BooleanProperty isFineProp = new SimpleBooleanProperty(true);
 
     private AppNode(Builder builder) {
-        this.node = builder.node;
+        this.name = builder.name;
         this.metrics.putAll(builder.metrics);
         this.state = builder.state;
         this.info.putAll(builder.info);
+        this.connectedTo.addAll(builder.connectedTo);
         this.isFineProp.set(IsFine());
     }
 
-    public String getNode() {
-        return this.node;
+    public String getName() {
+        return this.name;
     }
 
     public ObservableList<XYChart.Data<Date, Object>> getMetric(AppMetric type) {
@@ -56,9 +57,9 @@ public class AppNode {
     public BooleanProperty IsFineProp() {
         return this.isFineProp;
     }
-    
+
     public boolean IsFine() {
-         return !AnomalyDetected() && !FailureDetected();
+        return !AnomalyDetected() && !FailureDetected();
     }
 
     public Map<NodeInfo.Type, NodeInfo> getInfo() {
@@ -66,7 +67,11 @@ public class AppNode {
     }
 
     public String toString() {
-        return this.node;
+        return this.name;
+    }
+
+    public Set<AppNode> getConnections() {
+        return this.connectedTo;
     }
 
     @Override
@@ -78,24 +83,26 @@ public class AppNode {
             return false;
         }
         final AppNode other = (AppNode) o;
-        return Objects.equals(this.node, other.node);
+        return Objects.equals(this.name, other.name);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(node);
+        return Objects.hash(name);
     }
 
     public static class Builder {
 
-        private final String node;
+        private final String name;
         private final Map<AppMetric, ObservableList<XYChart.Data<Date, Object>>> metrics = new HashMap<>();
+        private final Set<AppNode> connectedTo = new HashSet<>();
+
         private NodeState state = NodeState.FINE;
 
         private Map<NodeInfo.Type, NodeInfo> info = new HashMap<>();
 
         public Builder(String node) {
-            this.node = node;
+            this.name = node;
         }
 
         public Builder withMetricValue(AppMetric metric, Date key, Object value) {
@@ -125,10 +132,15 @@ public class AppNode {
             return this;
         }
 
+        public Builder connectedTo(AppNode node) {
+            this.connectedTo.add(node);
+            return this;
+        }
+
         public AppNode build() {
             AppNode node = new AppNode(this);
 
-            if (node.getNode().isEmpty()) {
+            if (node.getName().isEmpty()) {
                 // thread-safe
                 throw new IllegalStateException("Node id not valid");
             }

@@ -142,7 +142,7 @@ public class GraphdataPresenter implements Initializable, IToolbarListener {
             boolean toAdd = true;
             for (XYChart.Series<Date, Object> serie : seriesList) {
 
-                if (serie.getName().equals(node.getNode())) {
+                if (serie.getName().equals(node.getName())) {
                     toAdd = false;
                     break;
                 }
@@ -170,7 +170,7 @@ public class GraphdataPresenter implements Initializable, IToolbarListener {
             for (XYChart.Series<Date, Object> serie : seriesList) {
                 boolean toRemove = false;
                 for (AppNode node : nodeSelected) {
-                    if (serie.getName().equals(node.getNode())) {
+                    if (serie.getName().equals(node.getName())) {
                         toRemove = true;
                         break;
                     }
@@ -200,7 +200,7 @@ public class GraphdataPresenter implements Initializable, IToolbarListener {
     }
 
     private String getSerieName(AppNode node) {
-        return node.getNode();
+        return node.getName();
     }
 
     private XYChart.Series<Date, Object> getSerieToShow(AppNode node) {

@@ -90,7 +90,7 @@ public class TreePresenter implements Initializable/*, IAppStateListener*/ {
 
     private void showPopup(ListCell<Item> cell) {
         AppNode node = (AppNode) cell.getItem();
-        statusPopOver.setTitle("Node " + node.getNode() + " Info");
+        statusPopOver.setTitle("Node " + node.getName() + " Info");
         String ipAddressStr = node.getInfo().get(NodeInfo.Type.IP).getValue();
         ipAddress.setText("IP ADDRESS: " + ipAddressStr);
         statusNode.getStyleClass().remove(FAILURE_PREDICTED_CLASS);
@@ -127,15 +127,15 @@ public class TreePresenter implements Initializable/*, IAppStateListener*/ {
                 setGraphic(null);
             } else if (item instanceof AppNode) {
                 AppNode node = (AppNode) item;
-                setText(node.getNode());
+                setText(node.getName());
                 if (node.FailureDetected()) {
-                    System.out.println("################################################### FailureDetected "+node.getNode());
+                    System.out.println("################################################### FailureDetected "+node.getName());
                     getStyleClass().add(FAILURE_PREDICTED_CLASS);
                 } else if (node.AnomalyDetected()) {
-                    System.out.println("################################################### AnomalyDetected "+node.getNode());
+                    System.out.println("################################################### AnomalyDetected "+node.getName());
                     getStyleClass().add(ABNORMAL_STATUS_CLASS);
                 } else {
-                    System.out.println("################################################### fine "+node.getNode());
+                    System.out.println("################################################### fine "+node.getName());
                     getStyleClass().remove(FAILURE_PREDICTED_CLASS);
                     getStyleClass().remove(ABNORMAL_STATUS_CLASS);
                 }
