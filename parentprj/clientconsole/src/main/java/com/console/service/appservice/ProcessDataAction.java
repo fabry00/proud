@@ -3,6 +3,7 @@ package com.console.service.appservice;
 import com.console.domain.AppAction;
 import com.console.domain.AppState;
 import com.console.domain.AppNode;
+import com.console.domain.ICallback;
 import com.console.domain.State;
 
 /**
@@ -13,10 +14,10 @@ class ProcessDataAction implements IActionHandler {
 
     //private Logger logger = Logger.getLogger(ProcessDataAction.class);
     @Override
-    public void execute(AppState currentState,
-            AppAction action, ApplicationService appService) {
+    public void execute(AppAction action, ApplicationService appService,final ICallback callback) {
 
-        AppNode node = (AppNode) action.value;
+        // TODO to improve
+        /*AppNode node = (AppNode) action.value;
         if (node.AnomalyDetected() || node.FailureDetected()) {
             currentState.addAbnormalNode(node);
         } else {
@@ -31,7 +32,7 @@ class ProcessDataAction implements IActionHandler {
             currentState.setState(State.ABNORMAL_NODE_STATE);
         } else {
             currentState.setState(State.NEWDATARECEIVED);
-        }
+        }*/
     }
 
 }

@@ -3,6 +3,7 @@ package com.console.service.appservice;
 import com.console.domain.AppAction;
 import com.console.domain.ActionType;
 import com.console.domain.AppState;
+import com.console.domain.ICallback;
 import com.console.domain.State;
 import java.util.logging.Level;
 import org.apache.log4j.Logger;
@@ -16,9 +17,9 @@ class CloseAction implements IActionHandler {
     private final Logger logger = Logger.getLogger(CloseAction.class);
 
     @Override
-    public void execute(AppState currentState, AppAction action, ApplicationService appService) {
+    public void execute(AppAction action, ApplicationService appService,final ICallback callback) {
         logger.debug("Close Action execution");
-        if (!currentState.getState().equals(State.STOPPED)) {
+        if (!appService.getCurrentState().getState().equals(State.STOPPED)) {
             logger.debug("Application not stopped, stopping");
             appService.dispatch(new AppAction<>(ActionType.STOP, null));
         }

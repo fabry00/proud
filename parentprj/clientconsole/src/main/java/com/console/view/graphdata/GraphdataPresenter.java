@@ -233,7 +233,7 @@ public class GraphdataPresenter implements Initializable, IToolbarListener {
         }, mouseLocationInScene));
 
         //  Tooltip.install(chart, tooltip);
-        // TODO
+        // TODO show tooltip
         /* ObjectProperty<Point2D> mouseLocationInScene = new SimpleObjectProperty<>();
 
         Tooltip tooltip = new Tooltip();

@@ -14,6 +14,7 @@ import javafx.util.Callback;
 public class AppState {
 
     // Every time the the node change state the event listChanged is fired
+    // TODO TO CHECK
     //https://gist.github.com/andytill/3116203
     Callback<AppNode, Observable[]> extractor = new Callback<AppNode, Observable[]>() {
 
@@ -23,7 +24,7 @@ public class AppState {
         }
     };
 
-    private State state;
+    private State state = State.UNKWOWN;
     private final StringProperty stateProperty = new SimpleStringProperty("");
     private final StringProperty message = new SimpleStringProperty("");
     private final ObservableList<AppNode> nodes
@@ -31,6 +32,14 @@ public class AppState {
 
     private final ObservableList<AppNode> nodesInAnomalySate
             = FXCollections.synchronizedObservableList(FXCollections.observableArrayList());
+
+    private AppState(Builder builder) {
+        this.state = builder.state;
+    }
+
+    private AppState() {
+
+    }
 
     public State getState() {
         return state;
@@ -69,6 +78,21 @@ public class AppState {
         } else {
             nodes.add(newNodeData);
         }
+
+        if (newNodeData.AnomalyDetected() || newNodeData.FailureDetected()) {
+            addAbnormalNode(newNodeData);
+        } else {
+            int index = getNodesInAbnormalState().lastIndexOf(newNodeData);
+            if (index >= 0) {
+                getNodesInAbnormalState().remove(index);
+            }
+        }
+
+        if (!getNodesInAbnormalState().isEmpty()) {
+            setState(State.ABNORMAL_NODE_STATE);
+        } else {
+            setState(State.NEWDATARECEIVED);
+        }
     }
 
     public void addAbnormalNode(AppNode node) {
@@ -78,6 +102,11 @@ public class AppState {
         }
     }
 
+    /**
+     * Clone this state
+     *
+     * @return
+     */
     public AppState clone() {
         AppState cloned = new AppState();
 
@@ -88,7 +117,31 @@ public class AppState {
         return cloned;
     }
 
+    /**
+     * Copy the state
+     *
+     * @param state
+     */
+    public void copyFrom(AppState stateToCpy) {
+        setState(stateToCpy.state);
+        stateToCpy.nodes.stream().forEach((node) -> addNodeData(node));
+        setMessage(stateToCpy.message.getValue());
+    }
+
     public ObservableList<AppNode> getNodes() {
         return nodes;
     }
+
+    public static class Builder {
+
+        private State state = State.UNKWOWN;
+
+        public Builder() {
+        }
+
+        public AppState build() {
+            return new AppState(this);
+        }
+    }
+
 }
