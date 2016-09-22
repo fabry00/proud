@@ -21,6 +21,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.shape.Line;
 import javafx.scene.text.TextAlignment;
 import com.console.domain.IAppElement;
+import com.console.view.systemlayout.ISystemLayoutManager;
 
 /**
  *
@@ -37,7 +38,7 @@ public class NodeElement implements ISystemElement {
     private final VBox panel = new VBox();
     private final Map<ISystemElement, Line> connections = new HashMap<>();
 
-    public NodeElement(IAppElement node) {
+    public NodeElement(IAppElement node,ISystemLayoutManager layoutManager) {
         this.node = node;
     }
 
