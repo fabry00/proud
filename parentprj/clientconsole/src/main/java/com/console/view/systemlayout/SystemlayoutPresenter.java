@@ -1,55 +1,29 @@
 package com.console.view.systemlayout;
 
-import com.console.domain.AppNode;
 import com.console.domain.AppState;
 import com.console.domain.IAppStateListener;
 import com.console.domain.State;
 import com.console.service.appservice.ApplicationService;
-import com.console.util.AppImage;
-import com.console.util.NodeUtil;
 import com.console.util.view.NodeGestures;
 import com.console.util.view.PannableCanvas;
 import com.console.util.view.SceneGestures;
-import com.console.view.nodeview.NodeView;
-import com.console.view.systemlayout.element.NodeElement;
-import javafx.beans.binding.Bindings;
-import javafx.beans.binding.DoubleBinding;
 import javafx.beans.property.*;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
-import javafx.collections.FXCollections;
-import javafx.collections.ListChangeListener;
-import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.event.EventType;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Bounds;
 import javafx.scene.*;
 import javafx.scene.control.*;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.ScrollEvent;
-import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.*;
-import javafx.scene.text.TextAlignment;
-import javafx.scene.web.WebView;
-import javafx.stage.Stage;
-import org.controlsfx.control.CheckComboBox;
-import org.controlsfx.control.ListSelectionView;
-import org.controlsfx.control.textfield.TextFields;
 
 import javax.inject.Inject;
 import java.net.URL;
-import java.util.HashSet;
-import java.util.List;
 import java.util.ResourceBundle;
-import java.util.Set;
 
 /**
  * Created by exfaff on 20/09/2016.
@@ -69,18 +43,18 @@ public class SystemlayoutPresenter implements Initializable, IAppStateListener {
     public void initialize(URL location, ResourceBundle resources) {
 // TODO clean
         /* DoubleProperty startX = new SimpleDoubleProperty(100);
-        DoubleProperty startY = new SimpleDoubleProperty(100);
-        DoubleProperty endX   = new SimpleDoubleProperty(300);
-        DoubleProperty endY   = new SimpleDoubleProperty(200);
+         DoubleProperty startY = new SimpleDoubleProperty(100);
+         DoubleProperty endX   = new SimpleDoubleProperty(300);
+         DoubleProperty endY   = new SimpleDoubleProperty(200);
 
-        Anchor start    = new Anchor(Color.PALEGREEN, startX, startY);
-        Anchor end      = new Anchor(Color.TOMATO,    endX,   endY);
+         Anchor start    = new Anchor(Color.PALEGREEN, startX, startY);
+         Anchor end      = new Anchor(Color.TOMATO,    endX,   endY);
 
-        Line line = new BoundLine(startX, startY, endX, endY);
+         Line line = new BoundLine(startX, startY, endX, endY);
 
-        systemPane.getChildren().add(start);
-        systemPane.getChildren().add(end);
-        systemPane.getChildren().add(line);*/
+         systemPane.getChildren().add(start);
+         systemPane.getChildren().add(end);
+         systemPane.getChildren().add(line);*/
 //        Group group = new Group();
 //
 //        // create canvas
@@ -226,13 +200,13 @@ public class SystemlayoutPresenter implements Initializable, IAppStateListener {
 
     @Override
     public void AppStateChanged(AppState oldState, AppState currentState) {
-        System.out.println("################## APP STARTED " + currentState.getNodes().size());
-
+        // AppState == State.STARTED
         SystemLayoutFactory factory = new SystemLayoutFactory();
-        factory.draw(canvas, nodeGestures, currentState);
+        factory.draw(canvas, nodeGestures, currentState.getLayers());
     }
-// TODO clean
-    class BoundLine extends Line {
+
+    // TODO clean
+   /* class BoundLine extends Line {
 
         BoundLine(DoubleProperty startX, DoubleProperty startY, DoubleProperty endX, DoubleProperty endY) {
             startXProperty().bind(startX);
@@ -320,8 +294,8 @@ public class SystemlayoutPresenter implements Initializable, IAppStateListener {
 
     class Center {
 
-        private ReadOnlyDoubleWrapper centerX = new ReadOnlyDoubleWrapper();
-        private ReadOnlyDoubleWrapper centerY = new ReadOnlyDoubleWrapper();
+        private final ReadOnlyDoubleWrapper centerX = new ReadOnlyDoubleWrapper();
+        private final ReadOnlyDoubleWrapper centerY = new ReadOnlyDoubleWrapper();
 
         public Center(Node node) {
             calcCenter(node.getBoundsInParent());
@@ -349,6 +323,6 @@ public class SystemlayoutPresenter implements Initializable, IAppStateListener {
         ReadOnlyDoubleProperty centerYProperty() {
             return centerY.getReadOnlyProperty();
         }
-    }
+    }*/
 
 }

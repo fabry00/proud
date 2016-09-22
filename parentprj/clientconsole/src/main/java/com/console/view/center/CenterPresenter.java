@@ -45,7 +45,7 @@ public class CenterPresenter implements Initializable {
     }
 
     private void initToolbar() {
-        AnchorPane pane = (AnchorPane) new ToolbarView().getView();
+        Parent pane = new ToolbarView().getView();
         util.ancorToPaneLeft(pane, 0.0);
         util.ancorToPaneTop(pane, 0.0);
         util.ancorToPaneRight(pane, 0.0);
@@ -55,7 +55,7 @@ public class CenterPresenter implements Initializable {
     private void initSystenLayout() {
         Parent pane = new SystemlayoutView().getView();
         util.ancorToPaneLeft(pane, 0.0);
-        util.ancorToPaneTop(pane, 40.0);
+        util.ancorToPaneTop(pane, 35.0);
         util.ancorToPaneRight(pane, 0.0);
         util.ancorToPaneBottom(pane, 0.0);
         centerPane.getChildren().add(pane);

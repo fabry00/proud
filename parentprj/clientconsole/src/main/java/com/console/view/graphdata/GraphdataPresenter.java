@@ -1,5 +1,6 @@
 package com.console.view.graphdata;
 
+import com.console.domain.AppElement;
 import java.net.URL;
 import java.util.*;
 import com.console.domain.AppMetric;
@@ -128,17 +129,17 @@ public class GraphdataPresenter implements Initializable, IToolbarListener {
     @Override
     public void nodesSelectedChanged() {
         logger.debug("nodeSelectedChange");
-        List<AppNode> nodeSelected = tbPresenter.getNodesSelected();
+        List<AppElement> nodeSelected = tbPresenter.getNodesSelected();
 
         removeSeriesFromChart(nodeSelected);
         addSeriesToChart(nodeSelected);
     }
 
-    private void addSeriesToChart(List<AppNode> nodeSelected) {
+    private void addSeriesToChart(List<AppElement> nodeSelected) {
         List<XYChart.Series<Date, Object>> serieToAdd = new ArrayList<>();
 
         // Check Serie to add
-        for (AppNode node : nodeSelected) {
+        for (AppElement node : nodeSelected) {
             boolean toAdd = true;
             for (XYChart.Series<Date, Object> serie : seriesList) {
 
@@ -159,7 +160,7 @@ public class GraphdataPresenter implements Initializable, IToolbarListener {
         seriesList.addAll(serieToAdd);
     }
 
-    private void removeSeriesFromChart(List<AppNode> nodeSelected) {
+    private void removeSeriesFromChart(List<AppElement> nodeSelected) {
         List<Integer> serieToRemove = new ArrayList<>();
         // Check Serie to remove
         if (nodeSelected.isEmpty()) {
@@ -169,7 +170,7 @@ public class GraphdataPresenter implements Initializable, IToolbarListener {
             int index = 0;
             for (XYChart.Series<Date, Object> serie : seriesList) {
                 boolean toRemove = false;
-                for (AppNode node : nodeSelected) {
+                for (AppElement node : nodeSelected) {
                     if (serie.getName().equals(node.getName())) {
                         toRemove = true;
                         break;
@@ -199,11 +200,11 @@ public class GraphdataPresenter implements Initializable, IToolbarListener {
         });
     }
 
-    private String getSerieName(AppNode node) {
+    private String getSerieName(AppElement node) {
         return node.getName();
     }
 
-    private XYChart.Series<Date, Object> getSerieToShow(AppNode node) {
+    private XYChart.Series<Date, Object> getSerieToShow(AppElement node) {
         XYChart.Series<Date, Object> serie = new XYChart.Series();
         serie.setName(getSerieName(node));
         AppMetric metricSelected = tbPresenter.getSelectedMetric();

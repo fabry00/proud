@@ -2,8 +2,10 @@ package com.console.service.backend;
 
 import com.console.domain.AppAction;
 import com.console.domain.ActionType;
+import com.console.domain.AppElement;
 import com.console.domain.AppMetric;
 import com.console.domain.AppNode;
+import com.console.domain.ElementInfo;
 import com.console.service.appservice.ApplicationService;
 
 import com.console.util.MessageUtil;
@@ -128,13 +130,13 @@ public class ThreadBackendService implements IBackendService {
 
             Date xValue = dateUtil.getNowDate();
             AppNode.Builder builder = new AppNode.Builder(node)
-                    .withInfo(new AppNode.NodeInfo(AppNode.NodeInfo.Type.IP, ip))
+                    .withInfo(new ElementInfo(ElementInfo.Type.IP, ip))
                     .withMetricValue(AppMetric.CPU, xValue, cpu2)
                     .withMetricValue(AppMetric.MEMORY, xValue, ram2);
 
             getNodeStatus(builder);
 
-            AppNode dataReceived = builder.build();
+            AppElement dataReceived = builder.build();
             this.appService.dispatch(new AppAction<>(ActionType.DATA_RECEIVED, dataReceived));
 
         }

@@ -8,17 +8,22 @@ import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 //http://stackoverflow.com/questions/29506156/javafx-8-zooming-relative-to-mouse-pointer
 public class PannableCanvas extends Pane {
-
-    DoubleProperty myScale = new SimpleDoubleProperty(1.0);
+    private static final String CANVAS_CSS ="com/console/util/view/PannableCanvas.css";
+    private static final String CANVAS_CLASS ="pannable-canvas";
+    
+    private static final DoubleProperty SCALE_FACTOR = new SimpleDoubleProperty(1.0);
+    
 
     public PannableCanvas(Double minW,Double minHeight) {
         setMinSize(minW,minHeight);
         setPrefSize(minW,minHeight);
-        setStyle("-fx-background-color: lightgrey; -fx-border-color: blue;");
+        getStylesheets().add(CANVAS_CSS);
+        getStyleClass().add(CANVAS_CLASS);
+        
 
         // add scale transform
-        scaleXProperty().bind(myScale);
-        scaleYProperty().bind(myScale);
+        scaleXProperty().bind(SCALE_FACTOR);
+        scaleYProperty().bind(SCALE_FACTOR);
     }
 
     /**
@@ -37,7 +42,7 @@ public class PannableCanvas extends Pane {
 
         GraphicsContext gc = grid.getGraphicsContext2D();
 
-        gc.setStroke(Color.GRAY);
+            gc.setStroke(Color.GRAY);
         gc.setLineWidth(1);
 
         // draw grid lines
@@ -53,11 +58,11 @@ public class PannableCanvas extends Pane {
     }
 
     public double getScale() {
-        return myScale.get();
+        return SCALE_FACTOR.get();
     }
 
     public void setScale(double scale) {
-        myScale.set(scale);
+        SCALE_FACTOR.set(scale);
     }
 
     public void setPivot(double x, double y) {

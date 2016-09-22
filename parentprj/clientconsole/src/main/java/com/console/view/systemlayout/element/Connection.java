@@ -1,8 +1,6 @@
 package com.console.view.systemlayout.element;
 
-import com.console.util.view.NodeGestures;
 import javafx.beans.property.DoubleProperty;
-import javafx.scene.Node;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.StrokeLineCap;

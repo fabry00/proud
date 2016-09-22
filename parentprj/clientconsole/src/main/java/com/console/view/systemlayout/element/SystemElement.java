@@ -12,11 +12,15 @@ import javafx.scene.shape.Line;
  */
 public interface SystemElement {
 
+    public enum Type {Node,Layer};
+    
     public Node draw(double x, double y, final NodeGestures nodeGestures);
 
     public void createConnections(List<SystemElement> relatedElements);
     
     public Collection<Line> getConnections();
     
-    public Node geContainer();
+    public Node getContainer();
+    
+    public Type getType();
 }

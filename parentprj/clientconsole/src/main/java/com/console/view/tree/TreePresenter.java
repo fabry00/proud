@@ -1,10 +1,8 @@
 package com.console.view.tree;
 
-import com.console.domain.AppState;
-import com.console.domain.IAppStateListener;
+import com.console.domain.AppElement;
 import com.console.domain.AppNode;
-import com.console.domain.AppNode.NodeInfo;
-import com.console.domain.State;
+import com.console.domain.ElementInfo;
 import com.console.service.appservice.ApplicationService;
 import java.net.URL;
 import java.util.*;
@@ -17,12 +15,10 @@ import javafx.geometry.Insets;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 
 import javax.inject.Inject;
 
-import javafx.util.Callback;
 import org.apache.log4j.Logger;
 import org.controlsfx.control.PopOver;
 import org.controlsfx.control.PropertySheet.Item;
@@ -48,7 +44,7 @@ public class TreePresenter implements Initializable/*, IAppStateListener*/ {
     @FXML
     private ListView nodeList;
 
-    protected ListProperty<AppNode> listProperty = new SimpleListProperty<>();
+    protected ListProperty<AppElement> listProperty = new SimpleListProperty<>();
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -89,9 +85,9 @@ public class TreePresenter implements Initializable/*, IAppStateListener*/ {
     }
 
     private void showPopup(ListCell<Item> cell) {
-        AppNode node = (AppNode) cell.getItem();
+        AppElement node = (AppElement) cell.getItem();
         statusPopOver.setTitle("Node " + node.getName() + " Info");
-        String ipAddressStr = node.getInfo().get(NodeInfo.Type.IP).getValue();
+        String ipAddressStr = node.getInfo().get(ElementInfo.Type.IP).getValue();
         ipAddress.setText("IP ADDRESS: " + ipAddressStr);
         statusNode.getStyleClass().remove(FAILURE_PREDICTED_CLASS);
         statusNode.getStyleClass().remove(ABNORMAL_STATUS_CLASS);

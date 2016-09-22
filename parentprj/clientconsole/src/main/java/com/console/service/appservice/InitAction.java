@@ -2,10 +2,7 @@ package com.console.service.appservice;
 
 import com.console.domain.AppAction;
 import com.console.domain.AppState;
-import com.console.domain.ServiceName;
 import com.console.domain.State;
-import com.console.service.backend.BackEndServiceException;
-import com.console.service.backend.IBackendService;
 import com.console.service.provider.AppStateProvider;
 import com.console.domain.ICallback;
 import org.apache.log4j.Logger;
@@ -23,6 +20,7 @@ class InitAction implements IActionHandler {
     public void execute(AppAction action, ApplicationService appService, final ICallback callback) {
         logger.debug("Init action execution");
 
+        // TODO clean code
         //        IBackendService backendService = (IBackendService) appService.getService(ServiceName.BACKEND);
         //
         //        if (!currentState.getState().equals(expected)) {
@@ -42,6 +40,7 @@ class InitAction implements IActionHandler {
         //            currentState.setState(State.ERROR);
         //        }
         //        currentState.setState(State.STARTED);
+        
         AppStateProvider provider = new AppStateProvider();
         
         provider.getSystemState(new ICallback() {
