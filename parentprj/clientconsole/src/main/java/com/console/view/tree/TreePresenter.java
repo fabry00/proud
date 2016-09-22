@@ -1,6 +1,5 @@
 package com.console.view.tree;
 
-import com.console.domain.AppElement;
 import com.console.domain.AppNode;
 import com.console.domain.ElementInfo;
 import com.console.service.appservice.ApplicationService;
@@ -22,6 +21,7 @@ import javax.inject.Inject;
 import org.apache.log4j.Logger;
 import org.controlsfx.control.PopOver;
 import org.controlsfx.control.PropertySheet.Item;
+import com.console.domain.IAppElement;
 
 /**
  *
@@ -44,7 +44,7 @@ public class TreePresenter implements Initializable/*, IAppStateListener*/ {
     @FXML
     private ListView nodeList;
 
-    protected ListProperty<AppElement> listProperty = new SimpleListProperty<>();
+    protected ListProperty<IAppElement> listProperty = new SimpleListProperty<>();
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -85,7 +85,7 @@ public class TreePresenter implements Initializable/*, IAppStateListener*/ {
     }
 
     private void showPopup(ListCell<Item> cell) {
-        AppElement node = (AppElement) cell.getItem();
+        IAppElement node = (IAppElement) cell.getItem();
         statusPopOver.setTitle("Node " + node.getName() + " Info");
         String ipAddressStr = node.getInfo().get(ElementInfo.Type.IP).getValue();
         ipAddress.setText("IP ADDRESS: " + ipAddressStr);

@@ -8,11 +8,14 @@ import javafx.event.EventHandler;
 import javafx.scene.Node;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
+import org.apache.log4j.Logger;
 
 /**
  * Listeners for making the nodes draggable via left mouse button. Considers if parent is zoomed.
  */
 public class NodeGestures {
+    
+    private final Logger logger = Logger.getLogger(NodeGestures.class);
 
     private DragContext nodeDragContext = new DragContext();
 
@@ -70,7 +73,7 @@ public class NodeGestures {
             return;
         }
         
-        System.out.println("Doubleclick");
+        logger.debug("onLayerClickedEventHandler");
         
     };
 }

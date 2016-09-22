@@ -1,6 +1,5 @@
 package com.console.view.graphdata.toolbar;
 
-import com.console.domain.AppElement;
 import com.console.domain.IAppStateListener;
 import com.console.domain.AppMetric;
 import com.console.domain.AppNode;
@@ -30,6 +29,7 @@ import javafx.scene.control.Separator;
 import javafx.scene.control.ToolBar;
 import javax.inject.Inject;
 import org.controlsfx.control.CheckComboBox;
+import com.console.domain.IAppElement;
 
 /**
  * TODO same as center.toolbar --> remove
@@ -42,7 +42,7 @@ public class ToolbarPresenter implements Initializable {
     @FXML
     private ToolBar graphToolbar;
 
-    private CheckComboBox<AppElement> graphNodeChooser;
+    private CheckComboBox<IAppElement> graphNodeChooser;
 
     private ComboBox<String> metricSelector;
 
@@ -82,8 +82,8 @@ public class ToolbarPresenter implements Initializable {
         return graphNodeChooser.checkModelProperty().get().isChecked(node);
     }
 
-    public List<AppElement> getNodesSelected() {
-        List<AppElement> nodesSelected = new ArrayList<>();
+    public List<IAppElement> getNodesSelected() {
+        List<IAppElement> nodesSelected = new ArrayList<>();
         nodesSelected.addAll(graphNodeChooser.checkModelProperty().get().getCheckedItems());
         return Collections.unmodifiableList(nodesSelected);
     }
@@ -96,7 +96,7 @@ public class ToolbarPresenter implements Initializable {
         Label label = new Label("Nodes: ");
         graphToolbar.getItems().add(label);
 
-        ObservableList<AppElement> nodesInComboBox = appService.getCurrentState().getNodes();
+        ObservableList<IAppElement> nodesInComboBox = appService.getCurrentState().getNodes();
 
         graphNodeChooser = new CheckComboBox<>(nodesInComboBox);
 

@@ -1,27 +1,27 @@
 package com.console.view.systemlayout.element;
 
-import com.console.domain.AppElement;
 import com.console.util.view.NodeGestures;
 import java.util.Collection;
 import java.util.List;
 import javafx.scene.Node;
 import javafx.scene.shape.Line;
+import com.console.domain.IAppElement;
 
 /**
  *
  * @author fabry
  */
-public interface SystemElement {
+public interface ISystemElement {
 
-    /*public enum Type {Node,Layer};*/
-    
-    public Node draw(double x, double y, final NodeGestures nodeGestures);
+     public Node draw(double x, double y, final NodeGestures nodeGestures);
 
-    public void createConnections(List<SystemElement> relatedElements);
+    public void createConnections(List<ISystemElement> relatedElements);
     
     public Collection<Line> getConnections();
     
     public Node getContainer();
     
-    public AppElement.Type getType();
+    public IAppElement.Type getType();
+
+    public String getName();
 }

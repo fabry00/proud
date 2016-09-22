@@ -2,7 +2,6 @@ package com.console.service.backend;
 
 import com.console.domain.AppAction;
 import com.console.domain.ActionType;
-import com.console.domain.AppElement;
 import com.console.domain.AppMetric;
 import com.console.domain.AppNode;
 import com.console.domain.ElementInfo;
@@ -24,6 +23,7 @@ import java.util.Random;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
+import com.console.domain.IAppElement;
 
 /**
  *
@@ -136,7 +136,7 @@ public class ThreadBackendService implements IBackendService {
 
             getNodeStatus(builder);
 
-            AppElement dataReceived = builder.build();
+            IAppElement dataReceived = builder.build();
             this.appService.dispatch(new AppAction<>(ActionType.DATA_RECEIVED, dataReceived));
 
         }

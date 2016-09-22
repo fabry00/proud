@@ -10,14 +10,14 @@ import javafx.scene.chart.XYChart;
 /**
  * Created by exfaff on 15/09/2016.
  */
-public class AppNode implements AppElement {
+public class AppNode implements IAppElement {
 
     private static final int MAX_METRICS_COUNT = 50;
 
     private final String name;
-    private AppElement.State state = AppElement.State.FINE;
+    private IAppElement.State state = IAppElement.State.FINE;
     private final Map<AppMetric, ObservableList<XYChart.Data<Date, Object>>> metrics = new HashMap<>();
-    private final Set<AppElement> connectedTo = new HashSet<>();
+    private final Set<IAppElement> connectedTo = new HashSet<>();
 
     private final Map<ElementInfo.Type, ElementInfo> info = new HashMap<>();
     private final BooleanProperty isFineProp = new SimpleBooleanProperty(true);
@@ -58,12 +58,12 @@ public class AppNode implements AppElement {
 
     @Override
     public boolean AnomalyDetected() {
-        return state.equals(AppElement.State.ANOMALY_DETECTED);
+        return state.equals(IAppElement.State.ANOMALY_DETECTED);
     }
 
     @Override
     public boolean FailureDetected() {
-        return state.equals(AppElement.State.FAILURE_PREDICTED);
+        return state.equals(IAppElement.State.FAILURE_PREDICTED);
     }
 
     @Override
@@ -87,12 +87,12 @@ public class AppNode implements AppElement {
     }
 
     @Override
-    public Set<AppElement> getConnections() {
+    public Set<IAppElement> getConnections() {
         return this.connectedTo;
     }
 
     @Override
-    public ObservableList<AppElement> getNodes() {
+    public ObservableList<IAppElement> getNodes() {
         return FXCollections.unmodifiableObservableList(FXCollections.emptyObservableList());
     }
 
@@ -114,7 +114,7 @@ public class AppNode implements AppElement {
     }
 
     @Override
-    public void syncNewData(AppElement newData) {
+    public void syncNewData(IAppElement newData) {
         state = newData.getState();
 
         isFineProp.set(newData.IsFineProp().get());
@@ -144,7 +144,7 @@ public class AppNode implements AppElement {
         private final Map<AppMetric, ObservableList<XYChart.Data<Date, Object>>> metrics = new HashMap<>();
         private final Set<AppNode> connectedTo = new HashSet<>();
 
-        private AppElement.State state = AppElement.State.FINE;
+        private IAppElement.State state = IAppElement.State.FINE;
 
         private Map<ElementInfo.Type, ElementInfo> info = new HashMap<>();
 
@@ -165,12 +165,12 @@ public class AppNode implements AppElement {
         }
 
         public Builder isInAbnormalState() {
-            this.state = AppElement.State.ANOMALY_DETECTED;
+            this.state = IAppElement.State.ANOMALY_DETECTED;
             return this;
         }
 
         public Builder isFailureDetected() {
-            this.state = AppElement.State.FAILURE_PREDICTED;
+            this.state = IAppElement.State.FAILURE_PREDICTED;
             return this;
         }
 
@@ -184,8 +184,8 @@ public class AppNode implements AppElement {
             return this;
         }
 
-        public AppElement build() {
-            AppElement node = new AppNode(this);
+        public IAppElement build() {
+            IAppElement node = new AppNode(this);
 
             if (node.getName().isEmpty()) {
                 // thread-safe

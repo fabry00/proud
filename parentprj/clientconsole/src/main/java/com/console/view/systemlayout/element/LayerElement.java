@@ -1,40 +1,49 @@
 package com.console.view.systemlayout.element;
 
-import com.console.domain.AppElement;
 import com.console.util.view.NodeGestures;
 import java.util.Collection;
 import java.util.List;
 import javafx.scene.Node;
+import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import javafx.scene.shape.Line;
 import javafx.scene.text.Text;
+import org.apache.log4j.Logger;
+import com.console.domain.IAppElement;
+import com.console.view.systemlayout.ISystemLayoutManager;
+import com.console.view.systemlayout.SystemLayoutManager;
+import javax.inject.Inject;
 
 /**
  *
  * @author exfaff
  */
-public class LayerElement implements SystemElement {
+public class LayerElement implements ISystemElement {
 
     private static final String NODE_CSS = "com/console/view/systemlayout/element/layer.css";
     private static final String NODE_CLASS = "system-layer";
     private static final String LABEL_CLASS = "system-layer-text";
     private static final double Y_PADDING = 20;
 
-    private final AppElement layer;
-    private final Collection<SystemElement> nodes;
+    private final Logger logger = Logger.getLogger(LayerElement.class);
+
+    private final IAppElement layer;
+    private final Collection<ISystemElement> nodes;
     // private final StackPane panel = new StackPane();
     private final VBox panel = new VBox();
     private final double nodeXGap;
     private final double layerStartY;
+    private final ISystemLayoutManager layoutManager;
 
-    public LayerElement(AppElement layer, Collection<SystemElement> nodes,
-            double nodeXGap, double layerStartY) {
+    public LayerElement(IAppElement layer, Collection<ISystemElement> nodes,
+            double nodeXGap, double layerStartY, ISystemLayoutManager layoutManager) {
         this.layer = layer;
         this.nodes = nodes;
         this.nodeXGap = nodeXGap;
         this.layerStartY = layerStartY;
+        this.layoutManager = layoutManager;
     }
 
     @Override
@@ -50,17 +59,28 @@ public class LayerElement implements SystemElement {
 
         panel.getChildren().addAll(text);
 
-        panel.addEventFilter(MouseEvent.MOUSE_CLICKED, nodeGestures.getOnLayerClickedEventHandler());
+        panel.addEventFilter(MouseEvent.MOUSE_CLICKED, (MouseEvent event) -> {
+
+            if (!event.getButton().equals(MouseButton.PRIMARY) || event.getClickCount() < 2) {
+                return;
+            }
+            layoutManager.changeLayout(this);
+        });
         return panel;
     }
 
     @Override
-    public AppElement.Type getType() {
-        return AppElement.Type.Layer;
+    public IAppElement.Type getType() {
+        return IAppElement.Type.Layer;
     }
 
     @Override
-    public void createConnections(List<SystemElement> relatedElements) {
+    public String getName() {
+        return layer.getName();
+    }
+
+    @Override
+    public void createConnections(List<ISystemElement> relatedElements) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
@@ -79,15 +99,15 @@ public class LayerElement implements SystemElement {
 
         width = nodes.stream().map((element)
                 -> ((Region) element.getContainer()).getPrefWidth()).reduce(width, (accumulator, _item)
-                -> accumulator + _item + nodeXGap/ 2);
+                -> accumulator + _item + nodeXGap / 2);
 
         // TODO retreive the real layer with
-        return width - (nodeXGap);
+        return width /*- (nodeXGap)*/;
     }
 
     private double getHeight() {
         double max_height = Integer.MIN_VALUE;
-        for (SystemElement element : nodes) {
+        for (ISystemElement element : nodes) {
             double elementH = ((Region) element.getContainer()).getPrefHeight();
             if (elementH > max_height) {
                 max_height = elementH;

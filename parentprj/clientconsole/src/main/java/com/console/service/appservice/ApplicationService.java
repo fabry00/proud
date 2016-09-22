@@ -9,7 +9,6 @@ import com.console.domain.ServiceName;
 import com.console.domain.State;
 import com.console.service.IService;
 import com.console.service.backend.ThreadBackendService;
-import com.console.service.provider.AppStateProvider;
 import com.console.domain.ICallback;
 import java.util.ArrayList;
 import java.util.HashMap;

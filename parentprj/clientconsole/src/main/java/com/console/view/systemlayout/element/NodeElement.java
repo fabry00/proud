@@ -1,6 +1,5 @@
 package com.console.view.systemlayout.element;
 
-import com.console.domain.AppElement;
 import com.console.domain.ElementInfo;
 import com.console.util.AppImage;
 import com.console.util.view.NodeGestures;
@@ -21,23 +20,24 @@ import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import javafx.scene.shape.Line;
 import javafx.scene.text.TextAlignment;
+import com.console.domain.IAppElement;
 
 /**
  *
  * @author fabry
  */
-public class NodeElement implements SystemElement {
+public class NodeElement implements ISystemElement {
 
     private static final String NODE_CSS = "com/console/view/systemlayout/element/node.css";
     private static final String NODE_CLASS = "system-node";
     private static final int WIDTH = 84;
     private static final int HEIGHT = 118;
 
-    private final AppElement node;
+    private final IAppElement node;
     private final VBox panel = new VBox();
-    private final Map<SystemElement, Line> connections = new HashMap<>();
+    private final Map<ISystemElement, Line> connections = new HashMap<>();
 
-    public NodeElement(AppElement node) {
+    public NodeElement(IAppElement node) {
         this.node = node;
     }
 
@@ -96,7 +96,7 @@ public class NodeElement implements SystemElement {
     }
 
     @Override
-    public void createConnections(List<SystemElement> relatedElements) {
+    public void createConnections(List<ISystemElement> relatedElements) {
         relatedElements.stream().forEach((e) -> {
             connections.put(e, createConnection(e));
         });
@@ -107,8 +107,13 @@ public class NodeElement implements SystemElement {
         return connections.values();
     }
     
+    
+    @Override
+    public String getName() {
+        return node.getName();
+    }
 
-    private Line createConnection(SystemElement relatedElement) {
+    private Line createConnection(ISystemElement relatedElement) {
         DoubleProperty x = new SimpleDoubleProperty(panel.translateXProperty().get() + 84 / 2);
         //DoubleProperty y = new SimpleDoubleProperty(panel.translateYProperty().get());
         DoubleProperty y = new SimpleDoubleProperty(getAnchorY(panel, (Region) relatedElement.getContainer()));
@@ -138,7 +143,7 @@ public class NodeElement implements SystemElement {
     }
     
     @Override
-    public AppElement.Type getType() {
+    public IAppElement.Type getType() {
         return node.getType();
     }
 

@@ -1,12 +1,12 @@
 package com.console.service.provider;
 
-import com.console.domain.AppElement;
 import com.console.domain.AppLayer;
 import com.console.domain.ICallback;
 import com.console.domain.AppNode;
 import com.console.domain.AppState;
 import com.console.domain.ElementInfo;
 import javafx.application.Platform;
+import com.console.domain.IAppElement;
 
 /**
  *
@@ -24,88 +24,88 @@ public class AppStateProvider {
         Platform.runLater(() -> {
             AppState state = new AppState.Builder().build();
 
-            AppElement homer = new AppNode.Builder("Homer")
+            IAppElement homer = new AppNode.Builder("Homer")
                     .withInfo(new ElementInfo(ElementInfo.Type.IP, "192.168.1.101"))
                     .build();
 
-            AppElement lisa = new AppNode.Builder("Lisa")
+            IAppElement lisa = new AppNode.Builder("Lisa")
                     .withInfo(new ElementInfo(ElementInfo.Type.IP, "192.168.1.102"))
                     .build();
 
-            AppElement marge = new AppNode.Builder("Marge")
+            IAppElement marge = new AppNode.Builder("Marge")
                     .withInfo(new ElementInfo(ElementInfo.Type.IP, "192.168.1.103"))
                     .build();
 
-            AppElement bart = new AppNode.Builder("Bart")
+            IAppElement bart = new AppNode.Builder("Bart")
                     .withInfo(new ElementInfo(ElementInfo.Type.IP, "192.168.1.104"))
                     .build();
 
-            AppElement meggie = new AppNode.Builder("Meggie")
+            IAppElement meggie = new AppNode.Builder("Meggie")
                     .withInfo(new ElementInfo(ElementInfo.Type.IP, "192.168.1.105"))
                     .build();
 
-            AppElement node1 = new AppNode.Builder("Node1")
+            IAppElement node1 = new AppNode.Builder("Node1")
                     .withInfo(new ElementInfo(ElementInfo.Type.IP, "192.168.1.106"))
                     .build();
 
-            AppElement node2 = new AppNode.Builder("Node2")
+            IAppElement node2 = new AppNode.Builder("Node2")
                     .withInfo(new ElementInfo(ElementInfo.Type.IP, "192.168.1.106"))
                     .build();
 
-            AppElement node3 = new AppNode.Builder("Node3")
+            IAppElement node3 = new AppNode.Builder("Node3")
                     .withInfo(new ElementInfo(ElementInfo.Type.IP, "192.168.1.107"))
                     .build();
 
-            AppElement node4 = new AppNode.Builder("Node4")
+            IAppElement node4 = new AppNode.Builder("Node4")
                     .withInfo(new ElementInfo(ElementInfo.Type.IP, "192.168.1.108"))
                     .build();
 
             int appI = 1;
-            AppElement app1 = new AppNode.Builder("App" + (appI++))
+            IAppElement app1 = new AppNode.Builder("App" + (appI++))
                     .withInfo(new ElementInfo(ElementInfo.Type.IP, "192.168.1.109"))
                     .build();
 
-            AppElement app2 = new AppNode.Builder("App" + (appI++))
+            IAppElement app2 = new AppNode.Builder("App" + (appI++))
                     .withInfo(new ElementInfo(ElementInfo.Type.IP, "192.168.1.110"))
                     .build();
 
-            AppElement app3 = new AppNode.Builder("App" + (appI++))
+            IAppElement app3 = new AppNode.Builder("App" + (appI++))
                     .withInfo(new ElementInfo(ElementInfo.Type.IP, "192.168.1.111"))
                     .build();
 
-            AppElement app4 = new AppNode.Builder("App" + (appI++))
+            IAppElement app4 = new AppNode.Builder("App" + (appI++))
                     .withInfo(new ElementInfo(ElementInfo.Type.IP, "192.168.1.112"))
                     .build();
 
-            AppElement app5 = new AppNode.Builder("App" + (appI++))
+            IAppElement app5 = new AppNode.Builder("App" + (appI++))
                     .withInfo(new ElementInfo(ElementInfo.Type.IP, "192.168.1.113"))
                     .build();
 
-            AppElement app6 = new AppNode.Builder("App" + (appI++))
+            IAppElement app6 = new AppNode.Builder("App" + (appI++))
                     .withInfo(new ElementInfo(ElementInfo.Type.IP, "192.168.1.114"))
                     .build();
 
-            AppElement app7 = new AppNode.Builder("App" + (appI++))
+            IAppElement app7 = new AppNode.Builder("App" + (appI++))
                     .withInfo(new ElementInfo(ElementInfo.Type.IP, "192.168.1.115"))
                     .build();
 
-            AppElement app8 = new AppNode.Builder("App" + (appI++))
+            IAppElement app8 = new AppNode.Builder("App" + (appI++))
                     .withInfo(new ElementInfo(ElementInfo.Type.IP, "192.168.1.116"))
                     .build();
 
-            AppElement app9 = new AppNode.Builder("App" + (appI++))
+            IAppElement app9 = new AppNode.Builder("App" + (appI++))
                     .withInfo(new ElementInfo(ElementInfo.Type.IP, "192.168.1.117"))
                     .build();
 
-            AppElement app10 = new AppNode.Builder("App" + (appI++))
+            IAppElement app10 = new AppNode.Builder("App" + (appI++))
                     .withInfo(new ElementInfo(ElementInfo.Type.IP, "192.168.1.118"))
                     .build();
 
-            AppElement app11 = new AppNode.Builder("App" + (appI++))
+            IAppElement app11 = new AppNode.Builder("App" + (appI++))
                     .withInfo(new ElementInfo(ElementInfo.Type.IP, "192.168.1.119"))
                     .build();
 
-            AppElement app12 = new AppNode.Builder("App" + (appI++))
+            IAppElement app12 = new AppNode.Builder("App" + (appI++))
                     .withInfo(new ElementInfo(ElementInfo.Type.IP, "192.168.1.120"))
                     .build();
 
@@ -131,10 +131,10 @@ public class AppStateProvider {
             
             node4.getConnections().add(app10);
 
-            AppElement physicalLayer = new AppLayer.Builder("Physical Machines").build();
-            AppElement cloudService = new AppLayer.Builder("Cloud Service").build();
-            AppElement virtualLayer = new AppLayer.Builder("Virual Machines").build();
-            AppElement appLayer = new AppLayer.Builder("Application").build();
+            IAppElement physicalLayer = new AppLayer.Builder("Physical Machines").build();
+            IAppElement cloudService = new AppLayer.Builder("Cloud Service").build();
+            IAppElement virtualLayer = new AppLayer.Builder("Virual Machines").build();
+            IAppElement appLayer = new AppLayer.Builder("Application").build();
 
             physicalLayer.getNodes().addAll(homer, lisa, marge);
             cloudService.getNodes().addAll(node1, node2, node3, node4);

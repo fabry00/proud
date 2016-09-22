@@ -11,7 +11,7 @@ import javafx.scene.chart.XYChart;
  *
  * @author exfaff
  */
-public interface AppElement {
+public interface IAppElement {
 
     public enum Type {
         Node, Layer
@@ -41,9 +41,9 @@ public interface AppElement {
 
     public Map<ElementInfo.Type, ElementInfo> getInfo();
 
-    public ObservableList<AppElement> getNodes();
+    public ObservableList<IAppElement> getNodes();
 
-    public Set<AppElement> getConnections();
+    public Set<IAppElement> getConnections();
 
-    public void syncNewData(AppElement newData);
+    public void syncNewData(IAppElement newData);
 }

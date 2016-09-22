@@ -16,10 +16,10 @@ public final class AppState {
     // Every time the the node change state the event listChanged is fired
     // TODO TO CHECK
     //https://gist.github.com/andytill/3116203
-    Callback<AppElement, Observable[]> extractor = new Callback<AppElement, Observable[]>() {
+    Callback<IAppElement, Observable[]> extractor = new Callback<IAppElement, Observable[]>() {
         
         @Override
-        public Observable[] call(AppElement p) {
+        public Observable[] call(IAppElement p) {
             return new Observable[]{(Observable) p.IsFineProp()};
         }
     };
@@ -28,13 +28,13 @@ public final class AppState {
     private final StringProperty stateProperty = new SimpleStringProperty("");
     private final StringProperty message = new SimpleStringProperty("");
     
-    private final ObservableList<AppElement> nodes
+    private final ObservableList<IAppElement> nodes
             = FXCollections.synchronizedObservableList(FXCollections.observableArrayList(extractor));
     
-    private final ObservableList<AppElement> nodesInAnomalySate
+    private final ObservableList<IAppElement> nodesInAnomalySate
             = FXCollections.synchronizedObservableList(FXCollections.observableArrayList());
     
-    private final ObservableList<AppElement> layers
+    private final ObservableList<IAppElement> layers
             = FXCollections.synchronizedObservableList(FXCollections.observableArrayList());
     
     private AppState(Builder builder) {
@@ -61,7 +61,7 @@ public final class AppState {
         return nodesInAnomalySate;
     }
     
-    public ObservableList<AppElement> getLayers() {
+    public ObservableList<IAppElement> getLayers() {
         return layers;
     }
     
@@ -74,9 +74,9 @@ public final class AppState {
         this.message.set(message);
     }
     
-    public void addNodeData(AppElement newNodeData) {
+    public void addNodeData(IAppElement newNodeData) {
         int itemIndex = nodes.lastIndexOf(newNodeData);
-        AppElement nodeData;
+        IAppElement nodeData;
         if (itemIndex >= 0) {
             nodeData = nodes.get(itemIndex);
             //nodesSync.remove(itemIndex);
@@ -103,14 +103,14 @@ public final class AppState {
         }
     }
     
-    public void addAbnormalNode(AppElement node) {
+    public void addAbnormalNode(IAppElement node) {
         int index = nodesInAnomalySate.lastIndexOf(node);
         if (index < 0) {
             nodesInAnomalySate.add(node);
         }
     }
     
-    public void addLayer(AppElement layer) {
+    public void addLayer(IAppElement layer) {
         int index = layers.lastIndexOf(layer);
         if (index < 0) {
             layers.add(layer);
@@ -144,7 +144,7 @@ public final class AppState {
         setMessage(stateToCpy.message.getValue());
     }
     
-    public ObservableList<AppElement> getNodes() {
+    public ObservableList<IAppElement> getNodes() {
         return nodes;
     }
     

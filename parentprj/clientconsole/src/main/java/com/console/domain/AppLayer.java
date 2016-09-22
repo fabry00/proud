@@ -9,9 +9,9 @@ import javafx.collections.ObservableList;
  *
  * @author exfaff
  */
-public final class AppLayer extends AppNode implements AppElement {
+public final class AppLayer extends AppNode implements IAppElement {
 
-    private final ObservableList<AppElement> layersNodes = FXCollections.observableArrayList();
+    private final ObservableList<IAppElement> layersNodes = FXCollections.observableArrayList();
 
     private AppLayer(Builder builder) {
         super(builder);
@@ -24,25 +24,25 @@ public final class AppLayer extends AppNode implements AppElement {
     }
     
     @Override
-    public ObservableList<AppElement> getNodes() {
+    public ObservableList<IAppElement> getNodes() {
         return this.layersNodes;
     }
 
     public static class Builder extends AppNode.Builder {
 
-        private final List<AppElement> layersNodes = new ArrayList<>();
+        private final List<IAppElement> layersNodes = new ArrayList<>();
 
         public Builder(String name) {
             super(name);
         }
         
-        public Builder withNodes(List<AppElement> layersNodes){
+        public Builder withNodes(List<IAppElement> layersNodes){
             this.layersNodes.addAll(layersNodes);
             return this;
         }
 
         @Override
-        public AppElement build() {
+        public IAppElement build() {
             return new AppLayer(this);
         }
     }
