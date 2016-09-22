@@ -24,6 +24,7 @@ import javafx.scene.shape.*;
 import javax.inject.Inject;
 import java.net.URL;
 import java.util.ResourceBundle;
+import org.controlsfx.control.BreadCrumbBar;
 
 /**
  * Created by exfaff on 20/09/2016.
@@ -33,6 +34,9 @@ public class SystemlayoutPresenter implements Initializable, IAppStateListener {
     @FXML
     ScrollPane systemPane;
 
+    @FXML
+    BreadCrumbBar crumbBar;
+
     @Inject
     private ApplicationService appService;
 
@@ -41,6 +45,7 @@ public class SystemlayoutPresenter implements Initializable, IAppStateListener {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        initCrumbar();
 // TODO clean
         /* DoubleProperty startX = new SimpleDoubleProperty(100);
          DoubleProperty startY = new SimpleDoubleProperty(100);
@@ -206,7 +211,7 @@ public class SystemlayoutPresenter implements Initializable, IAppStateListener {
     }
 
     // TODO clean
-   /* class BoundLine extends Line {
+    /* class BoundLine extends Line {
 
         BoundLine(DoubleProperty startX, DoubleProperty startY, DoubleProperty endX, DoubleProperty endY) {
             startXProperty().bind(startX);
@@ -324,5 +329,22 @@ public class SystemlayoutPresenter implements Initializable, IAppStateListener {
             return centerY.getReadOnlyProperty();
         }
     }*/
+    private void initCrumbar() {
+        //http://stackoverflow.com/questions/30931401/how-to-use-breadcrumbbar-in-controlsfx-javafx-8
+        TreeItem<String> root = new TreeItem<String>("System");
+
+        TreeItem<String> item1 = new TreeItem<String>("Item 1");
+        TreeItem<String> item11 = new TreeItem<String>("Item 1.1");
+        TreeItem<String> item12 = new TreeItem<String>("Item 1.2");
+
+        item1.getChildren().addAll(item11, item12);
+
+        TreeItem<String> item2 = new TreeItem<String>("Item 2");
+
+        root.getChildren().addAll(item1, item2);
+
+        crumbBar.selectedCrumbProperty().set(root);
+
+    }
 
 }
