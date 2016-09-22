@@ -37,18 +37,23 @@ class SystemLayoutFactory {
         Map<AppElement, SystemElement> elements = new HashMap<>();
 
         double y = NODE_START_Y;
-        
+
         // Draw layers in reverse order
         for (int i = layers.size() - 1; i >= 0; i--) {
+
             AppElement layer = layers.get(i);
-            logger.debug("Drawing layer: " + layer.getName());
+            if (layer.getType().equals(AppElement.Type.Layer)) {
+                logger.debug("Drawing layer: " + layer.getName());
 
-            Map<AppElement, SystemElement> leyerElemens
-                    = createElements(canvas, gestures, layer.getNodes(), y);
+                Map<AppElement, SystemElement> leyerElemens
+                        = createElements(canvas, gestures, layer.getNodes(), y);
 
-            createLayer(canvas, gestures, layer, leyerElemens, y);
-            elements.putAll(leyerElemens);
-            y += LAYER_Y_GAP;
+                createLayer(canvas, gestures, layer, leyerElemens, y);
+                elements.putAll(leyerElemens);
+                y += LAYER_Y_GAP;
+            } else {
+                logger.error("Drawing node outside a layer is not supported yet");
+            }
         }
 
         createConnections(elements, canvas);
@@ -61,11 +66,15 @@ class SystemLayoutFactory {
 
         Map<AppElement, SystemElement> elements = new HashMap<>();
         for (AppElement node : nodes) {
-            logger.debug("Drawing node: " + node.getName());
-            SystemElement element = new NodeElement(node);
-            canvas.getChildren().add(element.draw(x, y, gestures));
-            x += NODE_X_GAP;
-            elements.put(node, element);
+            if (node.getType().equals(AppElement.Type.Node)) {
+                logger.debug("Drawing node: " + node.getName());
+                SystemElement element = new NodeElement(node);
+                canvas.getChildren().add(element.draw(x, y, gestures));
+                x += NODE_X_GAP;
+                elements.put(node, element);
+            } else {
+                logger.error("Drawing nested layers is not supported yet");
+            }
         }
         return elements;
     }
@@ -73,7 +82,7 @@ class SystemLayoutFactory {
     private void createConnections(Map<AppElement, SystemElement> elements, PannableCanvas canvas) {
         elements.forEach((k, v) -> {
             List<SystemElement> relatedElements = getRelatedElements(elements, k);
-            logger.debug("Connectiong: "+k.getName()+" with:"+relatedElements.toString());
+            logger.debug("Connectiong: " + k.getName() + " with:" + relatedElements.toString());
             v.createConnections(relatedElements);
             canvas.getChildren().addAll(v.getConnections());
         });

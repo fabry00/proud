@@ -138,8 +138,8 @@ public class NodeElement implements SystemElement {
     }
     
     @Override
-    public Type getType() {
-        return Type.Node;
+    public AppElement.Type getType() {
+        return node.getType();
     }
 
     @Override

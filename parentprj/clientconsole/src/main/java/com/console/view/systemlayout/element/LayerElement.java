@@ -55,8 +55,8 @@ public class LayerElement implements SystemElement {
     }
 
     @Override
-    public Type getType() {
-        return Type.Layer;
+    public AppElement.Type getType() {
+        return AppElement.Type.Layer;
     }
 
     @Override
@@ -79,7 +79,7 @@ public class LayerElement implements SystemElement {
 
         width = nodes.stream().map((element)
                 -> ((Region) element.getContainer()).getPrefWidth()).reduce(width, (accumulator, _item)
-                        -> accumulator + _item + nodeXGap);
+                -> accumulator + _item + nodeXGap/ 2);
 
         // TODO retreive the real layer with
         return width - (nodeXGap);

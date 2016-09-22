@@ -37,6 +37,11 @@ public class AppNode implements AppElement {
     }
 
     @Override
+    public Type getType() {
+        return Type.Node;
+    }
+
+    @Override
     public ObservableList<XYChart.Data<Date, Object>> getMetric(AppMetric type) {
         return this.metrics.get(type);
     }

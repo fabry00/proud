@@ -19,6 +19,11 @@ public final class AppLayer extends AppNode implements AppElement {
     }
 
     @Override
+    public Type getType() {
+        return Type.Layer;
+    }
+    
+    @Override
     public ObservableList<AppElement> getNodes() {
         return this.layersNodes;
     }

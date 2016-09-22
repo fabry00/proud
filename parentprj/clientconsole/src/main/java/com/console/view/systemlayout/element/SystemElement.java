@@ -1,5 +1,6 @@
 package com.console.view.systemlayout.element;
 
+import com.console.domain.AppElement;
 import com.console.util.view.NodeGestures;
 import java.util.Collection;
 import java.util.List;
@@ -12,7 +13,7 @@ import javafx.scene.shape.Line;
  */
 public interface SystemElement {
 
-    public enum Type {Node,Layer};
+    /*public enum Type {Node,Layer};*/
     
     public Node draw(double x, double y, final NodeGestures nodeGestures);
 
@@ -22,5 +23,5 @@ public interface SystemElement {
     
     public Node getContainer();
     
-    public Type getType();
+    public AppElement.Type getType();
 }
