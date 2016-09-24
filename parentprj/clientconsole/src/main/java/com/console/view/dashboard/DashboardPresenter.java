@@ -51,7 +51,7 @@ public class DashboardPresenter implements Initializable {
         //fetched from followme.properties
         //logger.error(rb.getString("theEnd"));
         setCenterPane();
-        setLeftPane();
+        //setLeftPane();
         setBottomPane();
 
         initApp();
@@ -77,17 +77,17 @@ public class DashboardPresenter implements Initializable {
      */
     @FXML
     public void handleExit() {
-        appService.dispatch(new Action<>(ActionType.CLOSE, null));
+        appService.dispatch(new AppAction<>(ActionType.CLOSE, null));
     }
 
     @FXML
     public void handleChangeTheme() {
-        appService.dispatch(new Action<>(ActionType.CHANGE_THEME, null));
+        appService.dispatch(new AppAction<>(ActionType.CHANGE_THEME, null));
     }
 
     @FXML
     public void handleFullScreen() {
-        appService.dispatch(new Action<>(ActionType.FULL_SCREEN, true));
+        appService.dispatch(new AppAction<>(ActionType.FULL_SCREEN, true));
     }
 
     public ApplicationService getAppService() {
@@ -96,7 +96,7 @@ public class DashboardPresenter implements Initializable {
 
     private void initApp() {
         logger.debug("initApp");
-        appService.dispatch(new Action<>(ActionType.START, null));
+        appService.dispatch(new AppAction<>(ActionType.START, null));
     }
 
     private void setBottomPane() {

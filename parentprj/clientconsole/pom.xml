@@ -177,6 +177,8 @@
                     <include>**/*.css</include>
                     <include>**/*.properties</include>
                     <include>**/*.jpg</include>
+                    <include>**/*.png</include>
+                        <include>**/*.gif</include>
                 </includes>
             </resource>
         </resources>

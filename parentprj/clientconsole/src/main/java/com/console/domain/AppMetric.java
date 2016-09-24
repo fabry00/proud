@@ -4,7 +4,7 @@ package com.console.domain;
  *
  * @author fabry
  */
-public enum Metric {
+public enum AppMetric {
     CPU("Cpu Monitoring (in %)"),
     MEMORY("Memory Monitoring (in MB)"),
     SPACE("Space Monitoring (in KB)"),
@@ -12,7 +12,7 @@ public enum Metric {
 
     private final String title;
 
-    Metric(String title) {
+    AppMetric(String title) {
         this.title = title;
     }
 

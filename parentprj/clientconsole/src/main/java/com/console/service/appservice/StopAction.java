@@ -1,7 +1,8 @@
 package com.console.service.appservice;
 
-import com.console.domain.Action;
+import com.console.domain.AppAction;
 import com.console.domain.AppState;
+import com.console.domain.ICallback;
 import com.console.domain.State;
 import org.apache.log4j.Logger;
 
@@ -14,7 +15,7 @@ class StopAction implements IActionHandler {
     private Logger logger = Logger.getLogger(StopAction.class);
 
     @Override
-    public void execute(AppState currentState, Action action, ApplicationService appService) {
+    public void execute(AppAction action, ApplicationService appService,final ICallback callback) {
         logger.debug("Stop action execution");
 
         /*if (!currentState.getState().equals(State.STARTED)
@@ -31,7 +32,7 @@ class StopAction implements IActionHandler {
         }*/
         appService.stopAllServices();
 
-        currentState.setState(State.STOPPED);
+        appService.getCurrentState().setState(State.STOPPED);
     }
 
 }

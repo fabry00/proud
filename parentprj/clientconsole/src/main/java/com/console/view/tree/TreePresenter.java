@@ -1,10 +1,7 @@
 package com.console.view.tree;
 
-import com.console.domain.AppState;
-import com.console.domain.IAppStateListener;
-import com.console.domain.Node;
-import com.console.domain.Node.NodeInfo;
-import com.console.domain.State;
+import com.console.domain.AppNode;
+import com.console.domain.ElementInfo;
 import com.console.service.appservice.ApplicationService;
 import java.net.URL;
 import java.util.*;
@@ -17,15 +14,14 @@ import javafx.geometry.Insets;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 
 import javax.inject.Inject;
 
-import javafx.util.Callback;
 import org.apache.log4j.Logger;
 import org.controlsfx.control.PopOver;
 import org.controlsfx.control.PropertySheet.Item;
+import com.console.domain.IAppElement;
 
 /**
  *
@@ -48,7 +44,7 @@ public class TreePresenter implements Initializable/*, IAppStateListener*/ {
     @FXML
     private ListView nodeList;
 
-    protected ListProperty<Node> listProperty = new SimpleListProperty<>();
+    protected ListProperty<IAppElement> listProperty = new SimpleListProperty<>();
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -89,9 +85,9 @@ public class TreePresenter implements Initializable/*, IAppStateListener*/ {
     }
 
     private void showPopup(ListCell<Item> cell) {
-        Node node = (Node) cell.getItem();
-        statusPopOver.setTitle("Node " + node.getNode() + " Info");
-        String ipAddressStr = node.getInfo().get(NodeInfo.Type.IP).getValue();
+        IAppElement node = (IAppElement) cell.getItem();
+        statusPopOver.setTitle("Node " + node.getName() + " Info");
+        String ipAddressStr = node.getInfo().get(ElementInfo.Type.IP).getValue();
         ipAddress.setText("IP ADDRESS: " + ipAddressStr);
         statusNode.getStyleClass().remove(FAILURE_PREDICTED_CLASS);
         statusNode.getStyleClass().remove(ABNORMAL_STATUS_CLASS);
@@ -125,17 +121,17 @@ public class TreePresenter implements Initializable/*, IAppStateListener*/ {
             if (empty) {
                 setText(null);
                 setGraphic(null);
-            } else if (item instanceof Node) {
-                Node node = (Node) item;
-                setText(node.getNode());
+            } else if (item instanceof AppNode) {
+                AppNode node = (AppNode) item;
+                setText(node.getName());
                 if (node.FailureDetected()) {
-                    System.out.println("################################################### FailureDetected "+node.getNode());
+                    System.out.println("################################################### FailureDetected "+node.getName());
                     getStyleClass().add(FAILURE_PREDICTED_CLASS);
                 } else if (node.AnomalyDetected()) {
-                    System.out.println("################################################### AnomalyDetected "+node.getNode());
+                    System.out.println("################################################### AnomalyDetected "+node.getName());
                     getStyleClass().add(ABNORMAL_STATUS_CLASS);
                 } else {
-                    System.out.println("################################################### fine "+node.getNode());
+                    System.out.println("################################################### fine "+node.getName());
                     getStyleClass().remove(FAILURE_PREDICTED_CLASS);
                     getStyleClass().remove(ABNORMAL_STATUS_CLASS);
                 }

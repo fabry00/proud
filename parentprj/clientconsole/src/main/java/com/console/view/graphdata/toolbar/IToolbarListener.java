@@ -1,6 +1,6 @@
 package com.console.view.graphdata.toolbar;
 
-import com.console.domain.Metric;
+import com.console.domain.AppMetric;
 
 /**
  *
@@ -10,7 +10,7 @@ public interface IToolbarListener {
 
     public void resetSeriesClicked();
 
-    public void metricSelected(Metric metric);
+    public void metricSelected(AppMetric metric);
     
     public void nodesSelectedChanged();
 

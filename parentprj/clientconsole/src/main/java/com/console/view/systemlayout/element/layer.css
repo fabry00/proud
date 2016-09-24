@@ -1,0 +1,28 @@
+.system-layer{
+    /* -fx-content-display: top;
+     -fx-border-insets: 2 0 0 0;
+     -fx-border-width: 2;
+    */
+    /* -fx-border-color: -fx-text-box-border;*/
+    /*  -fx-border-color:#DEDEDE;*/
+
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 5, 0, 0, 0);
+    -fx-background-radius: 5;
+    -fx-border-radius: 2;
+    -fx-border-color:#AEDEDE;
+    -fx-background-color:#EEEEEE;
+}
+
+.system-layer-text{
+    -fx-font-weight: bold;
+    -fx-font-size: 1.1em;
+}
+
+.system-layer:hover {
+ /*   -fx-cursor: hand;*/
+    /*-fx-background-color: 
+        linear-gradient(from 0% 93% to 0% 100%, #AEAEAE 0%, #BEBEBE 100%),
+        #AEAEAE,
+        #BEBEBE,
+        radial-gradient(center 50% 50%, radius 100%, #AEAEAE, #BEBEBE);*/
+}

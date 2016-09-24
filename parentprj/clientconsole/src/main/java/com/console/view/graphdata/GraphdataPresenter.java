@@ -2,8 +2,8 @@ package com.console.view.graphdata;
 
 import java.net.URL;
 import java.util.*;
-import com.console.domain.Metric;
-import com.console.domain.Node;
+import com.console.domain.AppMetric;
+import com.console.domain.AppNode;
 import com.console.service.appservice.ApplicationService;
 import com.console.util.NodeUtil;
 import com.console.view.graphdata.toolbar.IToolbarListener;
@@ -28,6 +28,7 @@ import javafx.geometry.Point2D;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import com.console.domain.IAppElement;
 
 /**
  *
@@ -65,7 +66,7 @@ public class GraphdataPresenter implements Initializable, IToolbarListener {
     }
 
     @Override
-    public void metricSelected(Metric metric) {
+    public void metricSelected(AppMetric metric) {
         removeAllSeries();
         // Fire node nodesSelectedChanged to re-add all the series with the right metric
         nodesSelectedChanged();
@@ -128,21 +129,21 @@ public class GraphdataPresenter implements Initializable, IToolbarListener {
     @Override
     public void nodesSelectedChanged() {
         logger.debug("nodeSelectedChange");
-        List<Node> nodeSelected = tbPresenter.getNodesSelected();
+        List<IAppElement> nodeSelected = tbPresenter.getNodesSelected();
 
         removeSeriesFromChart(nodeSelected);
         addSeriesToChart(nodeSelected);
     }
 
-    private void addSeriesToChart(List<Node> nodeSelected) {
+    private void addSeriesToChart(List<IAppElement> nodeSelected) {
         List<XYChart.Series<Date, Object>> serieToAdd = new ArrayList<>();
 
         // Check Serie to add
-        for (Node node : nodeSelected) {
+        for (IAppElement node : nodeSelected) {
             boolean toAdd = true;
             for (XYChart.Series<Date, Object> serie : seriesList) {
 
-                if (serie.getName().equals(node.getNode())) {
+                if (serie.getName().equals(node.getName())) {
                     toAdd = false;
                     break;
                 }
@@ -159,7 +160,7 @@ public class GraphdataPresenter implements Initializable, IToolbarListener {
         seriesList.addAll(serieToAdd);
     }
 
-    private void removeSeriesFromChart(List<Node> nodeSelected) {
+    private void removeSeriesFromChart(List<IAppElement> nodeSelected) {
         List<Integer> serieToRemove = new ArrayList<>();
         // Check Serie to remove
         if (nodeSelected.isEmpty()) {
@@ -169,8 +170,8 @@ public class GraphdataPresenter implements Initializable, IToolbarListener {
             int index = 0;
             for (XYChart.Series<Date, Object> serie : seriesList) {
                 boolean toRemove = false;
-                for (Node node : nodeSelected) {
-                    if (serie.getName().equals(node.getNode())) {
+                for (IAppElement node : nodeSelected) {
+                    if (serie.getName().equals(node.getName())) {
                         toRemove = true;
                         break;
                     }
@@ -199,14 +200,14 @@ public class GraphdataPresenter implements Initializable, IToolbarListener {
         });
     }
 
-    private String getSerieName(Node node) {
-        return node.getNode();
+    private String getSerieName(IAppElement node) {
+        return node.getName();
     }
 
-    private XYChart.Series<Date, Object> getSerieToShow(Node node) {
+    private XYChart.Series<Date, Object> getSerieToShow(IAppElement node) {
         XYChart.Series<Date, Object> serie = new XYChart.Series();
         serie.setName(getSerieName(node));
-        Metric metricSelected = tbPresenter.getSelectedMetric();
+        AppMetric metricSelected = tbPresenter.getSelectedMetric();
         serie.setData(node.getMetric(metricSelected));
 
         return serie;
@@ -233,7 +234,7 @@ public class GraphdataPresenter implements Initializable, IToolbarListener {
         }, mouseLocationInScene));
 
         //  Tooltip.install(chart, tooltip);
-        // TODO
+        // TODO show tooltip
         /* ObjectProperty<Point2D> mouseLocationInScene = new SimpleObjectProperty<>();
 
         Tooltip tooltip = new Tooltip();
