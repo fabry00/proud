@@ -12,4 +12,8 @@ public interface ISystemLayoutManager extends ILayoutManager {
 
     public void changeLayout(List<ISystemElement> elementToShow);
 
+    public void addSelectedNode(ISystemElement node);
+
+    public void removeSelectedNode(ISystemElement node);
+
 }

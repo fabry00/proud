@@ -33,6 +33,7 @@ public class NodeElement implements ISystemElement {
 
     private static final String NODE_CSS = "com/console/view/systemlayout/element/node.css";
     private static final String NODE_CLASS = "system-node";
+    private static final String SELECTED_CLASS = "system-node-selected";
     private static final int WIDTH = 84;
     private static final int HEIGHT = 100;
 
@@ -44,6 +45,7 @@ public class NodeElement implements ISystemElement {
     private final Helper helper = new Helper();
     private ISystemLayoutManager layoutManager = null;
     private ISystemElement parent = null;
+    private boolean isSelected = false;
 
     public NodeElement(IAppElement node, ISystemLayoutManager layoutManager,
             PannableCanvas canvasContainer) {
@@ -107,26 +109,10 @@ public class NodeElement implements ISystemElement {
         Image img = AppImage.IMG_PC_GREEN_64;
         imgView.setImage(img);
         panel.getChildren().add(imgView);
-        panel.addEventFilter(MouseEvent.MOUSE_PRESSED, (MouseEvent event) -> {
-            helper.onMousePressedEventHandler(event, layoutManager, nodeDragContext);
-        });
-        panel.addEventFilter(MouseEvent.MOUSE_DRAGGED, (MouseEvent event) -> {
-            helper.onMouseDraggedEventHandler(event, layoutManager, canvasContainer, this, nodeDragContext);
-        });
-        String sep = System.getProperty("line.separator");
-        String tooltipText = "Node info:" + sep;
-        tooltipText += "IP Address: ";
-        tooltipText += node.getInfo().get(ElementInfo.Type.IP).getValue();
-        tooltipText += "Last KPI received: " + sep;
-        tooltipText += new DateUtil().getNow();
 
-        Tooltip tooltip = new Tooltip(tooltipText);
+        initTooltip();
 
-        Tooltip.install(panel, tooltip);
-
-        panel.addEventFilter(MouseEvent.MOUSE_CLICKED, (MouseEvent event) -> {
-            new Helper().changeLayour(event, layoutManager, this);
-        });
+        initEvents();
 
     }
 
@@ -184,6 +170,50 @@ public class NodeElement implements ISystemElement {
     @Override
     public String toString() {
         return node.getName();
+    }
+
+    @Override
+    public void selected() {
+        panel.getStyleClass().add(SELECTED_CLASS);
+        isSelected = true;
+    }
+
+    @Override
+    public void unSelected() {
+        panel.getStyleClass().remove(SELECTED_CLASS);
+        isSelected = false;
+    }
+
+    private void initTooltip() {
+        String sep = System.getProperty("line.separator");
+        String tooltipText = "Node info:" + sep;
+        tooltipText += "IP Address: ";
+        tooltipText += node.getInfo().get(ElementInfo.Type.IP).getValue();
+        tooltipText += "Last KPI received: " + sep;
+        tooltipText += new DateUtil().getNow();
+
+        Tooltip tooltip = new Tooltip(tooltipText);
+
+        Tooltip.install(panel, tooltip);
+    }
+
+    private void initEvents() {
+        ISystemElement element = this;
+        panel.addEventFilter(MouseEvent.MOUSE_PRESSED, (MouseEvent event) -> {
+            helper.onMousePressedEventHandler(event, layoutManager, nodeDragContext);
+        });
+        panel.addEventFilter(MouseEvent.MOUSE_DRAGGED, (MouseEvent event) -> {
+            helper.onMouseDraggedEventHandler(event, layoutManager, canvasContainer, this, nodeDragContext);
+        });
+        panel.addEventFilter(MouseEvent.MOUSE_CLICKED, (MouseEvent event) -> {
+            new Helper().changeLayour(event, layoutManager, this);
+
+            if (!isSelected) {
+                layoutManager.addSelectedNode(element);
+            } else{
+                layoutManager.removeSelectedNode(element);
+            }
+        });
     }
 
 }

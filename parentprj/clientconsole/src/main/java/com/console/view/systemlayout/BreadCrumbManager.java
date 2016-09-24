@@ -65,13 +65,14 @@ public class BreadCrumbManager {
             }
         });
 
+        layoutsName.put(FIRST_LAYOUT, rootTree);
         crumbBar.selectedCrumbProperty().set(rootTree);
 
     }
 
     public void setRootElements(List<ISystemElement> elementsToShow) {
         logger.debug("setRootElements");
-        selectItemLayout(elementsToShow, FIRST_LAYOUT);
+        //selectItemLayout(elementsToShow, FIRST_LAYOUT);
         layoutElements.put(FIRST_LAYOUT, elementsToShow);
     }
 
@@ -99,6 +100,9 @@ public class BreadCrumbManager {
     }
 
     private String getNewLayoutName(List<ISystemElement> elementsToShow) {
+        if(elementsToShow.equals(layoutElements.get(FIRST_LAYOUT))){
+            return FIRST_LAYOUT;
+        }
         if (elementsToShow.size() == 1) {
             return elementsToShow.get(0).getName();
         }

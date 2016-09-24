@@ -54,9 +54,9 @@ public class LayerElement implements ISystemElement {
     public ISystemElement getParent() {
         return this.parent;
     }
-    
+
     @Override
-    public IAppElement getAppElement(){
+    public IAppElement getAppElement() {
         return layer;
     }
 
@@ -104,6 +104,16 @@ public class LayerElement implements ISystemElement {
     @Override
     public Node getContainer() {
         return panel;
+    }
+
+    @Override
+    public void selected() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void unSelected() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     private double getWidth(double x) {

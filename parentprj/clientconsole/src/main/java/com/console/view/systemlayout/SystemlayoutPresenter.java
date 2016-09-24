@@ -19,10 +19,14 @@ import javax.inject.Inject;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
-import javafx.beans.Observable;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.EventHandler;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.AnchorPane;
 import org.apache.log4j.Logger;
 import org.controlsfx.control.BreadCrumbBar;
 
@@ -32,6 +36,11 @@ import org.controlsfx.control.BreadCrumbBar;
 public class SystemlayoutPresenter implements Initializable, IAppStateListener, ISystemLayoutManager {
 
     private final Logger logger = Logger.getLogger(SystemlayoutPresenter.class);
+
+    private final ObservableList<ISystemElement> selectedNodes = FXCollections.observableArrayList();
+
+    @FXML
+    AnchorPane ancorPaneSystem;
 
     @FXML
     ScrollPane systemPane;
@@ -45,6 +54,7 @@ public class SystemlayoutPresenter implements Initializable, IAppStateListener, 
     @Inject
     private ApplicationService appService;
 
+    private boolean ctrlPressed = false;
     private PannableCanvas canvas;
     private BreadCrumbManager crumbManager;
 
@@ -53,6 +63,7 @@ public class SystemlayoutPresenter implements Initializable, IAppStateListener, 
         initToolbar();
 
         initSystemLayout();
+        initEvents();
         appService.subscribeToState(this, State.STARTED);
     }
 
@@ -79,6 +90,24 @@ public class SystemlayoutPresenter implements Initializable, IAppStateListener, 
     @Override
     public boolean isLayoutLocked() {
         return !btnLockUnlock.selectedProperty().get();
+    }
+
+    @Override
+    public void addSelectedNode(ISystemElement node) {
+        if (ctrlPressed) {
+            if (!selectedNodes.contains(node)) {
+                selectedNodes.add(node);
+                logger.debug("Added node to selected: " + node.getName() + " " + selectedNodes.size());
+                node.selected();
+            }
+        }
+    }
+
+    @Override
+    public void removeSelectedNode(ISystemElement node) {
+        selectedNodes.remove(node);
+        logger.debug("Removed node to selected: " + node.getName() + " " + selectedNodes.size());
+        node.unSelected();
     }
 
     @FXML
@@ -135,6 +164,32 @@ public class SystemlayoutPresenter implements Initializable, IAppStateListener, 
         }
 
         return elemesToDraw;
+    }
+
+    private void initEvents() {
+        Platform.runLater(() -> {
+            // We need run later because the element is not been initialized yet
+            Scene scene = ((Node) ancorPaneSystem).getScene();
+            scene.addEventHandler(KeyEvent.KEY_PRESSED, new EventHandler<KeyEvent>() {
+                @Override
+                public void handle(KeyEvent event) {
+                    if (event.getCode().equals(KeyCode.CONTROL)) {
+                        ctrlPressed = true;
+                    }
+                }
+            });
+
+            scene.addEventHandler(KeyEvent.KEY_RELEASED, new EventHandler<KeyEvent>() {
+                @Override
+                public void handle(KeyEvent event) {
+                    if (event.getCode().equals(KeyCode.CONTROL)) {
+                        ctrlPressed = false;
+                    }
+                }
+            });
+
+        });
+
     }
 
 }

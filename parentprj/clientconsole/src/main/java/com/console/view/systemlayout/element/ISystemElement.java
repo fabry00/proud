@@ -29,4 +29,8 @@ public interface ISystemElement {
     public IAppElement getAppElement();
 
     public String getName();
+
+    public void selected();
+
+    public void unSelected();
 }
