@@ -59,7 +59,7 @@ public class LayerElement implements ISystemElement {
     public Node draw(final double x, final double y) {
         Text text = new Text(layer.getName());
         text.getStyleClass().add(LABEL_CLASS);
-        panel.setPrefWidth(getWidth());
+        panel.setPrefWidth(getWidth(x));
         panel.setPrefHeight(getHeight());
         panel.getStylesheets().add(NODE_CSS);
         panel.getStyleClass().add(NODE_CLASS);
@@ -101,15 +101,24 @@ public class LayerElement implements ISystemElement {
         return panel;
     }
 
-    private double getWidth() {
-        double width = 0;
+    private double getWidth(double x) {
+        // TDO clean code
+        /*double width = 0;
 
-        width = nodes.stream().map((element)
+       width = nodes.stream().map((element)
                 -> ((Region) element.getContainer()).getPrefWidth()).reduce(width, (accumulator, _item)
                 -> accumulator + _item + nodeXGap / 2);
+        //return width - (nodeXGap / 2);
+         */
+        double lastX = 0;
+        for (ISystemElement node : nodes) {
+            if (((Region) node.getContainer()).getLayoutX() > lastX) {
+                lastX = ((Region) node.getContainer()).getLayoutX();
+            }
+        }
 
-        // TODO retreive the real layer with
-        return width /*- (nodeXGap)*/;
+        return (lastX - x) + nodeXGap * nodes.size() - (nodeXGap / 5);
+
     }
 
     private double getHeight() {
