@@ -8,10 +8,10 @@ package com.console.util.view;
  */
 public class DragContext {
 
-    double mouseAnchorX;
-    double mouseAnchorY;
+    public double mouseAnchorX;
+    public double mouseAnchorY;
 
-    double translateAnchorX;
-    double translateAnchorY;
+    public double translateAnchorX;
+    public double translateAnchorY;
 
 }

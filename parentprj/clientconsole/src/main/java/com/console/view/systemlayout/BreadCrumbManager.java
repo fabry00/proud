@@ -1,17 +1,18 @@
 package com.console.view.systemlayout;
 
+import com.console.view.systemlayout.ISystemLayoutManager;
 import com.console.view.systemlayout.element.ISystemElement;
 import java.util.Arrays;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 import javafx.event.EventHandler;
 import javafx.scene.control.TreeItem;
 import org.controlsfx.control.BreadCrumbBar;
 
 /**
+ * TODO This class could be improved --> the logic could be based on the layers
+ * list saved in appService
  *
  * @author fabry
  */

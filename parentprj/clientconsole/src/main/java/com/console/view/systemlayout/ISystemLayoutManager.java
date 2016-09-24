@@ -10,4 +10,6 @@ import java.util.List;
 public interface ISystemLayoutManager {
 
     public void changeLayout(List<ISystemElement> elementToShow);
+    
+    public boolean isLayoutLocked();
 }

@@ -1,0 +1,9 @@
+#btnLockUnlock {
+    -fx-background-image: url('../../../../images/x16/padlock.png');
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+}
+
+#btnLockUnlock:selected {
+    -fx-background-image: url('../../../../images/x16/unlocked.png');
+}

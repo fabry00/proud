@@ -1,6 +1,6 @@
 package com.console.view.systemlayout.element;
 
-import com.console.util.view.NodeGestures;
+import com.console.view.systemlayout.NodeGestures;
 import java.util.Collection;
 import java.util.List;
 import javafx.scene.Node;

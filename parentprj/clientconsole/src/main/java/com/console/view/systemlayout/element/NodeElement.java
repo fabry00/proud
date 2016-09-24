@@ -2,7 +2,7 @@ package com.console.view.systemlayout.element;
 
 import com.console.domain.ElementInfo;
 import com.console.util.AppImage;
-import com.console.util.view.NodeGestures;
+import com.console.view.systemlayout.NodeGestures;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
@@ -23,8 +23,6 @@ import javafx.scene.text.TextAlignment;
 import com.console.domain.IAppElement;
 import com.console.view.systemlayout.ISystemLayoutManager;
 import com.mycompany.commons.DateUtil;
-import java.util.Arrays;
-import javafx.scene.input.MouseButton;
 
 /**
  *

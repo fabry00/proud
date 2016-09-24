@@ -14,5 +14,8 @@ public class AppImage {
     public final static Image IMG_PC_BLACK_64 = new Image(AppPath.ICO_PC_BLACK_64);
     public final static Image IMG_PC_YELLOW_64 = new Image(AppPath.ICO_PC_YELLOW_64);
     public final static Image IMG_PC_RED_64 = new Image(AppPath.ICO_PC_RED_64);
+    
+    public final static Image IMG_LOCK_16 = new Image(AppPath.ICO_LOCK_16);
+    public final static Image IMG_UNLOCK_16 = new Image(AppPath.ICO_UNLOCK_16);
 
 }

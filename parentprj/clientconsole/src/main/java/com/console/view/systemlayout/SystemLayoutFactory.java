@@ -1,6 +1,5 @@
 package com.console.view.systemlayout;
 
-import com.console.util.view.NodeGestures;
 import com.console.util.view.PannableCanvas;
 import com.console.view.systemlayout.element.LayerElement;
 import com.console.view.systemlayout.element.NodeElement;
