@@ -1,6 +1,7 @@
 package com.console.view.systemlayout;
 
 import com.console.view.systemlayout.element.ISystemElement;
+import java.util.List;
 
 /**
  *
@@ -8,5 +9,5 @@ import com.console.view.systemlayout.element.ISystemElement;
  */
 public interface ISystemLayoutManager {
 
-    public void changeLayout(ISystemElement elementToShow);
+    public void changeLayout(List<ISystemElement> elementToShow);
 }

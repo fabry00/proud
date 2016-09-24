@@ -23,7 +23,6 @@ public class NodeGestures {
 
     public NodeGestures(PannableCanvas canvas) {
         this.canvas = canvas;
-
     }
 
     public EventHandler<MouseEvent> getOnMousePressedEventHandler() {
@@ -34,10 +33,6 @@ public class NodeGestures {
         return onMouseDraggedEventHandler;
     }
     
-    public EventHandler<MouseEvent> getOnLayerClickedEventHandler() {
-        return onLayerClickedEventHandler;
-    }
-
     private final EventHandler<MouseEvent> onMousePressedEventHandler = (MouseEvent event) -> {
         // left mouse button => dragging
         if (!event.isPrimaryButtonDown())
@@ -65,15 +60,5 @@ public class NodeGestures {
         node.setTranslateY(nodeDragContext.translateAnchorY + ((event.getSceneY() - nodeDragContext.mouseAnchorY) / scale));
         
         event.consume();
-    };
-    
-    private final EventHandler<MouseEvent> onLayerClickedEventHandler = (MouseEvent event) -> {
-        
-        if(!event.getButton().equals(MouseButton.PRIMARY)|| event.getClickCount() < 2){
-            return;
-        }
-        
-        logger.debug("onLayerClickedEventHandler");
-        
-    };
+    };   
 }

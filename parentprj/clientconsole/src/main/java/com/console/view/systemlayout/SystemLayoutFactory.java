@@ -47,9 +47,9 @@ class SystemLayoutFactory {
                 logger.debug("Drawing layer: " + layer.getName());
 
                 Map<IAppElement, ISystemElement> leyerElemens
-                        = createElements(canvas, gestures, layer.getNodes(), y);
+                        = createElements(layoutManager, canvas, gestures, layer.getNodes(), y);
 
-                createLayer(canvas, gestures, layer, leyerElemens, y);
+                createLayer(layoutManager, canvas, gestures, layer, leyerElemens, y);
                 elements.putAll(leyerElemens);
                 y += LAYER_Y_GAP;
             } else {
@@ -69,7 +69,7 @@ class SystemLayoutFactory {
         for (IAppElement node : nodes) {
             if (node.getType().equals(IAppElement.Type.Node)) {
                 logger.debug("Drawing node: " + node.getName());
-                ISystemElement element = new NodeElement(node);
+                ISystemElement element = new NodeElement(node, layoutManager);
                 canvas.getChildren().add(element.draw(x, y, gestures));
                 x += NODE_X_GAP;
                 elements.put(node, element);
@@ -102,10 +102,16 @@ class SystemLayoutFactory {
             NodeGestures gestures, IAppElement layer, Map<IAppElement, ISystemElement> leyerElemens, double y) {
 
         double x = getLayerX(leyerElemens.values());
-        ISystemElement element = new LayerElement(layoutManager, layer, leyerElemens.values(), NODE_X_GAP, LAYER_START_Y);
-        Node node = element.draw(x, y - LAYER_START_Y, gestures);
+        // TODO implements netsted layers
+        ISystemElement layerElement = new LayerElement(layer, leyerElemens.values(), NODE_X_GAP, LAYER_START_Y, layoutManager);
+        Node node = layerElement.draw(x, y - LAYER_START_Y, gestures);
         canvas.getChildren().add(node);
         node.toBack();
+
+        // Set parent to each layer's nodes
+        leyerElemens.forEach((k, v) -> {
+            v.setParent(layerElement);
+        });
     }
 
     private double getLayerX(Collection<ISystemElement> nodes) {

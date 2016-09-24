@@ -22,6 +22,9 @@ import javafx.scene.shape.Line;
 import javafx.scene.text.TextAlignment;
 import com.console.domain.IAppElement;
 import com.console.view.systemlayout.ISystemLayoutManager;
+import com.mycompany.commons.DateUtil;
+import java.util.Arrays;
+import javafx.scene.input.MouseButton;
 
 /**
  *
@@ -32,14 +35,27 @@ public class NodeElement implements ISystemElement {
     private static final String NODE_CSS = "com/console/view/systemlayout/element/node.css";
     private static final String NODE_CLASS = "system-node";
     private static final int WIDTH = 84;
-    private static final int HEIGHT = 118;
+    private static final int HEIGHT = 100;
 
     private final IAppElement node;
     private final VBox panel = new VBox();
     private final Map<ISystemElement, Line> connections = new HashMap<>();
+    private final ISystemLayoutManager layoutManager;
+    private ISystemElement parent = null;
 
-    public NodeElement(IAppElement node,ISystemLayoutManager layoutManager) {
+    public NodeElement(IAppElement node, ISystemLayoutManager layoutManager) {
         this.node = node;
+        this.layoutManager = layoutManager;
+    }
+
+    @Override
+    public void setParent(ISystemElement parent) {
+        this.parent = parent;
+    }
+
+    @Override
+    public ISystemElement getParent() {
+        return this.parent;
     }
 
     @Override
@@ -63,7 +79,7 @@ public class NodeElement implements ISystemElement {
         panel.setTranslateY(y);
 
         Label nodeName = new Label(node.getName());
-        nodeName.prefHeightProperty().bind(panel.prefHeightProperty());
+        //nodeName.prefHeightProperty().bind(panel.prefHeightProperty());
         nodeName.prefWidthProperty().bind(panel.prefWidthProperty());
         nodeName.setWrapText(true);
         nodeName.setTextAlignment(TextAlignment.CENTER);
@@ -73,7 +89,7 @@ public class NodeElement implements ISystemElement {
 
         ImageView imgView = new ImageView();
         // TODO check node element image dimension
-     /*   imgView.setFitHeight(80);
+        /*   imgView.setFitHeight(80);
         imgView.setFitWidth(80);
         imgView.setLayoutX(2);
         imgView.setLayoutY(28);*/
@@ -86,13 +102,19 @@ public class NodeElement implements ISystemElement {
         panel.addEventFilter(MouseEvent.MOUSE_DRAGGED, nodeGestures.getOnMouseDraggedEventHandler());
 
         String sep = System.getProperty("line.separator");
-        String tooltipText = "Node info:"+sep;
-        tooltipText+="IP Address: ";
-        tooltipText+= node.getInfo().get(ElementInfo.Type.IP).getValue();
-        
+        String tooltipText = "Node info:" + sep;
+        tooltipText += "IP Address: ";
+        tooltipText += node.getInfo().get(ElementInfo.Type.IP).getValue();
+        tooltipText += "Last KPI received: " + sep;
+        tooltipText += new DateUtil().getNow();
+
         Tooltip tooltip = new Tooltip(tooltipText);
 
         Tooltip.install(panel, tooltip);
+
+        panel.addEventFilter(MouseEvent.MOUSE_CLICKED, (MouseEvent event) -> {
+            new Helper().changeLayour(event, layoutManager, this);
+        });
 
     }
 
@@ -107,8 +129,7 @@ public class NodeElement implements ISystemElement {
     public Collection<Line> getConnections() {
         return connections.values();
     }
-    
-    
+
     @Override
     public String getName() {
         return node.getName();
@@ -142,7 +163,7 @@ public class NodeElement implements ISystemElement {
 
         return new Connection(x, y, x2, y2);
     }
-    
+
     @Override
     public IAppElement.Type getType() {
         return node.getType();

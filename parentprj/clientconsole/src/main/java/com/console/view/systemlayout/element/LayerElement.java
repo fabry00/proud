@@ -13,8 +13,7 @@ import javafx.scene.text.Text;
 import org.apache.log4j.Logger;
 import com.console.domain.IAppElement;
 import com.console.view.systemlayout.ISystemLayoutManager;
-import com.console.view.systemlayout.SystemLayoutManager;
-import javax.inject.Inject;
+import java.util.Arrays;
 
 /**
  *
@@ -36,9 +35,10 @@ public class LayerElement implements ISystemElement {
     private final double nodeXGap;
     private final double layerStartY;
     private final ISystemLayoutManager layoutManager;
+    private ISystemElement parent = null;
 
-    public LayerElement(IAppElement layer, Collection<ISystemElement> nodes,
-            double nodeXGap, double layerStartY, ISystemLayoutManager layoutManager) {
+    public LayerElement(IAppElement layer, Collection<ISystemElement> nodes, double nodeXGap,
+            double layerStartY, ISystemLayoutManager layoutManager) {
         this.layer = layer;
         this.nodes = nodes;
         this.nodeXGap = nodeXGap;
@@ -47,7 +47,17 @@ public class LayerElement implements ISystemElement {
     }
 
     @Override
-    public Node draw(double x, double y, NodeGestures nodeGestures) {
+    public void setParent(ISystemElement parent) {
+        this.parent = parent;
+    }
+
+    @Override
+    public ISystemElement getParent() {
+        return this.parent;
+    }
+
+    @Override
+    public Node draw(final double x, final double y, final NodeGestures nodeGestures) {
         Text text = new Text(layer.getName());
         text.getStyleClass().add(LABEL_CLASS);
         panel.setPrefWidth(getWidth());
@@ -60,11 +70,7 @@ public class LayerElement implements ISystemElement {
         panel.getChildren().addAll(text);
 
         panel.addEventFilter(MouseEvent.MOUSE_CLICKED, (MouseEvent event) -> {
-
-            if (!event.getButton().equals(MouseButton.PRIMARY) || event.getClickCount() < 2) {
-                return;
-            }
-            layoutManager.changeLayout(this);
+            new Helper().changeLayour(event, layoutManager, this);
         });
         return panel;
     }

@@ -13,14 +13,18 @@ import com.console.domain.IAppElement;
  */
 public interface ISystemElement {
 
-     public Node draw(double x, double y, final NodeGestures nodeGestures);
+    public Node draw(double x, double y, final NodeGestures nodeGestures);
+
+    public void setParent(ISystemElement parent);
+
+    public ISystemElement getParent();
 
     public void createConnections(List<ISystemElement> relatedElements);
-    
+
     public Collection<Line> getConnections();
-    
+
     public Node getContainer();
-    
+
     public IAppElement.Type getType();
 
     public String getName();
