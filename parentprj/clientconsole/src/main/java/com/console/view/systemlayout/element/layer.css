@@ -19,7 +19,7 @@
 }
 
 .system-layer:hover {
-    -fx-cursor: hand;
+ /*   -fx-cursor: hand;*/
     /*-fx-background-color: 
         linear-gradient(from 0% 93% to 0% 100%, #AEAEAE 0%, #BEBEBE 100%),
         #AEAEAE,

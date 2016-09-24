@@ -22,6 +22,7 @@ import java.util.ResourceBundle;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.scene.control.Alert.AlertType;
 import org.apache.log4j.Logger;
 import org.controlsfx.control.BreadCrumbBar;
 
@@ -74,10 +75,20 @@ public class SystemlayoutPresenter implements Initializable, IAppStateListener, 
         return !btnLockUnlock.selectedProperty().get();
     }
 
+    @FXML
+    public void onSave() {
+        Alert dlg = new Alert(AlertType.INFORMATION);
+
+        dlg.setTitle("Save layout");
+        String optionalMasthead = "Not implemented yet";
+        dlg.getDialogPane().setContentText("This feautures has not been implemented yet!");
+        dlg.getDialogPane().setHeaderText(optionalMasthead);
+        dlg.show();
+    }
+
     private void initCrumbar() {
         crumbManager = new BreadCrumbManager(crumbBar, this);
         crumbManager.initCrumbar();
-
     }
 
     private void initSystemLayout() {

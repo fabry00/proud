@@ -10,7 +10,9 @@ import javafx.scene.shape.Line;
 import javafx.scene.text.Text;
 import org.apache.log4j.Logger;
 import com.console.domain.IAppElement;
+import com.console.util.view.DragResizer;
 import com.console.view.systemlayout.ISystemLayoutManager;
+import javafx.scene.Cursor;
 
 /**
  *
@@ -65,10 +67,12 @@ public class LayerElement implements ISystemElement {
         panel.setTranslateY(y);
 
         panel.getChildren().addAll(text);
-
         panel.addEventFilter(MouseEvent.MOUSE_CLICKED, (MouseEvent event) -> {
             new Helper().changeLayour(event, layoutManager, this);
         });
+
+        new DragResizer(panel, Cursor.HAND, layoutManager).makeResizable(panel.getPrefWidth(), panel.getPrefHeight());
+
         return panel;
     }
 
