@@ -13,6 +13,7 @@ import javafx.scene.chart.XYChart;
 public class AppNode implements IAppElement {
 
     private static final int MAX_METRICS_COUNT = 50;
+    private static final Type TYPE = Type.Node;
 
     private final String name;
     private IAppElement.State state = IAppElement.State.FINE;
@@ -38,7 +39,7 @@ public class AppNode implements IAppElement {
 
     @Override
     public Type getType() {
-        return Type.Node;
+        return TYPE;
     }
 
     @Override
@@ -105,12 +106,13 @@ public class AppNode implements IAppElement {
             return false;
         }
         final AppNode other = (AppNode) o;
-        return Objects.equals(this.name, other.name);
+        return Objects.equals(this.name, other.name)
+                && Objects.equals(this.TYPE, other.TYPE);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name);
+        return Objects.hash(name) + Objects.hash(TYPE);
     }
 
     @Override

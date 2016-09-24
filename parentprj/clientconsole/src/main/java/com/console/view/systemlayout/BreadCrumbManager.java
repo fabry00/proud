@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Map;
 import javafx.event.EventHandler;
 import javafx.scene.control.TreeItem;
+import org.apache.log4j.Logger;
 import org.controlsfx.control.BreadCrumbBar;
 
 /**
@@ -18,19 +19,21 @@ import org.controlsfx.control.BreadCrumbBar;
  */
 public class BreadCrumbManager {
 
-    private final static String FIRST_LAYOUT = "System";
+    private static final String FIRST_LAYOUT = "System";
     private static final String BASE_LAYOUT_NAME = "Layout";
+
+    private final Logger logger = Logger.getLogger(BreadCrumbManager.class);
 
     private final BreadCrumbBar crumbBar;
     private final TreeItem<String> rootTree;
     private final ISystemLayoutManager layoutManager;
     private final Map<String, TreeItem<String>> layoutsName = new HashMap<>();
+    private final Map<String, List<ISystemElement>> layoutElements = new HashMap<>();
 
     public BreadCrumbManager(BreadCrumbBar crumbBar, ISystemLayoutManager layoutManager) {
         this.crumbBar = crumbBar;
         this.layoutManager = layoutManager;
         this.rootTree = new TreeItem<>(FIRST_LAYOUT);
-
     }
 
     public void initCrumbar() {
@@ -44,20 +47,39 @@ public class BreadCrumbManager {
         TreeItem<String> item2 = new TreeItem<>("Item 2");
 
         rootTree.getChildren().addAll(item1, item2);*/
-        crumbBar.selectedCrumbProperty().set(rootTree);
+
         crumbBar.setAutoNavigationEnabled(false);
         crumbBar.setOnCrumbAction(new EventHandler<BreadCrumbBar.BreadCrumbActionEvent<String>>() {
             @Override
             public void handle(BreadCrumbBar.BreadCrumbActionEvent<String> bae) {
-                System.out.println("BreadCrumbActionEvent");
+                String layoutSelected = bae.getSelectedCrumb().getValue();
+                logger.debug("Load layout: " + layoutSelected);
+
+                if (layoutElements.containsKey(layoutSelected)) {
+                    layoutManager.changeLayout(layoutElements.get(layoutSelected));
+                    return;
+                }
+
+                logger.error("Layout not found: " + layoutSelected);
+
             }
         });
 
+        crumbBar.selectedCrumbProperty().set(rootTree);
+
+    }
+
+    public void setRootElements(List<ISystemElement> elementsToShow) {
+        logger.debug("setRootElements");
+        selectItemLayout(elementsToShow, FIRST_LAYOUT);
+        layoutElements.put(FIRST_LAYOUT, elementsToShow);
     }
 
     public void selectLayout(List<ISystemElement> elementsToShow) {
         String layoutName = getNewLayoutName(elementsToShow);
+        logger.debug("Selected layout: " + layoutName);
         selectItemLayout(elementsToShow, layoutName);
+        layoutElements.put(layoutName, elementsToShow);
     }
 
     private void selectItemLayout(List<ISystemElement> elementsToShow, String layoutName) {

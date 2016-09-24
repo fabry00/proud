@@ -1,7 +1,7 @@
 package com.console.view.systemlayout;
 
-import com.console.util.view.NodeGestures;
 import com.console.domain.AppState;
+import com.console.domain.IAppElement;
 import com.console.domain.IAppStateListener;
 import com.console.domain.State;
 import com.console.service.appservice.ApplicationService;
@@ -19,9 +19,9 @@ import javax.inject.Inject;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
-import javafx.beans.property.BooleanProperty;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
+import javafx.beans.Observable;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.scene.control.Alert.AlertType;
 import org.apache.log4j.Logger;
 import org.controlsfx.control.BreadCrumbBar;
@@ -60,13 +60,19 @@ public class SystemlayoutPresenter implements Initializable, IAppStateListener, 
     public void AppStateChanged(AppState oldState, AppState currentState) {
         // AppState == State.STARTED
         SystemLayoutFactory factory = new SystemLayoutFactory();
-        factory.draw(this, canvas, currentState.getLayers());
+        List<ISystemElement> drawedElement = factory.draw(this, canvas, currentState.getLayers());
+        crumbManager.setRootElements(drawedElement);
     }
 
     @Override
     public void changeLayout(List<ISystemElement> elementsToShow) {
         logger.debug("Change System layout");
         crumbManager.selectLayout(elementsToShow);
+
+        ObservableList<IAppElement> elemesToDraw = getElemsToShow(elementsToShow);
+
+        SystemLayoutFactory factory = new SystemLayoutFactory();
+        factory.draw(this, canvas, elemesToDraw);
 
     }
 
@@ -113,6 +119,22 @@ public class SystemlayoutPresenter implements Initializable, IAppStateListener, 
         initCrumbar();
 
         btnLockUnlock.setTooltip(new Tooltip("Lock/Unlock elements"));
+    }
+
+    private ObservableList<IAppElement> getElemsToShow(List<ISystemElement> elementsSelected) {
+        ObservableList<IAppElement> elemesToDraw = FXCollections.observableArrayList();
+
+        for (IAppElement elem : appService.getCurrentState().getLayers()) {
+            for (ISystemElement elementSelected : elementsSelected) {
+                if (elementSelected.getAppElement().equals(elem)) {
+                    elemesToDraw.add(elem);
+                }
+
+            }
+
+        }
+
+        return elemesToDraw;
     }
 
 }

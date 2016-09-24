@@ -63,6 +63,11 @@ public class NodeElement implements ISystemElement {
     }
 
     @Override
+    public IAppElement getAppElement() {
+        return node;
+    }
+
+    @Override
     public Node draw(double x, double y) {
         initNode(x, y);
 

@@ -1,6 +1,5 @@
 package com.console.view.systemlayout.element;
 
-import com.console.util.view.NodeGestures;
 import java.util.Collection;
 import java.util.List;
 import javafx.scene.Node;
@@ -26,6 +25,8 @@ public interface ISystemElement {
     public Node getContainer();
 
     public IAppElement.Type getType();
+    
+    public IAppElement getAppElement();
 
     public String getName();
 }

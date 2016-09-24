@@ -6,7 +6,9 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
+
 //http://stackoverflow.com/questions/29506156/javafx-8-zooming-relative-to-mouse-pointer
+
 public class PannableCanvas extends Pane {
     private static final String CANVAS_CSS ="com/console/util/view/PannableCanvas.css";
     private static final String CANVAS_CLASS ="pannable-canvas";

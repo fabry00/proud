@@ -10,7 +10,8 @@ import javafx.collections.ObservableList;
  * @author exfaff
  */
 public final class AppLayer extends AppNode implements IAppElement {
-
+    
+    private static final Type TYPE  = Type.Layer;
     private final ObservableList<IAppElement> layersNodes = FXCollections.observableArrayList();
 
     private AppLayer(Builder builder) {
@@ -20,7 +21,7 @@ public final class AppLayer extends AppNode implements IAppElement {
 
     @Override
     public Type getType() {
-        return Type.Layer;
+        return TYPE;
     }
     
     @Override

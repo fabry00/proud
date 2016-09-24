@@ -54,6 +54,11 @@ public class LayerElement implements ISystemElement {
     public ISystemElement getParent() {
         return this.parent;
     }
+    
+    @Override
+    public IAppElement getAppElement(){
+        return layer;
+    }
 
     @Override
     public Node draw(final double x, final double y) {

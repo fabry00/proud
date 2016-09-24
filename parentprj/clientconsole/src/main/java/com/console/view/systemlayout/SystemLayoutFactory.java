@@ -15,6 +15,7 @@ import javafx.scene.layout.Region;
 import org.apache.log4j.Logger;
 import com.console.view.systemlayout.element.ISystemElement;
 import com.console.domain.IAppElement;
+import javafx.scene.canvas.GraphicsContext;
 
 /**
  *
@@ -31,11 +32,14 @@ class SystemLayoutFactory {
 
     private final Logger logger = Logger.getLogger(SystemLayoutFactory.class);
 
-    public void draw(ISystemLayoutManager layoutManager, PannableCanvas canvas,
+    public List<ISystemElement> draw(ISystemLayoutManager layoutManager, PannableCanvas canvas,
             ObservableList<IAppElement> layers) {
 
-        Map<IAppElement, ISystemElement> elements = new HashMap<>();
+        // Clear all elementd in canvas
+        canvas.getChildren().clear();
 
+        Map<IAppElement, ISystemElement> elements = new HashMap<>();
+        List<ISystemElement> layersDrawed = new ArrayList<>();
         double y = NODE_START_Y;
 
         // Draw layers in reverse order
@@ -48,7 +52,9 @@ class SystemLayoutFactory {
                 Map<IAppElement, ISystemElement> leyerElemens
                         = createElements(layoutManager, canvas, layer.getNodes(), y);
 
-                createLayer(layoutManager, canvas, layer, leyerElemens, y);
+                ISystemElement layerDrawed = createLayer(layoutManager, canvas, layer, leyerElemens, y);
+
+                layersDrawed.add(layerDrawed);
                 elements.putAll(leyerElemens);
                 y += LAYER_Y_GAP;
             } else {
@@ -57,6 +63,8 @@ class SystemLayoutFactory {
         }
 
         createConnections(elements, canvas);
+
+        return layersDrawed;
     }
 
     private Map<IAppElement, ISystemElement> createElements(ISystemLayoutManager layoutManager,
@@ -97,7 +105,7 @@ class SystemLayoutFactory {
         return relatedElements;
     }
 
-    private void createLayer(ISystemLayoutManager layoutManager, PannableCanvas canvas,
+    private ISystemElement createLayer(ISystemLayoutManager layoutManager, PannableCanvas canvas,
             IAppElement layer, Map<IAppElement, ISystemElement> leyerElemens, double y) {
 
         double x = getLayerX(leyerElemens.values());
@@ -111,6 +119,7 @@ class SystemLayoutFactory {
         leyerElemens.forEach((k, v) -> {
             v.setParent(layerElement);
         });
+        return layerElement;
     }
 
     private double getLayerX(Collection<ISystemElement> nodes) {
