@@ -1,10 +1,8 @@
 package com.console.view.systemlayout.element;
 
-import com.console.view.systemlayout.NodeGestures;
 import java.util.Collection;
 import java.util.List;
 import javafx.scene.Node;
-import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
@@ -13,7 +11,6 @@ import javafx.scene.text.Text;
 import org.apache.log4j.Logger;
 import com.console.domain.IAppElement;
 import com.console.view.systemlayout.ISystemLayoutManager;
-import java.util.Arrays;
 
 /**
  *
@@ -57,7 +54,7 @@ public class LayerElement implements ISystemElement {
     }
 
     @Override
-    public Node draw(final double x, final double y, final NodeGestures nodeGestures) {
+    public Node draw(final double x, final double y) {
         Text text = new Text(layer.getName());
         text.getStyleClass().add(LABEL_CLASS);
         panel.setPrefWidth(getWidth());

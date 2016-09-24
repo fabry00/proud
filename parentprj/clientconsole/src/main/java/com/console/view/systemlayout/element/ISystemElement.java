@@ -1,6 +1,6 @@
 package com.console.view.systemlayout.element;
 
-import com.console.view.systemlayout.NodeGestures;
+import com.console.util.view.NodeGestures;
 import java.util.Collection;
 import java.util.List;
 import javafx.scene.Node;
@@ -13,7 +13,7 @@ import com.console.domain.IAppElement;
  */
 public interface ISystemElement {
 
-    public Node draw(double x, double y, final NodeGestures nodeGestures);
+    public Node draw(double x, double y);
 
     public void setParent(ISystemElement parent);
 

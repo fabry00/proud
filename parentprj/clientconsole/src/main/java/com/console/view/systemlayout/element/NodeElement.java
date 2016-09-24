@@ -2,7 +2,6 @@ package com.console.view.systemlayout.element;
 
 import com.console.domain.ElementInfo;
 import com.console.util.AppImage;
-import com.console.view.systemlayout.NodeGestures;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
@@ -21,6 +20,8 @@ import javafx.scene.layout.VBox;
 import javafx.scene.shape.Line;
 import javafx.scene.text.TextAlignment;
 import com.console.domain.IAppElement;
+import com.console.util.view.DragContext;
+import com.console.util.view.PannableCanvas;
 import com.console.view.systemlayout.ISystemLayoutManager;
 import com.mycompany.commons.DateUtil;
 
@@ -38,12 +39,17 @@ public class NodeElement implements ISystemElement {
     private final IAppElement node;
     private final VBox panel = new VBox();
     private final Map<ISystemElement, Line> connections = new HashMap<>();
-    private final ISystemLayoutManager layoutManager;
+    private final DragContext nodeDragContext = new DragContext();
+    private final PannableCanvas canvasContainer;
+    private final Helper helper = new Helper();
+    private ISystemLayoutManager layoutManager = null;
     private ISystemElement parent = null;
 
-    public NodeElement(IAppElement node, ISystemLayoutManager layoutManager) {
+    public NodeElement(IAppElement node, ISystemLayoutManager layoutManager,
+            PannableCanvas canvasContainer) {
         this.node = node;
         this.layoutManager = layoutManager;
+        this.canvasContainer = canvasContainer;
     }
 
     @Override
@@ -57,8 +63,8 @@ public class NodeElement implements ISystemElement {
     }
 
     @Override
-    public Node draw(double x, double y, final NodeGestures nodeGestures) {
-        initNode(x, y, nodeGestures);
+    public Node draw(double x, double y) {
+        initNode(x, y);
 
         return panel;
     }
@@ -68,7 +74,7 @@ public class NodeElement implements ISystemElement {
         return panel;
     }
 
-    private void initNode(double x, double y, final NodeGestures nodeGestures) {
+    private void initNode(double x, double y) {
         panel.setPrefWidth(WIDTH);
         panel.setPrefHeight(HEIGHT);
         panel.getStylesheets().add(NODE_CSS);
@@ -96,9 +102,12 @@ public class NodeElement implements ISystemElement {
         Image img = AppImage.IMG_PC_GREEN_64;
         imgView.setImage(img);
         panel.getChildren().add(imgView);
-        panel.addEventFilter(MouseEvent.MOUSE_PRESSED, nodeGestures.getOnMousePressedEventHandler());
-        panel.addEventFilter(MouseEvent.MOUSE_DRAGGED, nodeGestures.getOnMouseDraggedEventHandler());
-
+        panel.addEventFilter(MouseEvent.MOUSE_PRESSED, (MouseEvent event) -> {
+            helper.onMousePressedEventHandler(event, layoutManager, nodeDragContext);
+        });
+        panel.addEventFilter(MouseEvent.MOUSE_DRAGGED, (MouseEvent event) -> {
+            helper.onMouseDraggedEventHandler(event, layoutManager, canvasContainer, this, nodeDragContext);
+        });
         String sep = System.getProperty("line.separator");
         String tooltipText = "Node info:" + sep;
         tooltipText += "IP Address: ";
@@ -136,27 +145,27 @@ public class NodeElement implements ISystemElement {
     private Line createConnection(ISystemElement relatedElement) {
         DoubleProperty x = new SimpleDoubleProperty(panel.translateXProperty().get() + 84 / 2);
         //DoubleProperty y = new SimpleDoubleProperty(panel.translateYProperty().get());
-        DoubleProperty y = new SimpleDoubleProperty(getAnchorY(panel, (Region) relatedElement.getContainer()));
+        DoubleProperty y = new SimpleDoubleProperty(helper.getAnchorY(panel, (Region) relatedElement.getContainer()));
 
         DoubleProperty x2 = new SimpleDoubleProperty(relatedElement.getContainer().translateXProperty().get() + 84 / 2);
-        DoubleProperty y2 = new SimpleDoubleProperty(getAnchorY((Region) relatedElement.getContainer(), panel));
+        DoubleProperty y2 = new SimpleDoubleProperty(helper.getAnchorY((Region) relatedElement.getContainer(), panel));
 
         panel.translateXProperty().addListener((observable, oldValue, newValue) -> {
             // Source node
-            y.setValue(getAnchorY(panel, (Region) relatedElement.getContainer()));
-            x.setValue(getAnchorX(panel, (Region) relatedElement.getContainer(), newValue));
+            y.setValue(helper.getAnchorY(panel, (Region) relatedElement.getContainer()));
+            x.setValue(helper.getAnchorX(panel, (Region) relatedElement.getContainer(), newValue));
 
             // TargetNode
-            y2.setValue(getAnchorY((Region) relatedElement.getContainer(), panel));
+            y2.setValue(helper.getAnchorY((Region) relatedElement.getContainer(), panel));
         });
 
         relatedElement.getContainer().translateXProperty().addListener((observable, oldValue, newValue) -> {
             // Source node            
-            x2.setValue(getAnchorX((Region) relatedElement.getContainer(), panel, newValue));
-            y2.setValue(getAnchorY((Region) relatedElement.getContainer(), panel));
+            x2.setValue(helper.getAnchorX((Region) relatedElement.getContainer(), panel, newValue));
+            y2.setValue(helper.getAnchorY((Region) relatedElement.getContainer(), panel));
 
             // TargetNode
-            y.setValue(getAnchorY(panel, (Region) relatedElement.getContainer()));
+            y.setValue(helper.getAnchorY(panel, (Region) relatedElement.getContainer()));
         });
 
         return new Connection(x, y, x2, y2);
@@ -170,28 +179,6 @@ public class NodeElement implements ISystemElement {
     @Override
     public String toString() {
         return node.getName();
-    }
-
-    private double getAnchorY(Region source, Region target) {
-        if (source.translateYProperty().get() < target.translateYProperty().get()) {
-            return source.translateYProperty().get() + source.heightProperty().get();
-        } else {
-            return source.translateYProperty().get();
-        }
-
-    }
-
-    private double getAnchorX(Region source, Region target, Number newValue) {
-
-        // TODO get anchor X as anchor y
-        /*if (source.translateXProperty().get() + source.layoutXProperty().get()
-         < target.translateXProperty().get()) {
-      
-         return source.translateXProperty().get() + source.layoutXProperty().get();
-         } else {
-         //   return source.translateYProperty().get();
-         }*/
-        return (double) newValue + source.widthProperty().get() / 2;
     }
 
 }

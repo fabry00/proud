@@ -1,13 +1,16 @@
-package com.console.view.systemlayout;
+package com.console.util.view;
 
 /**
  * Created by exfaff on 21/09/2016.
  */
 import com.console.util.view.DragContext;
 import com.console.util.view.PannableCanvas;
+import com.console.view.systemlayout.ISystemLayoutManager;
+import com.console.view.systemlayout.element.ISystemElement;
 import javafx.event.EventHandler;
 import javafx.scene.Node;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Region;
 import org.apache.log4j.Logger;
 
 /**
@@ -60,8 +63,22 @@ public class NodeGestures {
 
         Node node = (Node) event.getSource();
 
-        node.setTranslateX(nodeDragContext.translateAnchorX + ((event.getSceneX() - nodeDragContext.mouseAnchorX) / scale));
-        node.setTranslateY(nodeDragContext.translateAnchorY + ((event.getSceneY() - nodeDragContext.mouseAnchorY) / scale));
+        //double oldX = node.getTranslateX();
+        //double oldY = node.getTranslateY();
+        double newX = nodeDragContext.translateAnchorX + ((event.getSceneX() - nodeDragContext.mouseAnchorX) / scale);
+        double newY = nodeDragContext.translateAnchorY + ((event.getSceneY() - nodeDragContext.mouseAnchorY) / scale);
+        node.setTranslateX(newX);
+        node.setTranslateY(newY);
+
+        /*if (node instanceof ISystemElement) {
+            ISystemElement element = (ISystemElement) node;
+            Region currentNode = (Region) element.getContainer();
+            Region parentNode = (Region) element.getParent().getContainer();
+            if (!parentNode.getBoundsInParent().contains(currentNode.getBoundsInParent())) {
+                currentNode.translateXProperty().set(oldX);
+                currentNode.translateYProperty().set(oldY);
+            }
+        }*/
 
         event.consume();
     };

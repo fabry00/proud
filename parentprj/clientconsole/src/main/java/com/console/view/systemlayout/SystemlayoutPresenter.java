@@ -1,5 +1,6 @@
 package com.console.view.systemlayout;
 
+import com.console.util.view.NodeGestures;
 import com.console.domain.AppState;
 import com.console.domain.IAppStateListener;
 import com.console.domain.State;
@@ -44,7 +45,6 @@ public class SystemlayoutPresenter implements Initializable, IAppStateListener, 
     private ApplicationService appService;
 
     private PannableCanvas canvas;
-    private NodeGestures nodeGestures;
     private BreadCrumbManager crumbManager;
 
     @Override
@@ -59,7 +59,7 @@ public class SystemlayoutPresenter implements Initializable, IAppStateListener, 
     public void AppStateChanged(AppState oldState, AppState currentState) {
         // AppState == State.STARTED
         SystemLayoutFactory factory = new SystemLayoutFactory();
-        factory.draw(this, canvas, nodeGestures, currentState.getLayers());
+        factory.draw(this, canvas, currentState.getLayers());
     }
 
     @Override
@@ -88,8 +88,6 @@ public class SystemlayoutPresenter implements Initializable, IAppStateListener, 
         canvas.setTranslateX(0);
         canvas.setTranslateY(0);
 
-        nodeGestures = new NodeGestures(canvas, this);
-
         group.getChildren().add(canvas);
         systemPane.setContent(group);
         systemPane.setPannable(true);// enable scroll with mouse
@@ -102,6 +100,8 @@ public class SystemlayoutPresenter implements Initializable, IAppStateListener, 
 
     private void initToolbar() {
         initCrumbar();
+
+        btnLockUnlock.setTooltip(new Tooltip("Lock/Unlock elements"));
     }
 
 }

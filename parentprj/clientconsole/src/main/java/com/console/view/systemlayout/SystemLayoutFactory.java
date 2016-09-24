@@ -32,7 +32,7 @@ class SystemLayoutFactory {
     private final Logger logger = Logger.getLogger(SystemLayoutFactory.class);
 
     public void draw(ISystemLayoutManager layoutManager, PannableCanvas canvas,
-            NodeGestures gestures, ObservableList<IAppElement> layers) {
+            ObservableList<IAppElement> layers) {
 
         Map<IAppElement, ISystemElement> elements = new HashMap<>();
 
@@ -46,9 +46,9 @@ class SystemLayoutFactory {
                 logger.debug("Drawing layer: " + layer.getName());
 
                 Map<IAppElement, ISystemElement> leyerElemens
-                        = createElements(layoutManager, canvas, gestures, layer.getNodes(), y);
+                        = createElements(layoutManager, canvas, layer.getNodes(), y);
 
-                createLayer(layoutManager, canvas, gestures, layer, leyerElemens, y);
+                createLayer(layoutManager, canvas, layer, leyerElemens, y);
                 elements.putAll(leyerElemens);
                 y += LAYER_Y_GAP;
             } else {
@@ -60,7 +60,7 @@ class SystemLayoutFactory {
     }
 
     private Map<IAppElement, ISystemElement> createElements(ISystemLayoutManager layoutManager,
-            PannableCanvas canvas, NodeGestures gestures, ObservableList<IAppElement> nodes, double y) {
+            PannableCanvas canvas, ObservableList<IAppElement> nodes, double y) {
 
         double x = NODE_START_X;
 
@@ -68,8 +68,8 @@ class SystemLayoutFactory {
         for (IAppElement node : nodes) {
             if (node.getType().equals(IAppElement.Type.Node)) {
                 logger.debug("Drawing node: " + node.getName());
-                ISystemElement element = new NodeElement(node, layoutManager);
-                canvas.getChildren().add(element.draw(x, y, gestures));
+                ISystemElement element = new NodeElement(node, layoutManager, canvas);
+                canvas.getChildren().add(element.draw(x, y));
                 x += NODE_X_GAP;
                 elements.put(node, element);
             } else {
@@ -98,12 +98,12 @@ class SystemLayoutFactory {
     }
 
     private void createLayer(ISystemLayoutManager layoutManager, PannableCanvas canvas,
-            NodeGestures gestures, IAppElement layer, Map<IAppElement, ISystemElement> leyerElemens, double y) {
+            IAppElement layer, Map<IAppElement, ISystemElement> leyerElemens, double y) {
 
         double x = getLayerX(leyerElemens.values());
         // TODO implements netsted layers
         ISystemElement layerElement = new LayerElement(layer, leyerElemens.values(), NODE_X_GAP, LAYER_START_Y, layoutManager);
-        Node node = layerElement.draw(x, y - LAYER_START_Y, gestures);
+        Node node = layerElement.draw(x, y - LAYER_START_Y);
         canvas.getChildren().add(node);
         node.toBack();
 
