@@ -1,6 +1,7 @@
-package com.console.view.systemlayout;
+package com.console.view.systemlayout.element;
 
 import com.console.service.appservice.ApplicationService;
+import com.console.view.systemlayout.ISystemLayoutManager;
 import com.console.view.systemlayout.element.ISystemElement;
 import java.util.Arrays;
 import java.util.HashMap;

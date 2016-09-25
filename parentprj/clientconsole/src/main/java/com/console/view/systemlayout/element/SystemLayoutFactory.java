@@ -1,8 +1,6 @@
-package com.console.view.systemlayout;
+package com.console.view.systemlayout.element;
 
 import com.console.util.view.PannableCanvas;
-import com.console.view.systemlayout.element.LayerElement;
-import com.console.view.systemlayout.element.NodeElement;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
@@ -13,15 +11,14 @@ import javafx.collections.ObservableList;
 import javafx.scene.Node;
 import javafx.scene.layout.Region;
 import org.apache.log4j.Logger;
-import com.console.view.systemlayout.element.ISystemElement;
 import com.console.domain.IAppElement;
-import javafx.scene.canvas.GraphicsContext;
+import com.console.view.systemlayout.ISystemLayoutManager;
 
 /**
  *
  * @author fabry
  */
-class SystemLayoutFactory {
+public class SystemLayoutFactory {
 
     private static final double NODE_X_GAP = 150.0;
     private static final double LAYER_Y_GAP = 250.0;

@@ -1,5 +1,7 @@
 package com.console.view.systemlayout;
 
+import com.console.view.systemlayout.element.SystemLayoutFactory;
+import com.console.view.systemlayout.element.BreadCrumbManager;
 import com.console.domain.AppState;
 import com.console.domain.IAppElement;
 import com.console.domain.IAppStateListener;
@@ -7,9 +9,9 @@ import com.console.domain.State;
 import com.console.service.appservice.ApplicationService;
 import com.console.util.view.PannableCanvas;
 import com.console.util.view.SceneGestures;
-import com.console.view.center.CenterPresenter;
 import com.console.view.center.ITabManager;
 import com.console.view.graphdata.GraphdataView;
+import com.console.view.systemlayout.element.ContextMenuFactory;
 import com.console.view.systemlayout.element.ISystemElement;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -25,7 +27,6 @@ import java.util.ResourceBundle;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.EventHandler;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
@@ -38,40 +39,40 @@ import org.controlsfx.control.BreadCrumbBar;
  * Created by exfaff on 20/09/2016.
  */
 public class SystemlayoutPresenter implements Initializable, IAppStateListener, ISystemLayoutManager {
-    
+
     private final Logger logger = Logger.getLogger(SystemlayoutPresenter.class);
-    
+
     private final ObservableList<ISystemElement> selectedNodes = FXCollections.observableArrayList();
-    
+
     @FXML
     AnchorPane ancorPaneSystem;
-    
+
     @FXML
     ScrollPane systemPane;
-    
+
     @FXML
     BreadCrumbBar crumbBar;
-    
+
     @FXML
     ToggleButton btnLockUnlock;
-    
+
     @Inject
     private ApplicationService appService;
-    
+
     private boolean ctrlPressed = false;
     private PannableCanvas canvas;
     private BreadCrumbManager crumbManager;
     private ITabManager tabManager;
-    
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         initToolbar();
-        
         initSystemLayout();
+        initContextMenu();
         initEvents();
         appService.subscribeToState(this, State.STARTED);
     }
-    
+
     @Override
     public void AppStateChanged(AppState oldState, AppState currentState) {
         // AppState == State.STARTED
@@ -79,30 +80,30 @@ public class SystemlayoutPresenter implements Initializable, IAppStateListener, 
         List<ISystemElement> drawedElement = factory.draw(this, canvas, currentState.getLayers());
         crumbManager.setRootElements(drawedElement);
     }
-    
+
     @Override
     public void changeLayout(List<ISystemElement> elementsToShow) {
         logger.debug("Change System layout");
-        
+
         crumbManager.selectLayout(elementsToShow);
         ObservableList<IAppElement> elemesToDraw = getElemsToShow(elementsToShow);
         SystemLayoutFactory factory = new SystemLayoutFactory();
         factory.draw(this, canvas, elemesToDraw);
-        
+
     }
-    
+
     @Override
     public void showKpiLayout(String title, List<ISystemElement> elementToShow) {
         logger.debug("show Kpi Layout");
         GraphdataView view = new GraphdataView();
         tabManager.addTab(title, view.getView());
     }
-    
+
     @Override
     public boolean isLayoutLocked() {
         return !btnLockUnlock.selectedProperty().get();
     }
-    
+
     @Override
     public void addSelectedNode(ISystemElement node) {
         if (ctrlPressed) {
@@ -113,34 +114,34 @@ public class SystemlayoutPresenter implements Initializable, IAppStateListener, 
             }
         }
     }
-    
+
     @Override
     public void removeSelectedNode(ISystemElement node) {
         selectedNodes.remove(node);
         logger.debug("Removed node to selected: " + node.getName() + " " + selectedNodes.size());
         node.unSelected();
     }
-    
+
     @FXML
     public void onSave() {
         Alert dlg = new Alert(AlertType.INFORMATION);
-        
+
         dlg.setTitle("Save layout");
         String optionalMasthead = "Not implemented yet";
         dlg.getDialogPane().setContentText("This feautures has not been implemented yet!");
         dlg.getDialogPane().setHeaderText(optionalMasthead);
         dlg.show();
     }
-    
+
     public void setTabManager(ITabManager tabManager) {
         this.tabManager = tabManager;
     }
-    
+
     private void initCrumbar() {
         crumbManager = new BreadCrumbManager(crumbBar, this, appService);
         crumbManager.initCrumbar();
     }
-    
+
     private void initSystemLayout() {
         Group group = new Group();
         canvas = new PannableCanvas(systemPane.getWidth(), systemPane.getHeight());
@@ -148,7 +149,7 @@ public class SystemlayoutPresenter implements Initializable, IAppStateListener, 
         // translate it a bit
         canvas.setTranslateX(0);
         canvas.setTranslateY(0);
-        
+
         group.getChildren().add(canvas);
         systemPane.setContent(group);
         systemPane.setPannable(true);// enable scroll with mouse
@@ -156,15 +157,15 @@ public class SystemlayoutPresenter implements Initializable, IAppStateListener, 
         systemPane.addEventFilter(MouseEvent.MOUSE_PRESSED, sceneGestures.getOnMousePressedEventHandler());
         systemPane.addEventFilter(MouseEvent.MOUSE_DRAGGED, sceneGestures.getOnMouseDraggedEventHandler());
         systemPane.addEventFilter(ScrollEvent.ANY, sceneGestures.getOnScrollEventHandler());
-        
+
     }
-    
+
     private void initToolbar() {
         initCrumbar();
-        
+
         btnLockUnlock.setTooltip(new Tooltip("Lock/Unlock elements"));
     }
-    
+
     private ObservableList<IAppElement> getElemsToShow(List<ISystemElement> elementsSelected) {
         ObservableList<IAppElement> elemesToDraw = FXCollections.observableArrayList();
 
@@ -183,20 +184,20 @@ public class SystemlayoutPresenter implements Initializable, IAppStateListener, 
                 elemesToDraw.add(elem);
             });
         });
-        
+
         return elemesToDraw;
     }
-    
+
     private void clearNodeSelected() {
-        
+
         selectedNodes.forEach((node) -> {
             node.unSelected();
         });
         selectedNodes.clear();
     }
-    
+
     private void initEvents() {
-        
+
         canvas.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent event) -> {
             if (!event.getButton().equals(MouseButton.PRIMARY)) {
                 return;
@@ -205,7 +206,7 @@ public class SystemlayoutPresenter implements Initializable, IAppStateListener, 
                 clearNodeSelected();
             }
         });
-        
+
         Platform.runLater(() -> {
             // We need run later because the element is not been initialized yet
             Scene scene = ((Node) ancorPaneSystem).getScene();
@@ -214,15 +215,21 @@ public class SystemlayoutPresenter implements Initializable, IAppStateListener, 
                     ctrlPressed = true;
                 }
             });
-            
+
             scene.addEventHandler(KeyEvent.KEY_RELEASED, (KeyEvent event) -> {
                 if (event.getCode().equals(KeyCode.CONTROL)) {
                     ctrlPressed = false;
                 }
             });
-            
+
         });
-        
+
     }
-    
+
+    private void initContextMenu() {
+        ContextMenuFactory builder = new ContextMenuFactory();
+        ContextMenu menu = builder.create();
+        systemPane.setContextMenu(menu);
+    }
+
 }
