@@ -24,6 +24,7 @@ import com.console.util.view.DragContext;
 import com.console.util.view.PannableCanvas;
 import com.console.view.systemlayout.ISystemLayoutManager;
 import com.mycompany.commons.DateUtil;
+import javafx.scene.input.MouseButton;
 
 /**
  *
@@ -188,7 +189,7 @@ public class NodeElement implements ISystemElement {
         String sep = System.getProperty("line.separator");
         String tooltipText = "Node info:" + sep;
         tooltipText += "IP Address: ";
-        tooltipText += node.getInfo().get(ElementInfo.Type.IP).getValue();
+        tooltipText += node.getInfo().get(ElementInfo.Type.IP).getValue() + sep;
         tooltipText += "Last KPI received: " + sep;
         tooltipText += new DateUtil().getNow();
 
@@ -208,9 +209,12 @@ public class NodeElement implements ISystemElement {
         panel.addEventFilter(MouseEvent.MOUSE_CLICKED, (MouseEvent event) -> {
             new Helper().changeLayour(event, layoutManager, this);
 
+            if (!event.getButton().equals(MouseButton.PRIMARY)) {
+                return;
+            }
             if (!isSelected) {
                 layoutManager.addSelectedNode(element);
-            } else{
+            } else {
                 layoutManager.removeSelectedNode(element);
             }
         });

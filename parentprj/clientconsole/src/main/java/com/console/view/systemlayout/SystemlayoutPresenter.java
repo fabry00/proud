@@ -26,6 +26,7 @@ import javafx.event.EventHandler;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseButton;
 import javafx.scene.layout.AnchorPane;
 import org.apache.log4j.Logger;
 import org.controlsfx.control.BreadCrumbBar;
@@ -166,7 +167,29 @@ public class SystemlayoutPresenter implements Initializable, IAppStateListener, 
         return elemesToDraw;
     }
 
+    private void clearNodeSelected() {
+
+        selectedNodes.forEach((node) -> {
+            node.unSelected();
+        });
+        selectedNodes.clear();
+    }
+
     private void initEvents() {
+
+        canvas.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                if (!event.getButton().equals(MouseButton.PRIMARY)) {
+                    return;
+                }
+                if (!ctrlPressed) {
+                    clearNodeSelected();
+                }
+
+            }
+        });
+
         Platform.runLater(() -> {
             // We need run later because the element is not been initialized yet
             Scene scene = ((Node) ancorPaneSystem).getScene();
