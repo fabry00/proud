@@ -10,6 +10,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
+import javafx.scene.control.Tab;
 import javafx.scene.layout.AnchorPane;
 import javax.inject.Inject;
 import org.apache.log4j.Logger;
@@ -22,9 +23,6 @@ public class CenterPresenter implements Initializable {
 
     private final Logger logger = Logger.getLogger(CenterPresenter.class);
 
-    @Inject
-    private ApplicationService appService;
-
     @FXML
     Button startButton;
 
@@ -34,12 +32,18 @@ public class CenterPresenter implements Initializable {
     @FXML
     AnchorPane centerPane;
 
+    @FXML 
+    AnchorPane topPane;
+    
+    @FXML
+    AnchorPane systemTab;
+
     private NodeUtil util = new NodeUtil();
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         logger.debug("initialize");
-  
+
         initToolbar();
         initSystenLayout();
     }
@@ -49,16 +53,16 @@ public class CenterPresenter implements Initializable {
         util.ancorToPaneLeft(pane, 0.0);
         util.ancorToPaneTop(pane, 0.0);
         util.ancorToPaneRight(pane, 0.0);
-        centerPane.getChildren().add(pane);
+        topPane.getChildren().add(pane);
     }
 
     private void initSystenLayout() {
         Parent pane = new SystemlayoutView().getView();
         util.ancorToPaneLeft(pane, 0.0);
-        util.ancorToPaneTop(pane, 35.0);
+        util.ancorToPaneTop(pane, 0.0);
         util.ancorToPaneRight(pane, 0.0);
         util.ancorToPaneBottom(pane, 0.0);
-        centerPane.getChildren().add(pane);
+        systemTab.getChildren().add(pane);
     }
 
 }
