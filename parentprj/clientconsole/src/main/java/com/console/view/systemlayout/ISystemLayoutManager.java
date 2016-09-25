@@ -16,4 +16,6 @@ public interface ISystemLayoutManager extends ILayoutManager {
 
     public void removeSelectedNode(ISystemElement node);
 
+    public void showKpiLayout(String title, List<ISystemElement> elementToShow);
+
 }

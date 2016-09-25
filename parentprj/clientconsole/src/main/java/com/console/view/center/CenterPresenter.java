@@ -1,6 +1,5 @@
 package com.console.view.center;
 
-import com.console.service.appservice.ApplicationService;
 import com.console.util.NodeUtil;
 import com.console.view.graphdata.toolbar.ToolbarView;
 import com.console.view.systemlayout.SystemlayoutView;
@@ -8,37 +7,32 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
-import javafx.scene.control.Button;
 import javafx.scene.control.Tab;
+import javafx.scene.control.TabPane;
+import javafx.scene.control.TabPane.TabClosingPolicy;
 import javafx.scene.layout.AnchorPane;
-import javax.inject.Inject;
 import org.apache.log4j.Logger;
 
 /**
  *
  * @author fabry
  */
-public class CenterPresenter implements Initializable {
+public class CenterPresenter implements Initializable, ITabManager {
 
     private final Logger logger = Logger.getLogger(CenterPresenter.class);
 
     @FXML
-    Button startButton;
-
-    @FXML
-    Button stopButton;
-
-    @FXML
-    AnchorPane centerPane;
-
-    @FXML 
     AnchorPane topPane;
-    
+
+    @FXML
+    TabPane tabsPane;
+
     @FXML
     AnchorPane systemTab;
 
-    private NodeUtil util = new NodeUtil();
+    private final NodeUtil util = new NodeUtil();
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -46,6 +40,30 @@ public class CenterPresenter implements Initializable {
 
         initToolbar();
         initSystenLayout();
+    }
+
+    @Override
+    public void addTab(String title, Node content) {
+        String idTab = title;
+        logger.debug("Add Tab with id: " + idTab);
+        Tab tab = null;
+        for (Tab openedTab : tabsPane.getTabs()) {
+            logger.debug(openedTab.getText());
+            if (openedTab.getId().equals(idTab)) {
+                tab = openedTab;
+                break;
+            }
+        }
+
+        if (tab == null) {
+            tab = new Tab(title, content);
+            tab.closableProperty().set(true);
+            tab.setId(idTab);
+
+        }
+
+        tabsPane.getTabs().add(tab);
+        tabsPane.getSelectionModel().select(tab);
     }
 
     private void initToolbar() {
@@ -57,12 +75,19 @@ public class CenterPresenter implements Initializable {
     }
 
     private void initSystenLayout() {
-        Parent pane = new SystemlayoutView().getView();
+        SystemlayoutView view = new SystemlayoutView();
+        view.getRealPresenter().setTabManager(this);
+        Parent pane = view.getView();
+
         util.ancorToPaneLeft(pane, 0.0);
         util.ancorToPaneTop(pane, 0.0);
         util.ancorToPaneRight(pane, 0.0);
         util.ancorToPaneBottom(pane, 0.0);
         systemTab.getChildren().add(pane);
+
+        tabsPane.getTabs().get(0).setId("System");
+
+        tabsPane.setTabClosingPolicy(TabClosingPolicy.SELECTED_TAB);
     }
 
 }

@@ -4,6 +4,7 @@ import com.console.util.view.DragContext;
 import com.console.util.view.PannableCanvas;
 import com.console.view.systemlayout.ISystemLayoutManager;
 import java.util.Arrays;
+import java.util.List;
 import javafx.scene.Node;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
@@ -20,6 +21,15 @@ class Helper {
             return false;
         }
         layoutManager.changeLayout(Arrays.asList(elementClicked));
+        return true;
+    }
+
+    public boolean showKpiLayout(MouseEvent event, ISystemLayoutManager layoutManager,
+            String title, List<ISystemElement> elems) {
+        if (!event.getButton().equals(MouseButton.PRIMARY) || event.getClickCount() < 2) {
+            return false;
+        }
+        layoutManager.showKpiLayout(title, elems);
         return true;
     }
 

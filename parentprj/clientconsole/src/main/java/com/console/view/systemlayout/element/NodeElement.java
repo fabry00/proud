@@ -24,6 +24,7 @@ import com.console.util.view.DragContext;
 import com.console.util.view.PannableCanvas;
 import com.console.view.systemlayout.ISystemLayoutManager;
 import com.mycompany.commons.DateUtil;
+import java.util.Arrays;
 import javafx.scene.input.MouseButton;
 
 /**
@@ -210,7 +211,8 @@ public class NodeElement implements ISystemElement {
             if (!event.getButton().equals(MouseButton.PRIMARY)) {
                 return;
             }
-            if (!new Helper().changeLayour(event, layoutManager, this)) {
+
+            if (!helper.showKpiLayout(event, layoutManager, node.getName(), Arrays.asList(element))) {
                 // Layout not changed --> add node as selected
                 if (!isSelected) {
                     layoutManager.addSelectedNode(element);
@@ -219,7 +221,8 @@ public class NodeElement implements ISystemElement {
                 }
             }
 
-        });
+        }
+        );
     }
 
 }
