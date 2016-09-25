@@ -1,5 +1,6 @@
 package com.console.view.systemlayout.element;
 
+import com.console.view.systemlayout.ISystemLayoutManager;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.ContextMenu;
@@ -11,15 +12,13 @@ import javafx.stage.WindowEvent;
  * @author fabry
  */
 public class ContextMenuFactory {
-
-    public ContextMenu create() {
-        MenuItem item1 = new MenuItem("About");
-        item1.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent e) {
-                System.out.println("About");
-            }
+    
+    public ContextMenu create(ISystemLayoutManager layoutManager) {
+        MenuItem zoomIn = new MenuItem("Zoom in");
+        zoomIn.setOnAction((ActionEvent e) -> {
+            layoutManager.changeLayout(layoutManager.getSelectedNodes());
         });
+        
         MenuItem item2 = new MenuItem("Preferences");
         item2.setOnAction(new EventHandler<ActionEvent>() {
             @Override
@@ -27,8 +26,8 @@ public class ContextMenuFactory {
                 System.out.println("Preferences");
             }
         });
-
-        final ContextMenu contextMenu = new ContextMenu(item1, item2);
+        
+        final ContextMenu contextMenu = new ContextMenu(zoomIn, item2);
         contextMenu.setOnShowing(new EventHandler<WindowEvent>() {
             @Override
             public void handle(WindowEvent e) {
@@ -41,8 +40,8 @@ public class ContextMenuFactory {
                 System.out.println("shown");
             }
         });
-
+        
         return contextMenu;
     }
-
+    
 }
