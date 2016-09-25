@@ -123,7 +123,7 @@ public class SystemlayoutPresenter implements Initializable, IAppStateListener, 
     }
 
     private void initCrumbar() {
-        crumbManager = new BreadCrumbManager(crumbBar, this);
+        crumbManager = new BreadCrumbManager(crumbBar, this, appService);
         crumbManager.initCrumbar();
     }
 

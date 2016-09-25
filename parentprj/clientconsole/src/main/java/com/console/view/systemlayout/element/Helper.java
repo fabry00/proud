@@ -15,16 +15,17 @@ import javafx.scene.layout.Region;
  */
 class Helper {
 
-    public void changeLayour(MouseEvent event, ISystemLayoutManager layoutManager, ISystemElement elementClicked) {
+    public boolean changeLayour(MouseEvent event, ISystemLayoutManager layoutManager, ISystemElement elementClicked) {
         if (!event.getButton().equals(MouseButton.PRIMARY) || event.getClickCount() < 2) {
-            return;
+            return false;
         }
         layoutManager.changeLayout(Arrays.asList(elementClicked));
+        return true;
     }
 
     public void onMouseDraggedEventHandler(MouseEvent event, ISystemLayoutManager layoutManager,
             PannableCanvas canvasContainer, ISystemElement node, DragContext nodeDragContext) {
-       
+
         // left mouse button => dragging
         if (!event.isPrimaryButtonDown() || layoutManager.isLayoutLocked()) {
             return;
@@ -69,7 +70,7 @@ class Helper {
         nodeDragContext.translateAnchorX = node.getTranslateX();
         nodeDragContext.translateAnchorY = node.getTranslateY();
     }
-    
+
     public double getAnchorY(Region source, Region target) {
         if (source.translateYProperty().get() < target.translateYProperty().get()) {
             return source.translateYProperty().get() + source.heightProperty().get();

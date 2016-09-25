@@ -207,16 +207,18 @@ public class NodeElement implements ISystemElement {
             helper.onMouseDraggedEventHandler(event, layoutManager, canvasContainer, this, nodeDragContext);
         });
         panel.addEventFilter(MouseEvent.MOUSE_CLICKED, (MouseEvent event) -> {
-            new Helper().changeLayour(event, layoutManager, this);
-
             if (!event.getButton().equals(MouseButton.PRIMARY)) {
                 return;
             }
-            if (!isSelected) {
-                layoutManager.addSelectedNode(element);
-            } else {
-                layoutManager.removeSelectedNode(element);
+            if (!new Helper().changeLayour(event, layoutManager, this)) {
+                // Layout not changed --> add node as selected
+                if (!isSelected) {
+                    layoutManager.addSelectedNode(element);
+                } else {
+                    layoutManager.removeSelectedNode(element);
+                }
             }
+
         });
     }
 

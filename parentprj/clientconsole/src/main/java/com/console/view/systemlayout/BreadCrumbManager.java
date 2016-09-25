@@ -1,6 +1,6 @@
 package com.console.view.systemlayout;
 
-import com.console.view.systemlayout.ISystemLayoutManager;
+import com.console.service.appservice.ApplicationService;
 import com.console.view.systemlayout.element.ISystemElement;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -29,11 +29,14 @@ public class BreadCrumbManager {
     private final ISystemLayoutManager layoutManager;
     private final Map<String, TreeItem<String>> layoutsName = new HashMap<>();
     private final Map<String, List<ISystemElement>> layoutElements = new HashMap<>();
+    private final ApplicationService appService;
 
-    public BreadCrumbManager(BreadCrumbBar crumbBar, ISystemLayoutManager layoutManager) {
+    public BreadCrumbManager(BreadCrumbBar crumbBar, ISystemLayoutManager layoutManager,
+            ApplicationService appService) {
         this.crumbBar = crumbBar;
         this.layoutManager = layoutManager;
         this.rootTree = new TreeItem<>(FIRST_LAYOUT);
+        this.appService = appService;
     }
 
     public void initCrumbar() {
@@ -100,7 +103,7 @@ public class BreadCrumbManager {
     }
 
     private String getNewLayoutName(List<ISystemElement> elementsToShow) {
-        if(elementsToShow.equals(layoutElements.get(FIRST_LAYOUT))){
+        if (elementsToShow.equals(layoutElements.get(FIRST_LAYOUT))) {
             return FIRST_LAYOUT;
         }
         if (elementsToShow.size() == 1) {
@@ -131,10 +134,15 @@ public class BreadCrumbManager {
                 }
             } else {
                 // Clicked on a node without clicking before on the parent layer -->
-                // this mean that The parent tree has not been creted yet
+                // this mean that The parent tree has not been created yet
                 // TODO this should be recoursive
-                parentElement = new TreeItem<>(getNewLayoutName(Arrays.asList(parent)));
+
+                //String parentLayoutName = getNewLayoutName(Arrays.asList(parent));
+                parentElement = new TreeItem<>(parentLayoutName);
                 rootTree.getChildren().add(parentElement);
+                layoutsName.put(parentLayoutName, parentElement);
+                layoutElements.put(parentLayoutName, Arrays.asList(parent));
+
             }
         }
         return parentElement;
