@@ -14,6 +14,7 @@ public class AppAction<T extends ActionType, V> {
         this.value = value;
     }
 
+    @Override
     public String toString() {
         if (this.value != null) {
             return this.type.toString() + ": " + this.value.toString();

@@ -10,7 +10,9 @@ import javafx.scene.shape.Line;
 import javafx.scene.text.Text;
 import org.apache.log4j.Logger;
 import com.console.domain.IAppElement;
+import com.console.util.view.DragContext;
 import com.console.util.view.DragResizer;
+import com.console.util.view.PannableCanvas;
 import com.console.view.systemlayout.ISystemLayoutManager;
 import javafx.scene.Cursor;
 
@@ -34,20 +36,26 @@ public class LayerElement implements ISystemElement {
     private final double nodeXGap;
     private final double layerStartY;
     private final ISystemLayoutManager layoutManager;
+    private final Helper helper = new Helper();
+    private final DragContext nodeDragContext = new DragContext();
+    private final PannableCanvas canvasContainer;
     private ISystemElement parent = null;
+    private DragResizer dragResizer;
 
     public LayerElement(IAppElement layer, Collection<ISystemElement> nodes, double nodeXGap,
-            double layerStartY, ISystemLayoutManager layoutManager) {
+            double layerStartY, ISystemLayoutManager layoutManager, PannableCanvas canvasContainer) {
         this.layer = layer;
         this.nodes = nodes;
         this.nodeXGap = nodeXGap;
         this.layerStartY = layerStartY;
         this.layoutManager = layoutManager;
+        this.canvasContainer = canvasContainer;
     }
 
     @Override
     public void setParent(ISystemElement parent) {
         this.parent = parent;
+        helper.initParentEvents(parent.getContainer(), panel);
     }
 
     @Override
@@ -76,8 +84,10 @@ public class LayerElement implements ISystemElement {
             new Helper().changeLayour(event, layoutManager, this);
         });
 
-        new DragResizer(panel, Cursor.HAND, layoutManager).makeResizable(panel.getPrefWidth(), panel.getPrefHeight());
+        dragResizer = new DragResizer(panel, Cursor.HAND, layoutManager);
+        dragResizer.makeResizable(panel.getPrefWidth(), panel.getPrefHeight());
 
+        initEvents();
         return panel;
     }
 
@@ -120,10 +130,10 @@ public class LayerElement implements ISystemElement {
         // TDO clean code
         /*double width = 0;
 
-       width = nodes.stream().map((element)
-                -> ((Region) element.getContainer()).getPrefWidth()).reduce(width, (accumulator, _item)
-                -> accumulator + _item + nodeXGap / 2);
-        //return width - (nodeXGap / 2);
+         width = nodes.stream().map((element)
+         -> ((Region) element.getContainer()).getPrefWidth()).reduce(width, (accumulator, _item)
+         -> accumulator + _item + nodeXGap / 2);
+         //return width - (nodeXGap / 2);
          */
         double lastX = 0;
         for (ISystemElement node : nodes) {
@@ -145,6 +155,25 @@ public class LayerElement implements ISystemElement {
             }
         }
         return max_height + layerStartY + Y_PADDING;
+    }
+
+    private void initEvents() {
+        panel.addEventFilter(MouseEvent.MOUSE_PRESSED, (MouseEvent event) -> {
+            
+            if (dragResizer.isResizing(event)) {
+                return;
+            }
+            
+            helper.onMousePressedNode(event, layoutManager, nodeDragContext);
+        });
+        panel.addEventFilter(MouseEvent.MOUSE_DRAGGED, (MouseEvent event) -> {
+            
+            if(dragResizer.isResizing(event)) {
+                return;
+            }
+            
+            helper.onMouseDraggedNode(event, layoutManager, canvasContainer, this, nodeDragContext);
+        });
     }
 
 }

@@ -1,4 +1,4 @@
-package com.console.domain.chart;
+package com.console.util.view;
 
 /*
  * The MIT License (MIT)

@@ -116,11 +116,6 @@ public class SystemlayoutPresenter implements Initializable, IAppStateListener, 
     }
 
     @Override
-    public List<ISystemElement> getSelectedNodes() {
-        return selectedNodes;
-    }
-
-    @Override
     public void removeSelectedNode(ISystemElement node) {
         selectedNodes.remove(node);
         logger.debug("Removed node to selected: " + node.getName() + " " + selectedNodes.size());
@@ -233,7 +228,7 @@ public class SystemlayoutPresenter implements Initializable, IAppStateListener, 
 
     private void initContextMenu() {
         ContextMenuFactory builder = new ContextMenuFactory();
-        ContextMenu menu = builder.create(this);
+        ContextMenu menu = builder.create();
         systemPane.setContextMenu(menu);
     }
 

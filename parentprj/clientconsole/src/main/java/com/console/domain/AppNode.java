@@ -54,7 +54,14 @@ public class AppNode implements IAppElement {
 
     @Override
     public void addMetricValue(AppMetric metric, Object key, Object value) {
-        this.metrics.get(metric).add(new XYChart.Data(key, value));
+        ObservableList<XYChart.Data<Date, Object>> serie;
+        if (!metrics.containsKey(metric)) {
+            serie = FXCollections.synchronizedObservableList(FXCollections.observableArrayList());
+            metrics.put(metric, serie);
+        } else {
+            serie = metrics.get(metric);
+        }
+        serie.add(new XYChart.Data(key, value));
     }
 
     @Override
@@ -106,19 +113,19 @@ public class AppNode implements IAppElement {
             return false;
         }
         final AppNode other = (AppNode) o;
-        return Objects.equals(this.name, other.name)
-                && Objects.equals(this.TYPE, other.TYPE);
+        return Objects.equals(this.name, other.name);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name) + Objects.hash(TYPE);
+        return Objects.hash(name) + Objects.hash(getType());
     }
 
     @Override
     public void syncNewData(IAppElement newData) {
         state = newData.getState();
-
+        info.putAll(newData.getInfo());
+        connectedTo.addAll(newData.getConnections());
         isFineProp.set(newData.IsFineProp().get());
 
         newData.getMetrics().forEach((metric, newata) -> {
@@ -144,7 +151,7 @@ public class AppNode implements IAppElement {
 
         private final String name;
         private final Map<AppMetric, ObservableList<XYChart.Data<Date, Object>>> metrics = new HashMap<>();
-        private final Set<AppNode> connectedTo = new HashSet<>();
+        private final Set<IAppElement> connectedTo = new HashSet<>();
 
         private IAppElement.State state = IAppElement.State.FINE;
 
@@ -181,7 +188,7 @@ public class AppNode implements IAppElement {
             return this;
         }
 
-        public Builder connectedTo(AppNode node) {
+        public Builder connectedTo(IAppElement node) {
             this.connectedTo.add(node);
             return this;
         }

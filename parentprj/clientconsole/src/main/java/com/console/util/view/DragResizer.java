@@ -1,6 +1,5 @@
 package com.console.util.view;
 
-import javafx.event.EventHandler;
 import javafx.scene.Cursor;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Region;
@@ -68,6 +67,14 @@ public class DragResizer {
         region.setOnMouseReleased((MouseEvent event) -> {
             mouseReleased(event);
         });
+    }
+    
+    public boolean isResizing(MouseEvent event) {
+        return dragging != NOTDRAGGING ||
+                isInDraggableZoneE(event) ||
+                isInDraggableZoneN(event) ||
+                isInDraggableZoneS(event) ||
+                isInDraggableZoneW(event);
     }
 
     protected void mouseReleased(MouseEvent event) {
@@ -176,5 +183,5 @@ public class DragResizer {
             initMinHeight = true;
         }
 
-    }
+    }    
 }

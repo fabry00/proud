@@ -3,8 +3,9 @@ package com.console.service.appservice;
 import com.console.domain.AppAction;
 import com.console.domain.AppState;
 import com.console.domain.State;
-import com.console.service.provider.AppStateProvider;
+import com.console.service.provider.AppDataProvider;
 import com.console.domain.ICallback;
+import com.console.service.provider.IDataProvider;
 import org.apache.log4j.Logger;
 
 /**
@@ -41,7 +42,7 @@ class InitAction implements IActionHandler {
         //        }
         //        currentState.setState(State.STARTED);
         
-        AppStateProvider provider = new AppStateProvider();
+        IDataProvider provider = new AppDataProvider();
         
         provider.getSystemState(new ICallback() {
             @Override

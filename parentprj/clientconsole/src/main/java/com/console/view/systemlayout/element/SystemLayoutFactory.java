@@ -107,7 +107,8 @@ public class SystemLayoutFactory {
 
         double x = getLayerX(leyerElemens.values());
         // TODO implements netsted layers
-        ISystemElement layerElement = new LayerElement(layer, leyerElemens.values(), NODE_X_GAP, LAYER_START_Y, layoutManager);
+        ISystemElement layerElement = new LayerElement(layer, leyerElemens.values(), 
+                NODE_X_GAP, LAYER_START_Y, layoutManager, canvas);
         Node node = layerElement.draw(x, y - LAYER_START_Y);
         canvas.getChildren().add(node);
         node.toBack();

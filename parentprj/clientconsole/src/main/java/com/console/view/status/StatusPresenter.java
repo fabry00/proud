@@ -34,7 +34,7 @@ public class StatusPresenter implements Initializable, IAppStateListener {
         logger.debug("Initialize");
         appService.subscribe(this);
 
-        statusBar.textProperty().bind(appService.getCurrentState().getMessage());
+        statusBar.textProperty().bind(appService.getCurrentState().getMessageProp());
         Label statusLabel = new Label();
         statusLabel.textProperty().bind(appService.getCurrentState().getStateProp());
         statusBar.getRightItems().add(new Separator(Orientation.VERTICAL));

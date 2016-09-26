@@ -12,7 +12,7 @@ import com.console.domain.IAppElement;
  *
  * @author fabry
  */
-public class AppStateProvider {
+public class AppDataProvider implements IDataProvider{
 
     /**
      * TODO retreive from server

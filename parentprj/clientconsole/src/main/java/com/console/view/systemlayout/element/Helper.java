@@ -5,6 +5,9 @@ import com.console.util.view.PannableCanvas;
 import com.console.view.systemlayout.ISystemLayoutManager;
 import java.util.Arrays;
 import java.util.List;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.scene.Cursor;
 import javafx.scene.Node;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
@@ -33,7 +36,7 @@ class Helper {
         return true;
     }
 
-    public void onMouseDraggedEventHandler(MouseEvent event, ISystemLayoutManager layoutManager,
+    public void onMouseDraggedNode(MouseEvent event, ISystemLayoutManager layoutManager,
             PannableCanvas canvasContainer, ISystemElement node, DragContext nodeDragContext) {
 
         // left mouse button => dragging
@@ -41,6 +44,7 @@ class Helper {
             return;
         }
 
+        node.getContainer().setCursor(Cursor.MOVE);
         double scale = canvasContainer.getScale();
         Region panel = (Region) node.getContainer();
         double oldX = panel.getTranslateX();
@@ -51,6 +55,7 @@ class Helper {
         panel.setTranslateY(newY);
 
         if (node.getParent() == null) {
+            event.consume();
             return;
         }
 
@@ -64,11 +69,12 @@ class Helper {
         event.consume();
     }
 
-    public void onMousePressedEventHandler(MouseEvent event, ISystemLayoutManager layoutManager,
+    public void onMousePressedNode(MouseEvent event, ISystemLayoutManager layoutManager,
             DragContext nodeDragContext) {
 
         // left mouse button => dragging
         if (!event.isPrimaryButtonDown() || layoutManager.isLayoutLocked()) {
+            event.consume();
             return;
         }
 
@@ -79,6 +85,7 @@ class Helper {
 
         nodeDragContext.translateAnchorX = node.getTranslateX();
         nodeDragContext.translateAnchorY = node.getTranslateY();
+        event.consume();
     }
 
     public double getAnchorY(Region source, Region target) {
@@ -101,6 +108,18 @@ class Helper {
          //   return source.translateYProperty().get();
          }*/
         return (double) newValue + source.widthProperty().get() / 2;
+    }
+
+    public void initParentEvents(Node parent, Node currentNode) {
+        parent.translateXProperty().addListener((ObservableValue<? extends Number> observable, Number oldValue, Number newValue) -> {
+            double xGap = newValue.doubleValue() - oldValue.doubleValue();
+            currentNode.translateXProperty().set(currentNode.translateXProperty().get() + xGap);
+        });
+
+        parent.translateYProperty().addListener((ObservableValue<? extends Number> observable, Number oldValue, Number newValue) -> {
+            double yGap = newValue.doubleValue() - oldValue.doubleValue();
+            currentNode.translateYProperty().set(currentNode.translateYProperty().get() + yGap);
+        });
     }
 
 }

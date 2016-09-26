@@ -25,6 +25,8 @@ import com.console.util.view.PannableCanvas;
 import com.console.view.systemlayout.ISystemLayoutManager;
 import com.mycompany.commons.DateUtil;
 import java.util.Arrays;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.scene.input.MouseButton;
 
 /**
@@ -59,6 +61,7 @@ public class NodeElement implements ISystemElement {
     @Override
     public void setParent(ISystemElement parent) {
         this.parent = parent;
+        helper.initParentEvents(parent.getContainer(), panel);
     }
 
     @Override
@@ -103,9 +106,9 @@ public class NodeElement implements ISystemElement {
         ImageView imgView = new ImageView();
         // TODO check node element image dimension
         /*   imgView.setFitHeight(80);
-        imgView.setFitWidth(80);
-        imgView.setLayoutX(2);
-        imgView.setLayoutY(28);*/
+         imgView.setFitWidth(80);
+         imgView.setLayoutX(2);
+         imgView.setLayoutY(28);*/
         imgView.pickOnBoundsProperty().setValue(true);
         imgView.setPreserveRatio(true);
         Image img = AppImage.IMG_PC_GREEN_64;
@@ -202,10 +205,10 @@ public class NodeElement implements ISystemElement {
     private void initEvents() {
         ISystemElement element = this;
         panel.addEventFilter(MouseEvent.MOUSE_PRESSED, (MouseEvent event) -> {
-            helper.onMousePressedEventHandler(event, layoutManager, nodeDragContext);
+            helper.onMousePressedNode(event, layoutManager, nodeDragContext);
         });
         panel.addEventFilter(MouseEvent.MOUSE_DRAGGED, (MouseEvent event) -> {
-            helper.onMouseDraggedEventHandler(event, layoutManager, canvasContainer, this, nodeDragContext);
+            helper.onMouseDraggedNode(event, layoutManager, canvasContainer, this, nodeDragContext);
         });
         panel.addEventFilter(MouseEvent.MOUSE_CLICKED, (MouseEvent event) -> {
             if (!event.getButton().equals(MouseButton.PRIMARY)) {
@@ -221,8 +224,8 @@ public class NodeElement implements ISystemElement {
                 }
             }
 
-        }
-        );
+        });
     }
 
+    
 }
