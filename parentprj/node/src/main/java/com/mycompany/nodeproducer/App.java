@@ -29,7 +29,7 @@ public class App {
 
         new App().start();
         String javaLibPath = System.getProperty("java.library.path");
-        System.out.println("The java library path is: "+javaLibPath);
+        System.out.println("The java library path is: " + javaLibPath);
         System.out.println("Type \"exit\" to stop the application");
 
         Scanner in = new Scanner(System.in);
@@ -42,8 +42,8 @@ public class App {
     public void start() throws InterruptedException {
         initLogger();
         ConfigUtils utils = new ConfigUtils();
-        Properties producerProp = utils.getProp(PRODUCER_CONF);
-        Properties nodeProperties = utils.getProp(NODE_CONF);
+        Properties producerProp = utils.getExtenralProp(PRODUCER_CONF);
+        Properties nodeProperties = utils.getExtenralProp(NODE_CONF);
         MsgProducer producer = new MsgProducer(producerProp);
         ResourceReader resourceReader = new ResourceReader(nodeProperties, producer);
 

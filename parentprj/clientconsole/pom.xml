@@ -76,6 +76,11 @@
             <version>4.12</version>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>org.testfx</groupId>
+            <artifactId>testfx-core</artifactId>
+            <version>4.0.4-alpha</version>
+        </dependency>
     </dependencies>
     <build>
         <defaultGoal>clean package</defaultGoal>
@@ -178,7 +183,7 @@
                     <include>**/*.properties</include>
                     <include>**/*.jpg</include>
                     <include>**/*.png</include>
-                        <include>**/*.gif</include>
+                    <include>**/*.gif</include>
                 </includes>
             </resource>
         </resources>

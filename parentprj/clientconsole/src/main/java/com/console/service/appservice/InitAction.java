@@ -13,10 +13,10 @@ import org.apache.log4j.Logger;
  * @author fabry
  */
 class InitAction implements IActionHandler {
-    
+
     private final static State expected = State.NOT_STARTED;
     private final Logger logger = Logger.getLogger(InitAction.class);
-    
+
     @Override
     public void execute(AppAction action, ApplicationService appService, final ICallback callback) {
         logger.debug("Init action execution");
@@ -41,16 +41,15 @@ class InitAction implements IActionHandler {
         //            currentState.setState(State.ERROR);
         //        }
         //        currentState.setState(State.STARTED);
-        
         IDataProvider provider = new AppDataProvider();
-        
+
         provider.getSystemState(new ICallback() {
             @Override
             public void success(Object obj
             ) {
                 appStateRetrieved((AppState) obj, appService.getCurrentState(), callback);
             }
-            
+
             @Override
             public void fail(String message
             ) {
@@ -58,7 +57,7 @@ class InitAction implements IActionHandler {
             }
         });
     }
-    
+
     private void appStateRetrieved(AppState state, AppState currentState, ICallback callback) {
         currentState.copyFrom(state);
         currentState.setState(State.STARTED);

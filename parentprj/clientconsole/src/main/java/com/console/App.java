@@ -4,12 +4,17 @@ import com.console.view.dashboard.DashboardView;
 import com.airhacks.afterburner.injection.Injector;
 import com.console.domain.AppAction;
 import com.console.domain.ActionType;
+import com.console.service.appservice.ApplicationService;
 import com.console.view.dashboard.DashboardPresenter;
+import com.mycompany.commons.ConfigUtils;
 import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
 import java.time.LocalDate;
 import java.time.Month;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Properties;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
@@ -23,12 +28,13 @@ import org.apache.log4j.PropertyConfigurator;
 public class App extends Application {
 
     private final Logger logger = Logger.getLogger(App.class);
+    private static final String APP_CONFIGS = "appconfigurations.properties";
     private static final String APP_TITLE = "PrOud - Predicting Cloud Failures Online";
     private static final String APP_CSS = "app.css";
     private static final String LOG_CONF = "log4j.properties";
 
     private String actualTheme = "";
-
+    private Properties appConfigs;
     private DashboardView appView;
 
     public static void main(String[] args) {
@@ -77,8 +83,13 @@ public class App extends Application {
         this.stage.setFullScreen(b);
     }
 
+    public Properties getAppConfigs() {
+        return appConfigs;
+    }
+
     private void initStage(Stage stage) {
         logger.debug("initStage");
+        ApplicationService.setMainApp(this);
         appView = new DashboardView();
         Scene scene = new Scene(appView.getView());
         stage.setTitle(APP_TITLE);
@@ -87,8 +98,6 @@ public class App extends Application {
         stage.setScene(scene);
         stage.show();
 
-        DashboardPresenter presenter = appView.getRealPresenter();
-        presenter.getAppService().setMainApp(this);
         this.stage = stage;
     }
 
@@ -102,6 +111,9 @@ public class App extends Application {
 
     private void initConfiguration() {
         logger.debug("initConfiguration");
+
+        ConfigUtils utils = new ConfigUtils();
+        appConfigs = utils.getInternalProp(App.class.getClassLoader(), APP_CONFIGS);
         /*
          * Properties of any type can be easily injected.
          */

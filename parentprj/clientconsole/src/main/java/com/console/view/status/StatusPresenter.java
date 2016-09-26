@@ -4,6 +4,7 @@ import com.console.domain.AppState;
 import com.console.domain.IAppStateListener;
 import com.console.domain.State;
 import com.console.service.appservice.ApplicationService;
+import com.console.util.Configs;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
@@ -33,6 +34,11 @@ public class StatusPresenter implements Initializable, IAppStateListener {
     public void initialize(URL location, ResourceBundle resources) {
         logger.debug("Initialize");
         appService.subscribe(this);
+
+        final String appVersion = appService.getAppConfigs().getProperty(Configs.VERSION);
+
+        Label versionLabel = new Label("Version: " + appVersion);
+        statusBar.getLeftItems().add(versionLabel);
 
         statusBar.textProperty().bind(appService.getCurrentState().getMessageProp());
         Label statusLabel = new Label();
