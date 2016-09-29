@@ -4,9 +4,9 @@ import com.console.domain.*;
 import com.console.service.appservice.ApplicationService;
 import com.console.util.NodeUtil;
 import com.console.view.center.CenterView;
-import com.console.view.logo.LogoView;
+import com.console.view.unused.logo.LogoView;
 import com.console.view.status.StatusView;
-import com.console.view.tree.TreeView;
+import com.console.view.unused.tree.TreeView;
 
 import java.net.URL;
 import java.util.ResourceBundle;

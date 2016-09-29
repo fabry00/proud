@@ -2,6 +2,7 @@ package com.console.domain;
 
 import com.console.AppDataProviderMock;
 import com.console.Helper;
+import com.console.service.appservice.AppEventManager;
 import com.console.service.provider.IDataProvider;
 import javafx.collections.ObservableList;
 import org.junit.After;
@@ -19,7 +20,7 @@ public class AppStateTest {
 
     private static final Helper helper = new Helper();
     private static final IDataProvider dataProvider = new AppDataProviderMock();
-    private static final AppState currentState = new AppState.Builder().build();
+    private static final AppState currentState = new AppState.Builder(null).build();
 
     public AppStateTest() {
     }
@@ -58,7 +59,7 @@ public class AppStateTest {
     @Test
     public void testGetState() {
         System.out.println("getState");
-        AppState instance = new AppState.Builder().build();
+        AppState instance = new AppState.Builder(new AppEventManager()).build();
         assertEquals(State.UNKWOWN, instance.getState());
     }
 
@@ -68,7 +69,7 @@ public class AppStateTest {
     @Test
     public void testGetStateProp() {
         System.out.println("getStateProp");
-        AppState instance = new AppState.Builder().build();
+        AppState instance = new AppState.Builder(new AppEventManager()).build();
         assertEquals(State.UNKWOWN.getLabel(), instance.getStateProp().get());
     }
 
@@ -78,7 +79,7 @@ public class AppStateTest {
     @Test
     public void testGetMessage() {
         System.out.println("getMessage");
-        AppState instance = new AppState.Builder().build();
+        AppState instance = new AppState.Builder(new AppEventManager()).build();
         instance.setMessage("msg");
         assertEquals("msg", instance.getMessageProp().get());
     }
@@ -89,7 +90,7 @@ public class AppStateTest {
     @Test
     public void testGetNodesInAbnormalState() {
         System.out.println("getNodesInAbnormalState");
-        AppState instance = new AppState.Builder().build();
+        AppState instance = new AppState.Builder(new AppEventManager()).build();
         instance.addAbnormalNode(helper.getNode("Node"));
         ObservableList result = instance.getNodesInAbnormalState();
         assertTrue(result.size() == 1);
@@ -108,12 +109,30 @@ public class AppStateTest {
     }
 
     /**
+     * Test of getFailurePrediction method, of class AppState.
+     */
+    @Test
+    public void testGetFailurePrediction() {
+        System.out.println("getFailurePrediction");
+        assertEquals(PredictionType.NOT_DETECTED,((AppDataProviderMock) dataProvider).state.getFailurePrediction());
+    }
+
+    /**
+     * Test of getSystemFailure method, of class AppState.
+     */
+    @Test
+    public void testGetSystemFailure() {
+        System.out.println("getSystemFailure");
+        assertEquals(PredictionType.NOT_DETECTED,((AppDataProviderMock) dataProvider).state.getSystemFailure());
+    }
+
+    /**
      * Test of setState method, of class AppState.
      */
     @Test
     public void testSetState() {
         System.out.println("setState");
-        AppState instance = new AppState.Builder().build();
+        AppState instance = new AppState.Builder(new AppEventManager()).build();
         instance.setState(State.ERROR);
         assertEquals(State.ERROR, instance.getState());
     }
@@ -124,7 +143,7 @@ public class AppStateTest {
     @Test
     public void testAddNodeData() {
         System.out.println("addNodeData");
-        AppState instance = new AppState.Builder().build();
+        AppState instance = new AppState.Builder(new AppEventManager()).build();
         instance.addNodeData(helper.getNode("Node"));
         assertEquals(helper.getNode("Node"), instance.getNodes().get(0));
     }
@@ -135,7 +154,7 @@ public class AppStateTest {
     @Test
     public void testAddAbnormalNode() {
         System.out.println("addAbnormalNode");
-        AppState instance = new AppState.Builder().build();
+        AppState instance = new AppState.Builder(new AppEventManager()).build();
         instance.addAbnormalNode(helper.getNode("Node"));
         assertEquals(helper.getNode("Node"), instance.getNodesInAbnormalState().get(0));
     }
@@ -146,7 +165,7 @@ public class AppStateTest {
     @Test
     public void testAddLayer() {
         System.out.println("addLayer");
-        AppState instance = new AppState.Builder().build();
+        AppState instance = new AppState.Builder(new AppEventManager()).build();
         instance.addLayer(helper.getLayer("Layer"));
         assertEquals(helper.getLayer("Layer"), instance.getLayers().get(0));
     }
@@ -157,9 +176,13 @@ public class AppStateTest {
     @Test
     public void testClone() {
         System.out.println("clone");
+        currentState.setFailurePrediction(PredictionType.DETECTED);
+        currentState.setSystemFailure(PredictionType.DETECTED);
         AppState instance = currentState.clone();
 
         assertEquals(instance.getState(), currentState.getState());
+        assertEquals(instance.getFailurePrediction(), currentState.getFailurePrediction());
+        assertEquals(instance.getSystemFailure(), currentState.getSystemFailure());
         assertEquals(instance.getLayers().size(), currentState.getLayers().size());
         assertEquals(instance.getMessageProp().get(), currentState.getMessageProp().get());
         assertEquals(instance.getNodes().size(), currentState.getNodes().size());
@@ -173,11 +196,15 @@ public class AppStateTest {
     @Test
     public void testCopyFrom() {
         System.out.println("copyFrom");
+        currentState.setFailurePrediction(PredictionType.DETECTED);
+        currentState.setSystemFailure(PredictionType.DETECTED);
         AppState stateToCpy = currentState;
-        AppState instance = new AppState.Builder().build();
+        AppState instance = new AppState.Builder(new AppEventManager()).build();
         instance.copyFrom(stateToCpy);
 
         assertEquals(instance.getState(), currentState.getState());
+        assertEquals(instance.getFailurePrediction(), currentState.getFailurePrediction());
+        assertEquals(instance.getSystemFailure(), currentState.getSystemFailure());
         assertEquals(instance.getLayers().size(), currentState.getLayers().size());
         assertEquals(instance.getMessageProp().get(), currentState.getMessageProp().get());
         assertEquals(instance.getNodes().size(), currentState.getNodes().size());

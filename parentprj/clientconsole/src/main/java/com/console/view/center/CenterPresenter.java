@@ -48,7 +48,7 @@ public class CenterPresenter implements Initializable, ITabManager {
         logger.debug("Add Tab with id: " + idTab);
         Tab tab = null;
         for (Tab openedTab : tabsPane.getTabs()) {
-            logger.debug(openedTab.getText());
+            //logger.debug(openedTab.getText());
             if (openedTab.getId().equals(idTab)) {
                 tab = openedTab;
                 break;

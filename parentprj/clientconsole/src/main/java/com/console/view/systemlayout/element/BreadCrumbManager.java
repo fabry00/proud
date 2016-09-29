@@ -3,10 +3,9 @@ package com.console.view.systemlayout.element;
 import com.console.service.appservice.ApplicationService;
 import com.console.view.systemlayout.ISystemLayoutManager;
 import com.console.view.systemlayout.element.ISystemElement;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+
+import java.util.*;
+
 import javafx.event.EventHandler;
 import javafx.scene.control.TreeItem;
 import org.apache.log4j.Logger;
@@ -60,7 +59,10 @@ public class BreadCrumbManager {
                 logger.debug("Load layout: " + layoutSelected);
 
                 if (layoutElements.containsKey(layoutSelected)) {
-                    layoutManager.changeLayout(layoutElements.get(layoutSelected));
+                    // reverse elements to maintain the right drawing order
+                    List<ISystemElement> reversedElements = new ArrayList<ISystemElement>(layoutElements.get(layoutSelected));
+                    Collections.reverse(reversedElements);
+                    layoutManager.changeLayout(reversedElements);
                     return;
                 }
 
@@ -136,7 +138,7 @@ public class BreadCrumbManager {
             } else {
                 // Clicked on a node without clicking before on the parent layer -->
                 // this mean that The parent tree has not been created yet
-                // TODO this should be recoursive
+                // TODO this should be recursive
 
                 //String parentLayoutName = getNewLayoutName(Arrays.asList(parent));
                 parentElement = new TreeItem<>(parentLayoutName);

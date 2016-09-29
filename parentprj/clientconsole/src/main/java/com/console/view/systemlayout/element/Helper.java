@@ -54,7 +54,7 @@ class Helper {
         panel.setTranslateX(newX);
         panel.setTranslateY(newY);
 
-        if (node.getParent() == null) {
+        if (node.getParent() == null || node.getParent().isVirtual()) {
             event.consume();
             return;
         }

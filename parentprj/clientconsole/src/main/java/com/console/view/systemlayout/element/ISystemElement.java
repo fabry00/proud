@@ -33,4 +33,6 @@ public interface ISystemElement {
     public void selected();
 
     public void unSelected();
+
+    public boolean isVirtual();
 }
