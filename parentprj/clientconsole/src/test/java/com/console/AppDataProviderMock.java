@@ -1,5 +1,6 @@
 package com.console;
 
+import com.console.service.appservice.AppEventManager;
 import com.console.service.provider.*;
 import com.console.domain.AppLayer;
 import com.console.domain.ICallback;
@@ -14,7 +15,7 @@ import com.console.domain.IAppElement;
  */
 public class AppDataProviderMock implements IDataProvider {
 
-    public final AppState state = new AppState.Builder().build();
+    public final AppState state = new AppState.Builder(new AppEventManager()).build();
 
     /**
      * TODO retreive from server

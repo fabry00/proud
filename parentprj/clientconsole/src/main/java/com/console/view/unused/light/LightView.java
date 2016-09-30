@@ -1,4 +1,4 @@
-package com.console.view.light;
+package com.console.view.unused.light;
 
 import com.airhacks.afterburner.views.FXMLView;
 import java.util.function.Function;

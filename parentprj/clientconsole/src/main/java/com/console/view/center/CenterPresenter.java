@@ -9,11 +9,30 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
+import javafx.scene.control.Label;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.control.TabPane.TabClosingPolicy;
 import javafx.scene.layout.AnchorPane;
 import org.apache.log4j.Logger;
+
+//public class CenterPresenter implements Initializable {
+//    private static int index = 0;
+//    @FXML
+//    TabPane tabs;
+//
+//    @FXML
+//    public void add(){
+//        Tab tab=new Tab("new tab "+(index++),new Label("Please help"));
+//
+//        tabs.getTabs().add(tab);
+//    }
+//
+//    public void initialize(URL location, ResourceBundle resources) {
+//
+//    }
+//}
+
 
 /**
  *
@@ -48,7 +67,7 @@ public class CenterPresenter implements Initializable, ITabManager {
         logger.debug("Add Tab with id: " + idTab);
         Tab tab = null;
         for (Tab openedTab : tabsPane.getTabs()) {
-            logger.debug(openedTab.getText());
+            //logger.debug(openedTab.getText());
             if (openedTab.getId().equals(idTab)) {
                 tab = openedTab;
                 break;
@@ -83,11 +102,10 @@ public class CenterPresenter implements Initializable, ITabManager {
         util.ancorToPaneTop(pane, 0.0);
         util.ancorToPaneRight(pane, 0.0);
         util.ancorToPaneBottom(pane, 0.0);
-        systemTab.getChildren().add(pane);
 
+        systemTab.getChildren().add(pane);
         tabsPane.getTabs().get(0).setId("System");
 
         tabsPane.setTabClosingPolicy(TabClosingPolicy.SELECTED_TAB);
     }
-
 }

@@ -64,12 +64,18 @@ public class LayerElement implements ISystemElement {
     }
 
     @Override
+    public boolean isVirtual() {
+        return false;
+    }
+
+    @Override
     public IAppElement getAppElement() {
         return layer;
     }
 
     @Override
     public Node draw(final double x, final double y) {
+        logger.trace("Draw layer element");
         Text text = new Text(layer.getName());
         text.getStyleClass().add(LABEL_CLASS);
         panel.setPrefWidth(getWidth(x));
@@ -80,9 +86,6 @@ public class LayerElement implements ISystemElement {
         panel.setTranslateY(y);
 
         panel.getChildren().addAll(text);
-        panel.addEventFilter(MouseEvent.MOUSE_CLICKED, (MouseEvent event) -> {
-            new Helper().changeLayour(event, layoutManager, this);
-        });
 
         dragResizer = new DragResizer(panel, Cursor.HAND, layoutManager);
         dragResizer.makeResizable(panel.getPrefWidth(), panel.getPrefHeight());
@@ -158,6 +161,10 @@ public class LayerElement implements ISystemElement {
     }
 
     private void initEvents() {
+        panel.addEventFilter(MouseEvent.MOUSE_CLICKED, (MouseEvent event) -> {
+            new Helper().changeLayour(event, layoutManager, this);
+        });
+
         panel.addEventFilter(MouseEvent.MOUSE_PRESSED, (MouseEvent event) -> {
             
             if (dragResizer.isResizing(event)) {

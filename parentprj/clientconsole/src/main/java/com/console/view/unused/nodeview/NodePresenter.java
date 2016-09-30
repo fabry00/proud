@@ -1,8 +1,7 @@
-package com.console.view.nodeview;
+package com.console.view.unused.nodeview;
 
 import com.console.domain.AppNode;
 import com.console.util.AppImage;
-import com.console.util.AppPath;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;

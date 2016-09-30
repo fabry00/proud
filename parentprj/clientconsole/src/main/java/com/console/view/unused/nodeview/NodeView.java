@@ -1,4 +1,4 @@
-package com.console.view.nodeview;
+package com.console.view.unused.nodeview;
 
 import com.airhacks.afterburner.views.FXMLView;
 

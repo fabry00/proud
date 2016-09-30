@@ -1,18 +1,12 @@
 package com.console.view.systemlayout;
 
-import com.console.view.systemlayout.element.SystemLayoutFactory;
-import com.console.view.systemlayout.element.BreadCrumbManager;
-import com.console.domain.AppState;
-import com.console.domain.IAppElement;
-import com.console.domain.IAppStateListener;
-import com.console.domain.State;
+import com.console.domain.*;
+import com.console.view.systemlayout.element.*;
 import com.console.service.appservice.ApplicationService;
 import com.console.util.view.PannableCanvas;
 import com.console.util.view.SceneGestures;
 import com.console.view.center.ITabManager;
 import com.console.view.graphdata.GraphdataView;
-import com.console.view.systemlayout.element.ContextMenuFactory;
-import com.console.view.systemlayout.element.ISystemElement;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.*;
@@ -70,15 +64,17 @@ public class SystemlayoutPresenter implements Initializable, IAppStateListener, 
         initSystemLayout();
         initContextMenu();
         initEvents();
-        appService.subscribeToState(this, State.STARTED);
+        appService.getCurrentState().getEventManager().subscribeToEvent(this, AppEvent.STATE_CHANGED);;
     }
 
     @Override
-    public void AppStateChanged(AppState oldState, AppState currentState) {
-        // AppState == State.STARTED
-        SystemLayoutFactory factory = new SystemLayoutFactory();
-        List<ISystemElement> drawedElement = factory.draw(this, canvas, currentState.getLayers());
-        crumbManager.setRootElements(drawedElement);
+    public void AppEvent(AppEvent event, Object param) {
+        // Subscribed to AppEvent.STATE_CHANGED
+        if (appService.getCurrentState().getState().equals(State.STARTED)) {
+            SystemLayoutFactory factory = new SystemLayoutFactory();
+            List<ISystemElement> drawedElement = factory.draw(this, canvas, appService.getCurrentState().getLayers());
+            crumbManager.setRootElements(drawedElement);
+        }
     }
 
     @Override
@@ -116,10 +112,28 @@ public class SystemlayoutPresenter implements Initializable, IAppStateListener, 
     }
 
     @Override
+    public ObservableList<ISystemElement> getSelectedNodes(){
+        return selectedNodes;
+    }
+
+    @Override
     public void removeSelectedNode(ISystemElement node) {
         selectedNodes.remove(node);
         logger.debug("Removed node to selected: " + node.getName() + " " + selectedNodes.size());
         node.unSelected();
+    }
+
+    @Override
+    public ISystemElement getVirtualLayer(ObservableList<ISystemElement> layerNodes) {
+        IAppElement layer = new AppLayer.Builder("virtual").isVirtual().build();
+
+        layerNodes.forEach((node)-> {
+            layer.getNodes().add(node.getAppElement());
+        });
+        ISystemElement layerElement = new VirtualLayerElement(layer, layerNodes,
+                0, 0, this, canvas);
+
+        return layerElement;
     }
 
     @FXML
@@ -136,6 +150,7 @@ public class SystemlayoutPresenter implements Initializable, IAppStateListener, 
     public void setTabManager(ITabManager tabManager) {
         this.tabManager = tabManager;
     }
+
 
     private void initCrumbar() {
         crumbManager = new BreadCrumbManager(crumbBar, this, appService);
@@ -169,7 +184,7 @@ public class SystemlayoutPresenter implements Initializable, IAppStateListener, 
     private ObservableList<IAppElement> getElemsToShow(List<ISystemElement> elementsSelected) {
         ObservableList<IAppElement> elemesToDraw = FXCollections.observableArrayList();
 
-//        Cycle without functional operator        
+//        Cycle without functional operator
 //        for (IAppElement elem : appService.getCurrentState().getLayers()) {
 //            for (ISystemElement elementSelected : elementsSelected) {
 //                if (elementSelected.getAppElement().equals(elem)) {
@@ -178,12 +193,16 @@ public class SystemlayoutPresenter implements Initializable, IAppStateListener, 
 //
 //            }
 //        }
-        appService.getCurrentState().getLayers().stream().forEach((elem) -> {
+
+        elementsSelected.forEach((elem) -> {
+            elemesToDraw.addAll(elem.getAppElement());
+        });
+       /* appService.getCurrentState().getLayers().stream().forEach((elem) -> {
             elementsSelected.stream().filter((elementSelected)
                     -> (elementSelected.getAppElement().equals(elem))).forEach((_item) -> {
                 elemesToDraw.add(elem);
             });
-        });
+        });*/
 
         return elemesToDraw;
     }
@@ -227,7 +246,7 @@ public class SystemlayoutPresenter implements Initializable, IAppStateListener, 
     }
 
     private void initContextMenu() {
-        ContextMenuFactory builder = new ContextMenuFactory();
+        ContextMenuFactory builder = new ContextMenuFactory(this);
         ContextMenu menu = builder.create();
         systemPane.setContextMenu(menu);
     }

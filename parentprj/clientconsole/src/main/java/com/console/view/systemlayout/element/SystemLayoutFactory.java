@@ -1,21 +1,16 @@
 package com.console.view.systemlayout.element;
 
+import com.console.domain.IAppElement;
 import com.console.util.view.PannableCanvas;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import com.console.view.systemlayout.ISystemLayoutManager;
 import javafx.collections.ObservableList;
 import javafx.scene.Node;
 import javafx.scene.layout.Region;
 import org.apache.log4j.Logger;
-import com.console.domain.IAppElement;
-import com.console.view.systemlayout.ISystemLayoutManager;
+
+import java.util.*;
 
 /**
- *
  * @author fabry
  */
 public class SystemLayoutFactory {
@@ -30,29 +25,30 @@ public class SystemLayoutFactory {
     private final Logger logger = Logger.getLogger(SystemLayoutFactory.class);
 
     public List<ISystemElement> draw(ISystemLayoutManager layoutManager, PannableCanvas canvas,
-            ObservableList<IAppElement> layers) {
+                                     ObservableList<IAppElement> layers) {
 
         // Clear all elementd in canvas
         canvas.getChildren().clear();
 
         Map<IAppElement, ISystemElement> elements = new HashMap<>();
-        List<ISystemElement> layersDrawed = new ArrayList<>();
+        List<ISystemElement> layersDrawn = new ArrayList<>();
         double y = NODE_START_Y;
 
         // Draw layers in reverse order
-        for (int i = layers.size() - 1; i >= 0; i--) {
+       // for (int i = layers.size() - 1; i >= 0; i--) {
+        for (int i = 0; i < layers.size(); i++) {
 
             IAppElement layer = layers.get(i);
             if (layer.getType().equals(IAppElement.Type.Layer)) {
-                logger.debug("Drawing layer: " + layer.getName());
+                logger.trace("Drawing layer: " + layer.getName());
 
-                Map<IAppElement, ISystemElement> leyerElemens
+                Map<IAppElement, ISystemElement> leyerElements
                         = createElements(layoutManager, canvas, layer.getNodes(), y);
 
-                ISystemElement layerDrawed = createLayer(layoutManager, canvas, layer, leyerElemens, y);
+                ISystemElement layerDrawn = createLayer(layoutManager, canvas, layer, leyerElements, y);
 
-                layersDrawed.add(layerDrawed);
-                elements.putAll(leyerElemens);
+                layersDrawn.add(layerDrawn);
+                elements.putAll(leyerElements);
                 y += LAYER_Y_GAP;
             } else {
                 logger.error("Drawing node outside a layer is not supported yet");
@@ -61,18 +57,18 @@ public class SystemLayoutFactory {
 
         createConnections(elements, canvas);
 
-        return layersDrawed;
+        return layersDrawn;
     }
 
     private Map<IAppElement, ISystemElement> createElements(ISystemLayoutManager layoutManager,
-            PannableCanvas canvas, ObservableList<IAppElement> nodes, double y) {
+                                                            PannableCanvas canvas, ObservableList<IAppElement> nodes, double y) {
 
         double x = NODE_START_X;
 
         Map<IAppElement, ISystemElement> elements = new HashMap<>();
         for (IAppElement node : nodes) {
             if (node.getType().equals(IAppElement.Type.Node)) {
-                logger.debug("Drawing node: " + node.getName());
+                logger.trace("Drawing node: " + node.getName());
                 ISystemElement element = new NodeElement(node, layoutManager, canvas);
                 canvas.getChildren().add(element.draw(x, y));
                 x += NODE_X_GAP;
@@ -87,7 +83,7 @@ public class SystemLayoutFactory {
     private void createConnections(Map<IAppElement, ISystemElement> elements, PannableCanvas canvas) {
         elements.forEach((k, v) -> {
             List<ISystemElement> relatedElements = getRelatedElements(elements, k);
-            logger.debug("Connectiong: " + k.getName() + " with:" + relatedElements.toString());
+            logger.trace("Connection: " + k.getName() + " with:" + relatedElements.toString());
             v.createConnections(relatedElements);
             canvas.getChildren().addAll(v.getConnections());
         });
@@ -103,12 +99,19 @@ public class SystemLayoutFactory {
     }
 
     private ISystemElement createLayer(ISystemLayoutManager layoutManager, PannableCanvas canvas,
-            IAppElement layer, Map<IAppElement, ISystemElement> leyerElemens, double y) {
+                                       IAppElement layer, Map<IAppElement, ISystemElement> leyerElemens, double y) {
 
         double x = getLayerX(leyerElemens.values());
         // TODO implements netsted layers
-        ISystemElement layerElement = new LayerElement(layer, leyerElemens.values(), 
-                NODE_X_GAP, LAYER_START_Y, layoutManager, canvas);
+        ISystemElement layerElement;
+        if (!layer.isVirtual()) {
+            layerElement = new LayerElement(layer, leyerElemens.values(),
+                    NODE_X_GAP, LAYER_START_Y, layoutManager, canvas);
+        } else {
+            layerElement = new VirtualLayerElement(layer, leyerElemens.values(),
+                    NODE_X_GAP, LAYER_START_Y, layoutManager, canvas);
+        }
+
         Node node = layerElement.draw(x, y - LAYER_START_Y);
         canvas.getChildren().add(node);
         node.toBack();

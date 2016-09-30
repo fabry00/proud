@@ -1,4 +1,4 @@
-package com.console.view.tree;
+package com.console.view.unused.tree;
 
 import com.console.domain.AppNode;
 import com.console.domain.ElementInfo;
@@ -49,7 +49,7 @@ public class TreePresenter implements Initializable/*, IAppStateListener*/ {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         logger.debug("initialize");
-       // appService.subscribeToState(this, State.ABNORMAL_NODE_STATE);
+       // appService.subscribeToEvent(this, State.ABNORMAL_NODE_STATE);
         listProperty.set(appService.getCurrentState().getNodes());
         nodeList.itemsProperty().bind(listProperty);
 
@@ -109,7 +109,7 @@ public class TreePresenter implements Initializable/*, IAppStateListener*/ {
     }
 
     /*@Override
-    public void AppStateChanged(AppState oldState, AppState currentState) {
+    public void AppEvent(AppState oldState, AppState currentState) {
         //nodeList.refresh();
     }*/
 

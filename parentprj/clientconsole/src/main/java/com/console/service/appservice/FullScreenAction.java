@@ -8,7 +8,7 @@ import com.console.domain.ICallback;
  *
  * @author fabry
  */
-public class FullScreenAction implements IActionHandler {
+class FullScreenAction implements IActionHandler {
 
     @Override
     public void execute(AppAction action, ApplicationService appService,final ICallback callback) {

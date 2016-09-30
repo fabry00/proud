@@ -1,4 +1,4 @@
-package com.console.view.tree;
+package com.console.view.unused.tree;
 
 import com.airhacks.afterburner.views.FXMLView;
 

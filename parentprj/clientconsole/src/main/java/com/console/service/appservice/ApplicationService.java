@@ -1,16 +1,10 @@
 package com.console.service.appservice;
 
 import com.console.App;
-import com.console.domain.AppAction;
-import com.console.domain.ActionType;
-import com.console.domain.AppState;
-import com.console.domain.IAppStateListener;
-import com.console.domain.ServiceName;
-import com.console.domain.State;
+import com.console.domain.*;
 import com.console.service.IService;
 import com.console.service.backend.ThreadBackendService;
-import com.console.domain.ICallback;
-import com.mycompany.commons.ConfigUtils;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -18,12 +12,14 @@ import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 import java.util.Set;
+
 import javafx.application.Platform;
+
 import javax.annotation.PostConstruct;
+
 import org.apache.log4j.Logger;
 
 /**
- *
  * @author fabry
  */
 public class ApplicationService {
@@ -31,12 +27,8 @@ public class ApplicationService {
     private final Logger logger = Logger.getLogger(ApplicationService.class);
 
     private final List<AppState> oldStates = new ArrayList<>();
-    private final AppState currentState = new AppState.Builder().build();
+    private final AppState currentState = new AppState.Builder(new AppEventManager()).build();
     private final ActionFactory factory = new ActionFactory();
-
-    private final Set<IAppStateListener> listeners = new HashSet<>();
-    private final Map<State, Set<IAppStateListener>> listenersToState = new HashMap<>();
-
     private final Map<ServiceName, Object> services = new HashMap<>();
 
     private static App mainApp;
@@ -59,6 +51,10 @@ public class ApplicationService {
         return mainApp.getAppConfigs();
     }
 
+    public App getMainApp() {
+        return mainApp;
+    }
+
     public void dispatch(final AppAction<ActionType, Object> action) {
         logger.debug("New action: " + action);
         final ApplicationService self = this;
@@ -67,14 +63,15 @@ public class ApplicationService {
         // Task for complex and big operations .
         Platform.runLater(() -> {
             try {
-                AppState oldState = currentState.clone();
+
+                AppState oldState = null;//currentState.clone();
                 IActionHandler handler = factory.create(action.type);
 
                 handler.execute(action, self, new ICallback() {
                     @Override
                     public void success(Object obj) {
                         logger.debug("Action executed");
-                        fireAppStateChange(oldState);
+                        //fireAppStateChange(oldState);
                     }
 
                     @Override
@@ -99,27 +96,6 @@ public class ApplicationService {
         return services.get(serviceName);
     }
 
-    public void subscribe(IAppStateListener listener) {
-
-        listeners.add(listener);
-    }
-
-    public void subscribeToState(IAppStateListener listener, State type) {
-
-        Set<IAppStateListener> listemersForAState;
-        if (!listenersToState.containsKey(type)) {
-            listemersForAState = new HashSet<>();
-            listenersToState.put(type, listemersForAState);
-        } else {
-            listemersForAState = listenersToState.get(type);
-        }
-
-        listemersForAState.add(listener);
-    }
-
-    /*public void unsubscribe(IAppStateListener listener) {
-        listeners.remove(listener);
-    }*/
     public void stopAllServices() {
 
         services.entrySet().stream().map((entry) -> {
@@ -128,32 +104,6 @@ public class ApplicationService {
         }).forEach((entry) -> {
             ((IService) entry.getValue()).stop();
         });
-
-    }
-
-    public App getMainApp() {
-        return mainApp;
-    }
-
-    private void fireAppStateChange(AppState oldState) {
-        logger.debug("fireAppStateChange");
-
-        // TODO check if save oldAppState
-        //oldStates.add(oldState);
-        // Fire to whome is subscribed to all events
-        listeners.stream().forEach((listener) -> Platform.runLater(() -> {
-            logger.debug("fire state change to: " + listener.getClass().getSimpleName());
-            listener.AppStateChanged(oldState, currentState);
-        }));
-
-        Set<IAppStateListener> specificListeners = listenersToState.get(currentState.getState());
-        if (specificListeners == null) {
-            return;
-        }
-
-        specificListeners.stream().forEach((listener) -> Platform.runLater(() -> {
-            listener.AppStateChanged(oldState, currentState);
-        }));
 
     }
 

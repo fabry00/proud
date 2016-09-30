@@ -1,4 +1,4 @@
-package com.console.view.light;
+package com.console.view.unused.light;
 
 import java.net.URL;
 import java.util.ResourceBundle;

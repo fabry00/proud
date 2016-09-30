@@ -1,4 +1,4 @@
-package com.console.view.logo;
+package com.console.view.unused.logo;
 
 import com.airhacks.afterburner.views.FXMLView;
 

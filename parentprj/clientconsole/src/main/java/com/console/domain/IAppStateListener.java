@@ -6,5 +6,5 @@ package com.console.domain;
  */
 public interface IAppStateListener {
 
-    public void AppStateChanged(AppState oldState, AppState currentState);
+    public void AppEvent(AppEvent event, Object param);
 }

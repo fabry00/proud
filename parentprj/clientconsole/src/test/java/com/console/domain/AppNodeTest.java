@@ -69,6 +69,16 @@ public class AppNodeTest {
     }
 
     /**
+     * Test of getType method, of class AppLayer.
+     */
+    @Test
+    public void testIsVirtual() {
+        System.out.println("isVirtual");
+        IAppElement instance = helper.getNode("Node");
+        assertFalse(instance.isVirtual());
+    }
+
+    /**
      * Test of getMetric method, of class AppNode.
      */
     @Test

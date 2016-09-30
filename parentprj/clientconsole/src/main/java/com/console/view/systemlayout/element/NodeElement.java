@@ -2,10 +2,12 @@ package com.console.view.systemlayout.element;
 
 import com.console.domain.ElementInfo;
 import com.console.util.AppImage;
+
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.geometry.Pos;
@@ -24,13 +26,14 @@ import com.console.util.view.DragContext;
 import com.console.util.view.PannableCanvas;
 import com.console.view.systemlayout.ISystemLayoutManager;
 import com.mycompany.commons.DateUtil;
+
 import java.util.Arrays;
+
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.scene.input.MouseButton;
 
 /**
- *
  * @author fabry
  */
 public class NodeElement implements ISystemElement {
@@ -52,7 +55,7 @@ public class NodeElement implements ISystemElement {
     private boolean isSelected = false;
 
     public NodeElement(IAppElement node, ISystemLayoutManager layoutManager,
-            PannableCanvas canvasContainer) {
+                       PannableCanvas canvasContainer) {
         this.node = node;
         this.layoutManager = layoutManager;
         this.canvasContainer = canvasContainer;
@@ -75,9 +78,13 @@ public class NodeElement implements ISystemElement {
     }
 
     @Override
+    public boolean isVirtual() {
+        return node.isVirtual();
+    }
+
+    @Override
     public Node draw(double x, double y) {
         initNode(x, y);
-
         return panel;
     }
 
@@ -124,7 +131,11 @@ public class NodeElement implements ISystemElement {
     @Override
     public void createConnections(List<ISystemElement> relatedElements) {
         relatedElements.stream().forEach((e) -> {
-            connections.put(e, createConnection(e));
+
+            Line connection = createConnection(e);
+            if (connection != null) {
+                connections.put(e, connection);
+            }
         });
     }
 
@@ -139,8 +150,12 @@ public class NodeElement implements ISystemElement {
     }
 
     private Line createConnection(ISystemElement relatedElement) {
+        if (relatedElement == null) {
+            // This mean that the current relatedElement is not displayed, for
+            // example if you selected more node and click on the context menu "ZoomIn"
+            return null;
+        }
         DoubleProperty x = new SimpleDoubleProperty(panel.translateXProperty().get() + 84 / 2);
-        //DoubleProperty y = new SimpleDoubleProperty(panel.translateYProperty().get());
         DoubleProperty y = new SimpleDoubleProperty(helper.getAnchorY(panel, (Region) relatedElement.getContainer()));
 
         DoubleProperty x2 = new SimpleDoubleProperty(relatedElement.getContainer().translateXProperty().get() + 84 / 2);
@@ -227,5 +242,5 @@ public class NodeElement implements ISystemElement {
         });
     }
 
-    
+
 }

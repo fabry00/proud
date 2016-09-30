@@ -16,12 +16,13 @@ public class AppNode implements IAppElement {
     private static final Type TYPE = Type.Node;
 
     private final String name;
-    private IAppElement.State state = IAppElement.State.FINE;
     private final Map<AppMetric, ObservableList<XYChart.Data<Date, Object>>> metrics = new HashMap<>();
     private final Set<IAppElement> connectedTo = new HashSet<>();
-
     private final Map<ElementInfo.Type, ElementInfo> info = new HashMap<>();
     private final BooleanProperty isFineProp = new SimpleBooleanProperty(true);
+    private final boolean isVirtual;
+
+    private IAppElement.State state = IAppElement.State.FINE;
 
     protected AppNode(Builder builder) {
         this.name = builder.name;
@@ -30,6 +31,7 @@ public class AppNode implements IAppElement {
         this.info.putAll(builder.info);
         this.connectedTo.addAll(builder.connectedTo);
         this.isFineProp.set(isFine());
+        this.isVirtual = builder.isVirtual;
     }
 
     @Override
@@ -40,6 +42,11 @@ public class AppNode implements IAppElement {
     @Override
     public Type getType() {
         return TYPE;
+    }
+
+    @Override
+    public boolean isVirtual() {
+        return isVirtual;
     }
 
     @Override
@@ -153,8 +160,8 @@ public class AppNode implements IAppElement {
         private final Map<AppMetric, ObservableList<XYChart.Data<Date, Object>>> metrics = new HashMap<>();
         private final Set<IAppElement> connectedTo = new HashSet<>();
 
+        private boolean isVirtual = false;
         private IAppElement.State state = IAppElement.State.FINE;
-
         private Map<ElementInfo.Type, ElementInfo> info = new HashMap<>();
 
         public Builder(String name) {
@@ -190,6 +197,11 @@ public class AppNode implements IAppElement {
 
         public Builder connectedTo(IAppElement node) {
             this.connectedTo.add(node);
+            return this;
+        }
+
+        public Builder isVirtual() {
+            this.isVirtual = true;
             return this;
         }
 

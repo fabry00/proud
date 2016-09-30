@@ -46,4 +46,6 @@ public interface IAppElement {
     public Set<IAppElement> getConnections();
 
     public void syncNewData(IAppElement newData);
+
+    public boolean isVirtual();
 }

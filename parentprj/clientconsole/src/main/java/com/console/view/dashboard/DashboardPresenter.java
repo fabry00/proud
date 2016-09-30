@@ -1,24 +1,25 @@
 package com.console.view.dashboard;
 
-import com.console.domain.*;
+import com.console.domain.ActionType;
+import com.console.domain.AppAction;
 import com.console.service.appservice.ApplicationService;
 import com.console.util.NodeUtil;
 import com.console.view.center.CenterView;
-import com.console.view.logo.LogoView;
 import com.console.view.status.StatusView;
-import com.console.view.tree.TreeView;
-
-import java.net.URL;
-import java.util.ResourceBundle;
+import com.console.view.unused.logo.LogoView;
+import com.console.view.unused.tree.TreeView;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
+import javafx.scene.Node;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
-import javax.inject.Inject;
 import org.apache.log4j.Logger;
 import org.controlsfx.control.NotificationPane;
+
+import javax.inject.Inject;
+import java.net.URL;
+import java.util.ResourceBundle;
 
 /**
  *
@@ -48,8 +49,6 @@ public class DashboardPresenter implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         logger.debug("Initialize");
 
-        //fetched from followme.properties
-        //logger.error(rb.getString("theEnd"));
         setCenterPane();
         //setLeftPane();
         setBottomPane();
@@ -57,20 +56,16 @@ public class DashboardPresenter implements Initializable {
         initApp();
     }
 
-    public void createLights() {
-        /*  for (int i = 0; i < 255; i++) {
-            final int red = i;
-            LightView view = new LightView((f) -> red);
-             view.getViewAsync(lightsBox.getChildren()::add);
-        }
-         StatusView view = new StatusView();
-        lightsBox.getChildren().add(view.getView());*/
-    }
+//    public void createLights() {
+//          for (int i = 0; i < 255; i++) {
+//            final int red = i;
+//            LightView view = new LightView((f) -> red);
+//             view.getViewAsync(lightsBox.getChildren()::add);
+//        }
+//         StatusView view = new StatusView();
+//        lightsBox.getChildren().add(view.getView());
+//    }
 
-    public void launch() {
-        //  message.setText("Date: " + date + " -> " + prefix + tower.readyToTakeoff() + happyEnding + theVeryEnd
-        //  );
-    }
 
     /**
      * Closes the application.
@@ -102,7 +97,6 @@ public class DashboardPresenter implements Initializable {
     private void setBottomPane() {
         StatusView view = new StatusView();
         AnchorPane statusView = (AnchorPane) view.getView();
-
         util.ancorToPane(statusView, 0.0);
         bottomPane.getChildren().add(statusView);
     }
@@ -112,7 +106,7 @@ public class DashboardPresenter implements Initializable {
         /*notificationPane = new NotificationPane();
         notificationPane.getStyleClass().add(NotificationPane.STYLE_CLASS_DARK);
         centerPane.getChildren().add(notificationPane);*/
-        BorderPane center = (BorderPane) new CenterView().getView();
+        Node center = (Node) new CenterView().getView();
         util.ancorToPane(center, 0.0);
         centerPane.getChildren().add(center);
     }

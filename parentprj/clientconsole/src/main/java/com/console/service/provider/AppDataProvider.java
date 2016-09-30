@@ -1,18 +1,12 @@
 package com.console.service.provider;
 
-import com.console.domain.AppLayer;
-import com.console.domain.ICallback;
-import com.console.domain.AppNode;
-import com.console.domain.AppState;
-import com.console.domain.ElementInfo;
+import com.console.domain.*;
 import javafx.application.Platform;
-import com.console.domain.IAppElement;
 
 /**
- *
  * @author fabry
  */
-public class AppDataProvider implements IDataProvider{
+public class AppDataProvider implements IDataProvider {
 
     /**
      * TODO retreive from server
@@ -22,7 +16,9 @@ public class AppDataProvider implements IDataProvider{
     public void getSystemState(final ICallback callback) {
 
         Platform.runLater(() -> {
-            AppState state = new AppState.Builder().build();
+            AppState state = new AppState.Builder(null)
+                    .failurePrediction(PredictionType.DETECTED)
+                    .build();
 
             IAppElement homer = new AppNode.Builder("Homer")
                     .withInfo(new ElementInfo(ElementInfo.Type.IP, "192.168.1.101"))
@@ -125,10 +121,10 @@ public class AppDataProvider implements IDataProvider{
             node4.getConnections().add(app7);
             node4.getConnections().add(app8);
             node4.getConnections().add(app9);
-            
+
             marge.getConnections().add(app12);
             node3.getConnections().add(app11);
-            
+
             node4.getConnections().add(app10);
 
             IAppElement physicalLayer = new AppLayer.Builder("Physical Machines").build();
@@ -163,10 +159,10 @@ public class AppDataProvider implements IDataProvider{
             state.addNodeData(app11);
             state.addNodeData(app12);
 
-            state.addLayer(physicalLayer);
-            state.addLayer(cloudService);
-            state.addLayer(virtualLayer);
             state.addLayer(appLayer);
+            state.addLayer(virtualLayer);
+            state.addLayer(cloudService);
+            state.addLayer(physicalLayer);
 
             callback.success(state);
         });

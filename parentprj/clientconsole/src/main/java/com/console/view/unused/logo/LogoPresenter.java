@@ -1,4 +1,4 @@
-package com.console.view.logo;
+package com.console.view.unused.logo;
 
 import java.net.URL;
 import java.util.ResourceBundle;
