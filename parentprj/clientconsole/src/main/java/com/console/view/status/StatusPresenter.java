@@ -52,10 +52,10 @@ public class StatusPresenter implements Initializable, IAppStateListener{
         setLeftItems();
         setRightItems();
 
-        appService.getCurrentState().getEventManager().subscribeToEvent(this, AppEvent.STATE_CHANGED);
-        appService.getCurrentState().getEventManager().subscribeToEvent(this, AppEvent.FAILURE_PREDICTED_CHANGED);
-        appService.getCurrentState().getEventManager().subscribeToEvent(this, AppEvent.SYSTEM_FAILURE_CHANGED);
-        failureEvent();
+        //appService.getCurrentState().getEventManager().subscribeToEvent(this, AppEvent.STATE_CHANGED);
+       // appService.getCurrentState().getEventManager().subscribeToEvent(this, AppEvent.FAILURE_PREDICTED_CHANGED);
+       // appService.getCurrentState().getEventManager().subscribeToEvent(this, AppEvent.SYSTEM_FAILURE_CHANGED);
+        /*failureEvent();*/
     }
 
 

@@ -35,7 +35,8 @@ public class SystemLayoutFactory {
         double y = NODE_START_Y;
 
         // Draw layers in reverse order
-        for (int i = layers.size() - 1; i >= 0; i--) {
+       // for (int i = layers.size() - 1; i >= 0; i--) {
+        for (int i = 0; i < layers.size(); i++) {
 
             IAppElement layer = layers.get(i);
             if (layer.getType().equals(IAppElement.Type.Layer)) {

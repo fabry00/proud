@@ -184,7 +184,7 @@ public class SystemlayoutPresenter implements Initializable, IAppStateListener, 
     private ObservableList<IAppElement> getElemsToShow(List<ISystemElement> elementsSelected) {
         ObservableList<IAppElement> elemesToDraw = FXCollections.observableArrayList();
 
-//        Cycle without functional operator        
+//        Cycle without functional operator
 //        for (IAppElement elem : appService.getCurrentState().getLayers()) {
 //            for (ISystemElement elementSelected : elementsSelected) {
 //                if (elementSelected.getAppElement().equals(elem)) {

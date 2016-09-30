@@ -60,9 +60,10 @@ public class BreadCrumbManager {
 
                 if (layoutElements.containsKey(layoutSelected)) {
                     // reverse elements to maintain the right drawing order
-                    List<ISystemElement> reversedElements = new ArrayList<ISystemElement>(layoutElements.get(layoutSelected));
-                    Collections.reverse(reversedElements);
-                    layoutManager.changeLayout(reversedElements);
+                    //List<ISystemElement> reversedElements = new ArrayList<ISystemElement>(layoutElements.get(layoutSelected));
+                    //Collections.reverse(reversedElements);
+                    logger.debug("Element reversed");
+                    layoutManager.changeLayout(layoutElements.get(layoutSelected));
                     return;
                 }
 

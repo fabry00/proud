@@ -159,10 +159,10 @@ public class AppDataProvider implements IDataProvider {
             state.addNodeData(app11);
             state.addNodeData(app12);
 
-            state.addLayer(physicalLayer);
-            state.addLayer(cloudService);
-            state.addLayer(virtualLayer);
             state.addLayer(appLayer);
+            state.addLayer(virtualLayer);
+            state.addLayer(cloudService);
+            state.addLayer(physicalLayer);
 
             callback.success(state);
         });
