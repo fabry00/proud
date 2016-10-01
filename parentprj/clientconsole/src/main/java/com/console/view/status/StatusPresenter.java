@@ -52,10 +52,10 @@ public class StatusPresenter implements Initializable, IAppStateListener{
         setLeftItems();
         setRightItems();
 
-        //appService.getCurrentState().getEventManager().subscribeToEvent(this, AppEvent.STATE_CHANGED);
-       // appService.getCurrentState().getEventManager().subscribeToEvent(this, AppEvent.FAILURE_PREDICTED_CHANGED);
-       // appService.getCurrentState().getEventManager().subscribeToEvent(this, AppEvent.SYSTEM_FAILURE_CHANGED);
-        /*failureEvent();*/
+        appService.getCurrentState().getEventManager().subscribeToEvent(this, AppEvent.STATE_CHANGED);
+        appService.getCurrentState().getEventManager().subscribeToEvent(this, AppEvent.FAILURE_PREDICTED_CHANGED);
+        appService.getCurrentState().getEventManager().subscribeToEvent(this, AppEvent.SYSTEM_FAILURE_CHANGED);
+        failureEvent();
     }
 
 
@@ -76,8 +76,9 @@ public class StatusPresenter implements Initializable, IAppStateListener{
             statusLabel.getStyleClass().add("system-status-label-error");
             statusLabel.getStyleClass().remove("system-status-label-fine");
 
-            sequentialTransition.getChildren().add(getTransition(statusLabel));
-            sequentialTransition.play();
+            // Do not why, but this freeze the tabs
+            //sequentialTransition.getChildren().add(getTransition(statusLabel));
+            //sequentialTransition.play();
         }else {
             statusLabel.getStyleClass().add("system-status-label-fine");
             statusLabel.getStyleClass().remove("system-status-label-fine");
