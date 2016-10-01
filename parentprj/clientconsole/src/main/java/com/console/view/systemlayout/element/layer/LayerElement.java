@@ -5,6 +5,7 @@ import com.console.util.view.DragContext;
 import com.console.util.view.DragResizer;
 import com.console.util.view.PannableCanvas;
 import com.console.view.systemlayout.ISystemLayoutManager;
+import com.console.view.systemlayout.element.Connection;
 import com.console.view.systemlayout.element.Helper;
 import com.console.view.systemlayout.element.ISystemElement;
 import javafx.scene.Cursor;
@@ -12,7 +13,6 @@ import javafx.scene.Node;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
-import javafx.scene.shape.Line;
 import javafx.scene.text.Text;
 import org.apache.log4j.Logger;
 
@@ -113,7 +113,7 @@ public class LayerElement implements ISystemElement {
     }
 
     @Override
-    public Collection<Line> getConnections() {
+    public Collection<Connection> getConnections() {
         throw new UnsupportedOperationException("Not supported."); //To change body of generated methods, choose Tools | Templates.
     }
 

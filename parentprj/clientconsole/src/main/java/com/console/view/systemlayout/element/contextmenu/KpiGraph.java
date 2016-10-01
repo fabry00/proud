@@ -14,7 +14,7 @@ class KpiGraph {
 
     KpiGraph(ISystemLayoutManager layoutManager) {
         this.layoutManager = layoutManager;
-        menu = new MenuItem("KPI Graph");
+        menu = new MenuItem("Show Anomalous KPI Graph");
         menu.setOnAction(e -> exec());
     }
 

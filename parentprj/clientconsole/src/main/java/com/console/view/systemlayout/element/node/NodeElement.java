@@ -22,7 +22,7 @@ import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
-import javafx.scene.shape.Line;
+import javafx.scene.paint.Color;
 import javafx.scene.text.TextAlignment;
 
 import java.util.*;
@@ -40,7 +40,7 @@ public class NodeElement implements ISystemElement {
 
     private final IAppElement node;
     private final VBox panel = new VBox();
-    private final Map<ISystemElement, Line> connections = new HashMap<>();
+    private final Map<ISystemElement, Connection> connections = new HashMap<>();
     private final DragContext nodeDragContext = new DragContext();
     private final PannableCanvas canvasContainer;
     private final Helper helper = new Helper();
@@ -137,8 +137,7 @@ public class NodeElement implements ISystemElement {
     @Override
     public void createConnections(List<ISystemElement> relatedElements) {
         relatedElements.stream().forEach((e) -> {
-
-            Line connection = createConnection(e);
+            Connection connection = createConnection(e);
             if (connection != null) {
                 connections.put(e, connection);
             }
@@ -146,7 +145,7 @@ public class NodeElement implements ISystemElement {
     }
 
     @Override
-    public Collection<Line> getConnections() {
+    public Collection<Connection> getConnections() {
         return connections.values();
     }
 
@@ -155,7 +154,7 @@ public class NodeElement implements ISystemElement {
         return node.getName();
     }
 
-    private Line createConnection(ISystemElement relatedElement) {
+    private Connection createConnection(ISystemElement relatedElement) {
         if (relatedElement == null) {
             // This mean that the current relatedElement is not displayed, for
             // example if you selected more node and click on the context menu "ZoomIn"
@@ -202,12 +201,14 @@ public class NodeElement implements ISystemElement {
     public void selected() {
         panel.getStyleClass().add(SELECTED_CLASS);
         isSelected = true;
+        selectConnections();
     }
 
     @Override
     public void unSelected() {
         panel.getStyleClass().remove(SELECTED_CLASS);
         isSelected = false;
+        unSelectConnections();
     }
 
     private void initTooltip() {
@@ -246,6 +247,21 @@ public class NodeElement implements ISystemElement {
             }
 
         });
+    }
+
+    private void selectConnections() {
+        Color color = Connection.getRandomColor();
+        System.out.println("##########COLOR::: " + color.toString());
+        for (Map.Entry<ISystemElement, Connection> entry : connections.entrySet()) {
+            entry.getValue().selected(color);
+        }
+
+    }
+
+    private void unSelectConnections() {
+        for (Map.Entry<ISystemElement, Connection> entry : connections.entrySet()) {
+            entry.getValue().unSelected();
+        }
     }
 
 

@@ -21,7 +21,7 @@ class ZoomIn {
 
     ZoomIn(ISystemLayoutManager layoutManager) {
         this.layoutManager = layoutManager;
-        menu = new MenuItem("ZoomIn");
+        menu = new MenuItem("Zoom In Selected nodes");
         menu.setOnAction(e -> exec());
     }
 

@@ -2,7 +2,6 @@ package com.console.view.systemlayout.element;
 
 import com.console.domain.IAppElement;
 import javafx.scene.Node;
-import javafx.scene.shape.Line;
 
 import java.util.Collection;
 import java.util.List;
@@ -21,7 +20,7 @@ public interface ISystemElement {
 
     void createConnections(List<ISystemElement> relatedElements);
 
-    Collection<Line> getConnections();
+    Collection<Connection> getConnections();
 
     Node getContainer();
 
