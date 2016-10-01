@@ -8,19 +8,19 @@ import java.util.List;
 
 /**
  *
- * @author fabry
+ * @author Fabrizio Faustinoni
  */
 public interface ISystemLayoutManager extends ILayoutManager {
 
-    public void changeLayout(List<ISystemElement> elementToShow);
+    void changeLayout(List<ISystemElement> elementToShow);
 
-    public void addSelectedNode(ISystemElement node);
+    void addSelectedNode(ISystemElement node);
 
-    public ObservableList<ISystemElement> getSelectedNodes();
+    ObservableList<ISystemElement> getSelectedNodes();
 
-    public void removeSelectedNode(ISystemElement node);
+    void removeSelectedNode(ISystemElement node);
 
-    public void showKpiLayout(String title, List<ISystemElement> elementToShow);
+    void showKpiLayout(String title, List<ISystemElement> elementToShow);
 
-    public ISystemElement getVirtualLayer(ObservableList<ISystemElement> layerNodes);
+    ISystemElement getVirtualLayer(ObservableList<ISystemElement> layerNodes);
 }

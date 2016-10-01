@@ -2,22 +2,17 @@ package com.console.domain;
 
 /**
  *
- * @author exfaff
+ * @author Fabrizio Faustinoni
  */
 public class ElementInfo {
 
-    public enum Type {
-
-        IP
-    };
+    private final String value;
+    private final Type type;
 
     public ElementInfo(Type type, String value) {
         this.type = type;
         this.value = value;
     }
-
-    private final String value;
-    private final Type type;
 
     public String getValue() {
         return value;
@@ -25,5 +20,10 @@ public class ElementInfo {
 
     public Type getType() {
         return type;
+    }
+
+    public enum Type {
+
+        IP
     }
 }

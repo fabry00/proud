@@ -1,14 +1,11 @@
 package com.console.service.appservice;
 
 import com.console.domain.AppAction;
-import com.console.domain.AppState;
-import com.console.domain.AppNode;
 import com.console.domain.ICallback;
-import com.console.domain.State;
 
 /**
  *
- * @author fabry
+ * @author Fabrizio Faustinoni
  */
 class ProcessDataAction implements IActionHandler {
 

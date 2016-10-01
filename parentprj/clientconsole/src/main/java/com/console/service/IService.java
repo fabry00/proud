@@ -2,9 +2,9 @@ package com.console.service;
 
 /**
  *
- * @author fabry
+ * @author Fabrizio Faustinoni
  */
 public interface IService {
 
-    public void stop();
+    void stop();
 }

@@ -4,9 +4,9 @@ import com.console.service.IService;
 
 /**
  *
- * @author fabry
+ * @author Fabrizio Faustinoni
  */
-public interface IBackendService extends IService {
+interface IBackendService extends IService {
 
-    public void start() throws BackEndServiceException;
+    void start() throws BackEndServiceException;
 }

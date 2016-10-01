@@ -2,8 +2,6 @@ package com.console.view.unused.nodeview;
 
 import com.console.domain.AppNode;
 import com.console.util.AppImage;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
@@ -14,7 +12,8 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 /**
- * Created by exfaff on 20/09/2016.
+ * Node presenter
+ * Created by Fabrizio Faustinoni on 20/09/2016.
  */
 public class NodePresenter implements Initializable {
 
@@ -35,17 +34,19 @@ public class NodePresenter implements Initializable {
         this.node = node;
         nodeLabel.textProperty().set(node.getName());
         nodeImage.setImage(getNodeImage(node));
-        node.IsFineProp().addListener(new ChangeListener<Boolean>() {
-            @Override
-            public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
-                System.out.println("############################## CHANGEDDDDDDDDDDDD");
-                nodeImage.setImage(getNodeImage(node));
-            }
+        node.IsFineProp().addListener((observable, oldValue, newValue) -> {
+            nodeImage.setImage(getNodeImage(node));
         });
 
     }
 
-    public Image getNodeImage(AppNode node) {
+    /**
+     * TODO retrieve the right image
+     *
+     * @param node the node
+     * @return the image
+     */
+    private Image getNodeImage(AppNode node) {
         /* if(node.IsFine()){
             return FINE;
         }

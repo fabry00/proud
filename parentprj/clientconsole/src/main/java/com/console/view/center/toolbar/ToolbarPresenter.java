@@ -2,15 +2,8 @@ package com.console.view.center.toolbar;
 
 import com.console.domain.AppMetric;
 import com.console.domain.AppNode;
+import com.console.domain.IAppElement;
 import com.console.service.appservice.ApplicationService;
-import java.net.URL;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.List;
-import java.util.ResourceBundle;
-import java.util.Set;
 import javafx.application.Platform;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -20,32 +13,25 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.geometry.Orientation;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.Separator;
-import javafx.scene.control.ToolBar;
-import javax.inject.Inject;
+import javafx.scene.control.*;
 import org.controlsfx.control.CheckComboBox;
-import com.console.domain.IAppElement;
+
+import javax.inject.Inject;
+import java.net.URL;
+import java.util.*;
 
 /**
  *
- * @author fabry
+ * @author Fabrizio Faustinoni
  */
-public class ToolbarPresenter implements Initializable {
+class ToolbarPresenter implements Initializable {
 
     private final static double NODE_CHOOSER_WIDTH = 200;
-
+    private final Set<IToolbarListener> listeners = new HashSet<>();
     @FXML
     private ToolBar graphToolbar;
-
     private CheckComboBox<IAppElement> graphNodeChooser;
-
     private ComboBox<String> metricSelector;
-
-    private final Set<IToolbarListener> listeners = new HashSet<>();
-
     @Inject
     private ApplicationService appService;
 

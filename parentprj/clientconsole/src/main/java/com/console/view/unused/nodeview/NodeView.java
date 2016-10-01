@@ -3,7 +3,8 @@ package com.console.view.unused.nodeview;
 import com.airhacks.afterburner.views.FXMLView;
 
 /**
- * Created by exfaff on 20/09/2016.
+ * Node View
+ * Created by Fabrizio Faustinoni on 20/09/2016.
  */
 public class NodeView extends FXMLView {
 

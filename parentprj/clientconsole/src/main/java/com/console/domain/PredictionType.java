@@ -1,7 +1,8 @@
 package com.console.domain;
 
 /**
- * Created by exfaff on 28/09/2016.
+ * Type of Prediction
+ * Created by Fabrizio Faustinoni on 28/09/2016.
  */
 public enum PredictionType {
     NOT_DETECTED(false,"NOT DETECTED"),

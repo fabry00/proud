@@ -6,7 +6,7 @@ import com.console.domain.IAppElement;
 
 /**
  *
- * @author exfaff
+ * @author Fabrizio Faustinoni
  */
 public class Helper {
 

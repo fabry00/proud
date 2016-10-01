@@ -1,9 +1,7 @@
 package com.console.view.graphdata;
 
-import java.net.URL;
-import java.util.*;
 import com.console.domain.AppMetric;
-import com.console.domain.AppNode;
+import com.console.domain.IAppElement;
 import com.console.service.appservice.ApplicationService;
 import com.console.util.NodeUtil;
 import com.console.view.graphdata.toolbar.IToolbarListener;
@@ -13,26 +11,30 @@ import com.mycompany.commons.DateUtil;
 import javafx.beans.binding.Bindings;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Point2D;
 import javafx.geometry.Side;
 import javafx.scene.chart.AreaChart;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
-import org.apache.log4j.Logger;
-
-import javax.inject.Inject;
-import javafx.collections.FXCollections;
-import javafx.geometry.Point2D;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import com.console.domain.IAppElement;
+import org.apache.log4j.Logger;
+
+import javax.inject.Inject;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+import java.util.ResourceBundle;
 
 /**
  *
- * @author fabry
+ * @author Fabrizio Faustinoni
  */
 public class GraphdataPresenter implements Initializable, IToolbarListener {
 
@@ -40,20 +42,15 @@ public class GraphdataPresenter implements Initializable, IToolbarListener {
 
     private final ObservableList<XYChart.Series<Date, Object>> seriesList
             = FXCollections.synchronizedObservableList(FXCollections.observableArrayList());
-
+    @Inject
+    ApplicationService appService;
     //http://fxexperience.com/2012/01/curve-fitting-and-styling-areachart/
     @FXML
     private AreaChart chart;
-
     @FXML
     private AnchorPane graphToolbarPane;
-
     @FXML
     private Label labelValues;
-
-    @Inject
-    ApplicationService appService;
-
     private ToolbarPresenter tbPresenter;
 
     @Override

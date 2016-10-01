@@ -2,11 +2,11 @@ package com.console.domain;
 
 /**
  *
- * @author fabry
+ * @author Fabrizio Faustinoni
  */
 public interface ICallback {
-    
-    public void success(Object obj);
-    
-    public void fail(String message);
+
+    void success(Object obj);
+
+    void fail(String message);
 }

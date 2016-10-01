@@ -1,20 +1,20 @@
 package com.mycompany.nodeproducer;
 
 import com.mycompany.commons.DateUtil;
-import java.util.Date;
-import java.util.Properties;
-import java.util.Random;
 import org.apache.log4j.Logger;
 import org.hyperic.sigar.CpuPerc;
 import org.hyperic.sigar.Mem;
 import org.hyperic.sigar.Sigar;
 import org.hyperic.sigar.SigarException;
 
+import java.util.Date;
+import java.util.Properties;
+
 /**
  *
- * @author fabry
+ * @author Fabrizio Faustinoni
  */
-public class ResourceReader implements Runnable {
+class ResourceReader implements Runnable {
 
     private static final String NODE_NAME_CONF = "node.name";
     private final Logger logger = Logger.getLogger(ResourceReader.class);
@@ -23,7 +23,7 @@ public class ResourceReader implements Runnable {
     private final Sigar sigar = new Sigar();
     private final DateUtil dateUtil = new DateUtil();
 
-    public ResourceReader(Properties nodeProperties, MsgProducer sender) {
+    ResourceReader(Properties nodeProperties, MsgProducer sender) {
         this.sender = sender;
         nodeName = nodeProperties.getProperty(NODE_NAME_CONF);      
     }

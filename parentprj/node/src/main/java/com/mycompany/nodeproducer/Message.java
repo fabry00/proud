@@ -2,7 +2,7 @@ package com.mycompany.nodeproducer;
 
 /**
  *
- * @author fabry
+ * @author Fabrizio Faustinoni
  */
 public class Message {
     public String msg = "message";

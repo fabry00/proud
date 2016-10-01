@@ -1,38 +1,43 @@
 package com.console.view.systemlayout.element;
 
-import java.util.Collection;
-import java.util.List;
+import com.console.domain.IAppElement;
 import javafx.scene.Node;
 import javafx.scene.shape.Line;
-import com.console.domain.IAppElement;
+
+import java.util.Collection;
+import java.util.List;
 
 /**
  *
- * @author fabry
+ * @author Fabrizio Faustinoni
  */
 public interface ISystemElement {
 
-    public Node draw(double x, double y);
+    Node draw(double x, double y);
 
-    public void setParent(ISystemElement parent);
+    ISystemElement getParent();
 
-    public ISystemElement getParent();
+    void setParent(ISystemElement parent);
 
-    public void createConnections(List<ISystemElement> relatedElements);
+    void createConnections(List<ISystemElement> relatedElements);
 
-    public Collection<Line> getConnections();
+    Collection<Line> getConnections();
 
-    public Node getContainer();
+    Node getContainer();
 
-    public IAppElement.Type getType();
-    
-    public IAppElement getAppElement();
+    IAppElement.Type getType();
 
-    public String getName();
+    IAppElement getAppElement();
 
-    public void selected();
+    String getName();
 
-    public void unSelected();
+    void selected();
 
-    public boolean isVirtual();
+    void unSelected();
+
+    boolean isVirtual();
+
+    ISystemElement clone();
+
+    Collection<ISystemElement> getNodes();
 }

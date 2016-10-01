@@ -1,25 +1,18 @@
 package com.console.view.systemlayout.element;
 
 import com.console.domain.IAppElement;
-import com.console.util.view.DragContext;
-import com.console.util.view.DragResizer;
 import com.console.util.view.PannableCanvas;
 import com.console.view.systemlayout.ISystemLayoutManager;
-import javafx.scene.Cursor;
+import com.console.view.systemlayout.element.layer.LayerElement;
 import javafx.scene.Node;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Region;
-import javafx.scene.layout.VBox;
-import javafx.scene.shape.Line;
-import javafx.scene.text.Text;
 import org.apache.log4j.Logger;
 
 import java.util.Collection;
-import java.util.List;
 
 /**
  *
- * @author exfaff
+ * @author Fabrizio Faustinoni
  */
 public class VirtualLayerElement extends LayerElement {
 

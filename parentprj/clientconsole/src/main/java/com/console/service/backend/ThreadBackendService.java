@@ -1,12 +1,7 @@
 package com.console.service.backend;
 
-import com.console.domain.AppAction;
-import com.console.domain.ActionType;
-import com.console.domain.AppMetric;
-import com.console.domain.AppNode;
-import com.console.domain.ElementInfo;
+import com.console.domain.*;
 import com.console.service.appservice.ApplicationService;
-
 import com.console.util.MessageUtil;
 import com.mycompany.commons.DateUtil;
 import javafx.application.Platform;
@@ -23,11 +18,10 @@ import java.util.Random;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
-import com.console.domain.IAppElement;
 
 /**
  *
- * @author fabry
+ * @author Fabrizio Faustinoni
  */
 public class ThreadBackendService implements IBackendService {
 

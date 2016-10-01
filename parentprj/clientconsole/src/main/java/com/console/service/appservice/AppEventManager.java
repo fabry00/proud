@@ -1,7 +1,6 @@
 package com.console.service.appservice;
 
 import com.console.domain.AppEvent;
-import com.console.domain.AppState;
 import com.console.domain.IAppStateListener;
 import javafx.application.Platform;
 import org.apache.log4j.Logger;
@@ -12,7 +11,7 @@ import java.util.Map;
 import java.util.Set;
 
 /**
- * Created by exfaff on 28/09/2016.
+ * Created by Fabrizio Faustinoni on 28/09/2016.
  */
 public class AppEventManager {
 
@@ -47,9 +46,7 @@ public class AppEventManager {
             return;
         }
 
-        specificListeners.forEach((listener) -> Platform.runLater(() -> {
-            listener.AppEvent(event, param);
-        }));
+        specificListeners.forEach((listener) -> Platform.runLater(() -> listener.AppEvent(event, param)));
 
     }
 }

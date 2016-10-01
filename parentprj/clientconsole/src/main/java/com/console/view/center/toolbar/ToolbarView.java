@@ -4,7 +4,7 @@ import com.airhacks.afterburner.views.FXMLView;
 
 /**
  *
- * @author fabry
+ * @author Fabrizio Faustinoni
  */
 public class ToolbarView extends FXMLView {
 

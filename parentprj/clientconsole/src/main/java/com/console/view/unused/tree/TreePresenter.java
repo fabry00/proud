@@ -2,10 +2,8 @@ package com.console.view.unused.tree;
 
 import com.console.domain.AppNode;
 import com.console.domain.ElementInfo;
+import com.console.domain.IAppElement;
 import com.console.service.appservice.ApplicationService;
-import java.net.URL;
-import java.util.*;
-
 import javafx.beans.property.ListProperty;
 import javafx.beans.property.SimpleListProperty;
 import javafx.fxml.FXML;
@@ -15,17 +13,17 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.VBox;
-
-import javax.inject.Inject;
-
 import org.apache.log4j.Logger;
 import org.controlsfx.control.PopOver;
 import org.controlsfx.control.PropertySheet.Item;
-import com.console.domain.IAppElement;
+
+import javax.inject.Inject;
+import java.net.URL;
+import java.util.ResourceBundle;
 
 /**
  *
- * @author fabry
+ * @author Fabrizio Faustinoni
  */
 public class TreePresenter implements Initializable/*, IAppStateListener*/ {
 
@@ -33,18 +31,14 @@ public class TreePresenter implements Initializable/*, IAppStateListener*/ {
     private static final String FAILURE_PREDICTED_CLASS = "list-view-failue";
 
     private final Logger logger = Logger.getLogger(TreePresenter.class);
-
+    protected ListProperty<IAppElement> listProperty = new SimpleListProperty<>();
+    @Inject
+    ApplicationService appService;
     private PopOver statusPopOver;
     private Label ipAddress;
     private Label statusNode;
-
-    @Inject
-    ApplicationService appService;
-
     @FXML
     private ListView nodeList;
-
-    protected ListProperty<IAppElement> listProperty = new SimpleListProperty<>();
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {

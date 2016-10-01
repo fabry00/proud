@@ -5,16 +5,14 @@ import com.console.Helper;
 import com.console.service.appservice.AppEventManager;
 import com.console.service.provider.IDataProvider;
 import javafx.collections.ObservableList;
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
-import static org.junit.Assert.*;
+import org.junit.*;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 /**
  *
- * @author exfaff
+ * @author Fabrizio Faustinoni
  */
 public class AppStateTest {
 

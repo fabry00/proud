@@ -2,7 +2,7 @@ package com.console.domain;
 
 /**
  *
- * @author fabry
+ * @author Fabrizio Faustinoni
  */
 public enum ServiceName {
 

@@ -10,25 +10,16 @@ import javafx.util.Callback;
 import org.apache.log4j.Logger;
 
 /**
- * @author fabry
+ * @author Fabrizio Faustinoni
  */
 public final class AppState {
 
     // Every time the the node change state the event listChanged is fired
     // TODO TO CHECK
     //https://gist.github.com/andytill/3116203
-    final Callback<IAppElement, Observable[]> extractor = new Callback<IAppElement, Observable[]>() {
-
-        @Override
-        public Observable[] call(IAppElement p) {
-            return new Observable[]{(Observable) p.IsFineProp()};
-        }
-    };
+    private final Callback<IAppElement, Observable[]> extractor = p -> new Observable[]{(Observable) p.IsFineProp()};
 
     private final Logger logger = Logger.getLogger(AppState.class);
-
-    private State state = State.UNKWOWN;
-    private final StringProperty stateProperty = new SimpleStringProperty(state.getLabel());
     private final StringProperty message = new SimpleStringProperty("");
     private final ObservableList<IAppElement> nodes
             = FXCollections.synchronizedObservableList(FXCollections.observableArrayList(extractor));
@@ -36,7 +27,8 @@ public final class AppState {
             = FXCollections.synchronizedObservableList(FXCollections.observableArrayList());
     private final ObservableList<IAppElement> layers
             = FXCollections.synchronizedObservableList(FXCollections.observableArrayList());
-
+    private State state = State.UNKWOWN;
+    private final StringProperty stateProperty = new SimpleStringProperty(state.getLabel());
     private PredictionType failurePrediction = PredictionType.NOT_DETECTED;
     private PredictionType systemFailure = PredictionType.NOT_DETECTED;
     private AppEventManager eventManager;
@@ -53,12 +45,30 @@ public final class AppState {
         return state;
     }
 
+    public void setState(State state) {
+        logger.debug("SetState: " + state.getLabel());
+        this.state = state;
+        this.stateProperty.set(state.getLabel());
+
+        fireEvent(AppEvent.STATE_CHANGED, null);
+    }
+
     public PredictionType getFailurePrediction() {
         return failurePrediction;
     }
 
+    public void setFailurePrediction(PredictionType val) {
+        this.failurePrediction = val;
+        fireEvent(AppEvent.FAILURE_PREDICTED_CHANGED, null);
+    }
+
     public PredictionType getSystemFailure() {
         return systemFailure;
+    }
+
+    public void setSystemFailure(PredictionType val) {
+        this.systemFailure = val;
+        fireEvent(AppEvent.SYSTEM_FAILURE_CHANGED, null);
     }
 
     public StringProperty getStateProp() {
@@ -81,29 +91,12 @@ public final class AppState {
         return eventManager;
     }
 
-    public void setState(State state) {
-        this.state = state;
-        this.stateProperty.set(state.getLabel());
-
-        fireEvent(AppEvent.STATE_CHANGED, null);
-    }
-
     public ObservableList<IAppElement> getNodes() {
         return nodes;
     }
 
     public void setMessage(String message) {
         this.message.set(message);
-    }
-
-    public void setFailurePrediction(PredictionType val) {
-        this.failurePrediction = val;
-        fireEvent(AppEvent.FAILURE_PREDICTED_CHANGED, null);
-    }
-
-    public void setSystemFailure(PredictionType val) {
-        this.systemFailure = val;
-        fireEvent(AppEvent.SYSTEM_FAILURE_CHANGED, null);
     }
 
     public void addNodeData(IAppElement newNodeData) {
@@ -153,7 +146,7 @@ public final class AppState {
     /**
      * Clone this state
      *
-     * @return
+     * @return The State
      */
     @Override
     public AppState clone() {
@@ -165,7 +158,7 @@ public final class AppState {
     /**
      * Copy the state
      *
-     * @param stateToCpy
+     * @param stateToCpy state to copy
      */
     public void copyFrom(AppState stateToCpy) {
         cloneState(stateToCpy, this);
@@ -173,8 +166,8 @@ public final class AppState {
 
     private void cloneState(AppState src, AppState target) {
 
-        src.getLayers().forEach((layer) -> target.addLayer(layer));
-        src.getNodes().forEach((node) -> target.addNodeData(node));
+        src.getLayers().forEach(target::addLayer);
+        src.getNodes().forEach(target::addNodeData);
         target.setMessage(src.getMessageProp().get());
 
 

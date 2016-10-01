@@ -3,18 +3,18 @@ package com.console.view.center;
 import com.console.util.NodeUtil;
 import com.console.view.graphdata.toolbar.ToolbarView;
 import com.console.view.systemlayout.SystemlayoutView;
-import java.net.URL;
-import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
-import javafx.scene.control.Label;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.control.TabPane.TabClosingPolicy;
 import javafx.scene.layout.AnchorPane;
 import org.apache.log4j.Logger;
+
+import java.net.URL;
+import java.util.ResourceBundle;
 
 //public class CenterPresenter implements Initializable {
 //    private static int index = 0;
@@ -36,22 +36,18 @@ import org.apache.log4j.Logger;
 
 /**
  *
- * @author fabry
+ * @author Fabrizio Faustinoni
  */
 public class CenterPresenter implements Initializable, ITabManager {
 
     private final Logger logger = Logger.getLogger(CenterPresenter.class);
-
+    private final NodeUtil util = new NodeUtil();
     @FXML
     AnchorPane topPane;
-
     @FXML
     TabPane tabsPane;
-
     @FXML
     AnchorPane systemTab;
-
-    private final NodeUtil util = new NodeUtil();
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -62,8 +58,8 @@ public class CenterPresenter implements Initializable, ITabManager {
     }
 
     @Override
-    public void addTab(String title, Node content) {
-        String idTab = title;
+    public void addTab(String idTab, Node content) {
+
         logger.debug("Add Tab with id: " + idTab);
         Tab tab = null;
         for (Tab openedTab : tabsPane.getTabs()) {
@@ -75,7 +71,7 @@ public class CenterPresenter implements Initializable, ITabManager {
         }
 
         if (tab == null) {
-            tab = new Tab(title, content);
+            tab = new Tab(idTab, content);
             tab.closableProperty().set(true);
             tab.setId(idTab);
 

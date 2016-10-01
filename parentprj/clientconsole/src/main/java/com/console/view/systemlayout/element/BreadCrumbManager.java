@@ -2,20 +2,21 @@ package com.console.view.systemlayout.element;
 
 import com.console.service.appservice.ApplicationService;
 import com.console.view.systemlayout.ISystemLayoutManager;
-import com.console.view.systemlayout.element.ISystemElement;
-
-import java.util.*;
-
 import javafx.event.EventHandler;
 import javafx.scene.control.TreeItem;
 import org.apache.log4j.Logger;
 import org.controlsfx.control.BreadCrumbBar;
 
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 /**
  * TODO This class could be improved --> the logic could be based on the layers
  * list saved in appService
  *
- * @author fabry
+ * @author Fabrizio Faustinoni
  */
 public class BreadCrumbManager {
 
@@ -134,7 +135,7 @@ public class BreadCrumbManager {
                     finalParentLayoutName = null;
                 } else {
                     parentElement = layoutsName.get(parentLayoutName);
-                    finalParentLayoutName = null;
+                    finalParentLayoutName = parentLayoutName;
                 }
             } else {
                 // Clicked on a node without clicking before on the parent layer -->

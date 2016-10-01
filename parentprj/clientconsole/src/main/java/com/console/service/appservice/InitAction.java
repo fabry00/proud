@@ -2,15 +2,15 @@ package com.console.service.appservice;
 
 import com.console.domain.AppAction;
 import com.console.domain.AppState;
+import com.console.domain.ICallback;
 import com.console.domain.State;
 import com.console.service.provider.AppDataProvider;
-import com.console.domain.ICallback;
 import com.console.service.provider.IDataProvider;
 import org.apache.log4j.Logger;
 
 /**
  *
- * @author fabry
+ * @author Fabrizio Faustinoni
  */
 class InitAction implements IActionHandler {
 

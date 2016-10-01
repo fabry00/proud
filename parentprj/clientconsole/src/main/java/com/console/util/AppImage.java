@@ -1,11 +1,10 @@
 package com.console.util;
 
-import static com.console.util.AppPath.RES;
 import javafx.scene.image.Image;
 
 /**
  *
- * @author fabry
+ * @author Fabrizio Faustinoni
  */
 public class AppImage {
 

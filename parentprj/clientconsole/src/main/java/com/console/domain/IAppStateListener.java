@@ -2,9 +2,9 @@ package com.console.domain;
 
 /**
  *
- * @author fabry
+ * @author Fabrizio Faustinoni
  */
 public interface IAppStateListener {
 
-    public void AppEvent(AppEvent event, Object param);
+    void AppEvent(AppEvent event, Object param);
 }

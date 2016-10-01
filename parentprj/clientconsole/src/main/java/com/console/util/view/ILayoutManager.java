@@ -2,9 +2,9 @@ package com.console.util.view;
 
 /**
  *
- * @author fabry
+ * @author Fabrizio Faustinoni
  */
 public interface ILayoutManager {
 
-    public boolean isLayoutLocked();
+    boolean isLayoutLocked();
 }

@@ -1,18 +1,19 @@
 package com.mycompany.nodeproducer;
 
 import com.mycompany.commons.ConfigUtils;
+import org.apache.log4j.Logger;
+import org.apache.log4j.PropertyConfigurator;
+
 import java.io.File;
 import java.util.Properties;
 import java.util.Scanner;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
-import org.apache.log4j.Logger;
-import org.apache.log4j.PropertyConfigurator;
 
 /**
  *
- * @author fabry
+ * @author Fabrizio Faustinoni
  */
 public class App {
 
@@ -39,7 +40,7 @@ public class App {
         }
     }
 
-    public void start() throws InterruptedException {
+    private void start() throws InterruptedException {
         initLogger();
         ConfigUtils utils = new ConfigUtils();
         Properties producerProp = utils.getExtenralProp(PRODUCER_CONF);

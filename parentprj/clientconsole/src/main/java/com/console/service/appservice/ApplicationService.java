@@ -4,38 +4,23 @@ import com.console.App;
 import com.console.domain.*;
 import com.console.service.IService;
 import com.console.service.backend.ThreadBackendService;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Properties;
-import java.util.Set;
-
 import javafx.application.Platform;
-
-import javax.annotation.PostConstruct;
-
 import org.apache.log4j.Logger;
 
+import javax.annotation.PostConstruct;
+import java.util.*;
+
 /**
- * @author fabry
+ * @author Fabrizio Faustinoni
  */
 public class ApplicationService {
 
+    private static App mainApp;
     private final Logger logger = Logger.getLogger(ApplicationService.class);
-
     private final List<AppState> oldStates = new ArrayList<>();
     private final AppState currentState = new AppState.Builder(new AppEventManager()).build();
     private final ActionFactory factory = new ActionFactory();
     private final Map<ServiceName, Object> services = new HashMap<>();
-
-    private static App mainApp;
-
-    public static void setMainApp(App app) {
-        mainApp = app;
-    }
 
     @PostConstruct
     public void init() {
@@ -53,6 +38,10 @@ public class ApplicationService {
 
     public App getMainApp() {
         return mainApp;
+    }
+
+    public static void setMainApp(App app) {
+        mainApp = app;
     }
 
     public void dispatch(final AppAction<ActionType, Object> action) {
@@ -101,9 +90,7 @@ public class ApplicationService {
         services.entrySet().stream().map((entry) -> {
             logger.debug("Stopping service: " + entry.getKey().toString());
             return entry;
-        }).forEach((entry) -> {
-            ((IService) entry.getValue()).stop();
-        });
+        }).forEach((entry) -> ((IService) entry.getValue()).stop());
 
     }
 

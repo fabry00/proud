@@ -2,7 +2,7 @@ package com.console.util;
 
 /**
  *
- * @author fabry
+ * @author Fabrizio Faustinoni
  */
 public class Configs {
 

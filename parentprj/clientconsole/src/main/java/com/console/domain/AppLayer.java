@@ -1,17 +1,17 @@
 package com.console.domain;
 
-import java.util.ArrayList;
-import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
- *
- * @author exfaff
+ * @author Fabrizio Faustinoni
  */
 public final class AppLayer extends AppNode implements IAppElement {
-    
-    private static final Type TYPE  = Type.Layer;
+
+    private static final Type TYPE = Type.Layer;
     private final ObservableList<IAppElement> layersNodes = FXCollections.observableArrayList();
 
     private AppLayer(Builder builder) {
@@ -23,10 +23,16 @@ public final class AppLayer extends AppNode implements IAppElement {
     public Type getType() {
         return TYPE;
     }
-    
+
     @Override
     public ObservableList<IAppElement> getNodes() {
         return this.layersNodes;
+    }
+
+    @Override
+    public IAppElement clone() {
+        return new AppLayer.Builder(getName())
+                .withNodes(layersNodes).build();
     }
 
     public static class Builder extends AppNode.Builder {
@@ -36,8 +42,8 @@ public final class AppLayer extends AppNode implements IAppElement {
         public Builder(String name) {
             super(name);
         }
-        
-        public Builder withNodes(List<IAppElement> layersNodes){
+
+        public Builder withNodes(List<IAppElement> layersNodes) {
             this.layersNodes.addAll(layersNodes);
             return this;
         }

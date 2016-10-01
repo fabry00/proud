@@ -1,21 +1,14 @@
 package com.console.util.view;
 
-/**
- * Created by exfaff on 21/09/2016.
- */
-import com.console.util.view.DragContext;
-import com.console.util.view.PannableCanvas;
 import com.console.view.systemlayout.ISystemLayoutManager;
-import com.console.view.systemlayout.element.ISystemElement;
 import javafx.event.EventHandler;
 import javafx.scene.Node;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.Region;
-import org.apache.log4j.Logger;
 
 /**
  * Listeners for making the nodes draggable via left mouse button. Considers if
  * parent is zoomed.
+ * Created by Fabrizio Faustinoni on 21/09/2016.
  */
 public class NodeGestures {
 
@@ -24,20 +17,6 @@ public class NodeGestures {
 
     private PannableCanvas canvas;
     private ISystemLayoutManager layoutManager;
-
-    public NodeGestures(PannableCanvas canvas, ISystemLayoutManager layoutManager) {
-        this.canvas = canvas;
-        this.layoutManager = layoutManager;
-    }
-
-    public EventHandler<MouseEvent> getOnMousePressedEventHandler() {
-        return onMousePressedEventHandler;
-    }
-
-    public EventHandler<MouseEvent> getOnMouseDraggedEventHandler() {
-        return onMouseDraggedEventHandler;
-    }
-
     private final EventHandler<MouseEvent> onMousePressedEventHandler = (MouseEvent event) -> {
         // left mouse button => dragging
         if (!event.isPrimaryButtonDown() || this.layoutManager.isLayoutLocked()) {
@@ -52,7 +31,6 @@ public class NodeGestures {
         nodeDragContext.translateAnchorX = node.getTranslateX();
         nodeDragContext.translateAnchorY = node.getTranslateY();
     };
-
     private final EventHandler<MouseEvent> onMouseDraggedEventHandler = (MouseEvent event) -> {
         // left mouse button => dragging
         if (!event.isPrimaryButtonDown() || this.layoutManager.isLayoutLocked()) {
@@ -82,4 +60,17 @@ public class NodeGestures {
 
         event.consume();
     };
+
+    public NodeGestures(PannableCanvas canvas, ISystemLayoutManager layoutManager) {
+        this.canvas = canvas;
+        this.layoutManager = layoutManager;
+    }
+
+    public EventHandler<MouseEvent> getOnMousePressedEventHandler() {
+        return onMousePressedEventHandler;
+    }
+
+    public EventHandler<MouseEvent> getOnMouseDraggedEventHandler() {
+        return onMouseDraggedEventHandler;
+    }
 }

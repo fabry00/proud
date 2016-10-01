@@ -3,15 +3,16 @@ package com.console.view.systemlayout.element;
 import com.console.domain.IAppElement;
 import com.console.util.view.PannableCanvas;
 import com.console.view.systemlayout.ISystemLayoutManager;
+import com.console.view.systemlayout.element.layer.LayerElement;
+import com.console.view.systemlayout.element.node.NodeElement;
 import javafx.collections.ObservableList;
 import javafx.scene.Node;
-import javafx.scene.layout.Region;
 import org.apache.log4j.Logger;
 
 import java.util.*;
 
 /**
- * @author fabry
+ * @author Fabrizio Faustinoni
  */
 public class SystemLayoutFactory {
 
@@ -36,19 +37,18 @@ public class SystemLayoutFactory {
 
         // Draw layers in reverse order
        // for (int i = layers.size() - 1; i >= 0; i--) {
-        for (int i = 0; i < layers.size(); i++) {
+        for (IAppElement layer : layers) {
 
-            IAppElement layer = layers.get(i);
             if (layer.getType().equals(IAppElement.Type.Layer)) {
                 logger.trace("Drawing layer: " + layer.getName());
 
-                Map<IAppElement, ISystemElement> leyerElements
+                Map<IAppElement, ISystemElement> layerElements
                         = createElements(layoutManager, canvas, layer.getNodes(), y);
 
-                ISystemElement layerDrawn = createLayer(layoutManager, canvas, layer, leyerElements, y);
+                ISystemElement layerDrawn = createLayer(layoutManager, canvas, layer, layerElements, y);
 
                 layersDrawn.add(layerDrawn);
-                elements.putAll(leyerElements);
+                elements.putAll(layerElements);
                 y += LAYER_Y_GAP;
             } else {
                 logger.error("Drawing node outside a layer is not supported yet");
@@ -117,16 +117,14 @@ public class SystemLayoutFactory {
         node.toBack();
 
         // Set parent to each layer's nodes
-        leyerElemens.forEach((k, v) -> {
-            v.setParent(layerElement);
-        });
+        leyerElemens.forEach((k, v) -> v.setParent(layerElement));
         return layerElement;
     }
 
     private double getLayerX(Collection<ISystemElement> nodes) {
         double x = Double.MAX_VALUE;
         for (ISystemElement element : nodes) {
-            double elementX = ((Region) element.getContainer()).getLayoutX();
+            double elementX = element.getContainer().getLayoutX();
             if (elementX < x) {
                 x = elementX;
             }

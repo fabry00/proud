@@ -31,7 +31,7 @@ RUN \
     DEBIAN_FRONTEND=noninteractive apt-get install -y --force-yes oracle-java8-installer oracle-java8-set-default maven fakeroot rpm && \
     \
         apt-get install -y git && \
-        cd ~ && git clone https://github.com/fabry00/clientconsole && \
+        cd ~ && git clone https://github.com/Fabrizio Faustinoni00/clientconsole && \
 	cd ~/clientconsole && mvn package && \
     \
     echo "===> clean up..."  && \

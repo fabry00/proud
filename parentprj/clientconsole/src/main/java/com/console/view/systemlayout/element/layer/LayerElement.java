@@ -1,7 +1,13 @@
-package com.console.view.systemlayout.element;
+package com.console.view.systemlayout.element.layer;
 
-import java.util.Collection;
-import java.util.List;
+import com.console.domain.IAppElement;
+import com.console.util.view.DragContext;
+import com.console.util.view.DragResizer;
+import com.console.util.view.PannableCanvas;
+import com.console.view.systemlayout.ISystemLayoutManager;
+import com.console.view.systemlayout.element.Helper;
+import com.console.view.systemlayout.element.ISystemElement;
+import javafx.scene.Cursor;
 import javafx.scene.Node;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Region;
@@ -9,20 +15,17 @@ import javafx.scene.layout.VBox;
 import javafx.scene.shape.Line;
 import javafx.scene.text.Text;
 import org.apache.log4j.Logger;
-import com.console.domain.IAppElement;
-import com.console.util.view.DragContext;
-import com.console.util.view.DragResizer;
-import com.console.util.view.PannableCanvas;
-import com.console.view.systemlayout.ISystemLayoutManager;
-import javafx.scene.Cursor;
+
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 
 /**
- *
- * @author exfaff
+ * @author Fabrizio Faustinoni
  */
 public class LayerElement implements ISystemElement {
 
-    private static final String NODE_CSS = "com/console/view/systemlayout/element/layer.css";
+    private static final String NODE_CSS = "com/console/view/systemlayout/element/layer/layer.css";
     private static final String NODE_CLASS = "system-layer";
     private static final String LABEL_CLASS = "system-layer-text";
     private static final double Y_PADDING = 20;
@@ -43,7 +46,7 @@ public class LayerElement implements ISystemElement {
     private DragResizer dragResizer;
 
     public LayerElement(IAppElement layer, Collection<ISystemElement> nodes, double nodeXGap,
-            double layerStartY, ISystemLayoutManager layoutManager, PannableCanvas canvasContainer) {
+                        double layerStartY, ISystemLayoutManager layoutManager, PannableCanvas canvasContainer) {
         this.layer = layer;
         this.nodes = nodes;
         this.nodeXGap = nodeXGap;
@@ -53,14 +56,14 @@ public class LayerElement implements ISystemElement {
     }
 
     @Override
-    public void setParent(ISystemElement parent) {
-        this.parent = parent;
-        helper.initParentEvents(parent.getContainer(), panel);
+    public ISystemElement getParent() {
+        return this.parent;
     }
 
     @Override
-    public ISystemElement getParent() {
-        return this.parent;
+    public void setParent(ISystemElement parent) {
+        this.parent = parent;
+        helper.initParentEvents(parent.getContainer(), panel);
     }
 
     @Override
@@ -106,12 +109,12 @@ public class LayerElement implements ISystemElement {
 
     @Override
     public void createConnections(List<ISystemElement> relatedElements) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        throw new UnsupportedOperationException("Not supported."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public Collection<Line> getConnections() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        throw new UnsupportedOperationException("Not supported."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
@@ -121,12 +124,25 @@ public class LayerElement implements ISystemElement {
 
     @Override
     public void selected() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        throw new UnsupportedOperationException("Not supported."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public void unSelected() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        throw new UnsupportedOperationException("Not supported."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public ISystemElement clone() {
+        ISystemElement layer = new LayerElement(this.layer.clone(), new ArrayList<>(nodes), nodeXGap,
+                layerStartY, layoutManager, canvasContainer);
+
+        return layer;
+    }
+
+    @Override
+    public Collection<ISystemElement> getNodes() {
+        return nodes;
     }
 
     private double getWidth(double x) {
@@ -166,19 +182,19 @@ public class LayerElement implements ISystemElement {
         });
 
         panel.addEventFilter(MouseEvent.MOUSE_PRESSED, (MouseEvent event) -> {
-            
+
             if (dragResizer.isResizing(event)) {
                 return;
             }
-            
+
             helper.onMousePressedNode(event, layoutManager, nodeDragContext);
         });
         panel.addEventFilter(MouseEvent.MOUSE_DRAGGED, (MouseEvent event) -> {
-            
-            if(dragResizer.isResizing(event)) {
+
+            if (dragResizer.isResizing(event)) {
                 return;
             }
-            
+
             helper.onMouseDraggedNode(event, layoutManager, canvasContainer, this, nodeDragContext);
         });
     }

@@ -6,12 +6,13 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.transform.Scale;
 
 /**
- * Created by exfaff on 21/09/2016.
+ * A Zomable scroll pane
+ * Created by Fabrizio Faustinoni on 21/09/2016.
  */
 public class ZoomableScrollPane extends ScrollPane {
-    Group zoomGroup;
-    Scale scaleTransform;
-    Node content;
+    private Group zoomGroup;
+    private Scale scaleTransform;
+    private Node content;
 
     public ZoomableScrollPane(Node content)
     {

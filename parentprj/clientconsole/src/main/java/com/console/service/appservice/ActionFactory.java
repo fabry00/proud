@@ -1,13 +1,14 @@
 package com.console.service.appservice;
 
 import com.console.domain.ActionType;
+import org.apache.log4j.Logger;
+
 import java.util.HashMap;
 import java.util.Map;
-import org.apache.log4j.Logger;
 
 /**
  *
- * @author fabry
+ * @author Fabrizio Faustinoni
  */
 class ActionFactory {
 
@@ -24,8 +25,9 @@ class ActionFactory {
             put(ActionType.FULL_SCREEN, new FullScreenAction());
         }
     };
+    private final Logger logger = Logger.getLogger(ActionFactory.class);
 
-    public IActionHandler create(ActionType type) throws ActionNotFoundException {
+    IActionHandler create(ActionType type) throws ActionNotFoundException {
         logger.debug("Creating action: " + type);
 
         if (!MAPPER.containsKey(type)) {
@@ -33,6 +35,4 @@ class ActionFactory {
         }
         return MAPPER.get(type);
     }
-
-    private final Logger logger = Logger.getLogger(ActionFactory.class);
 }

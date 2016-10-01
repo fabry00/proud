@@ -1,14 +1,16 @@
 package com.console.domain;
 
-import java.util.*;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.chart.XYChart;
 
+import java.util.*;
+
 /**
- * Created by exfaff on 15/09/2016.
+ * AppElement that represents a Node of the sysetm
+ * Created by Fabrizio Faustinoni on 15/09/2016.
  */
 public class AppNode implements IAppElement {
 
@@ -112,6 +114,22 @@ public class AppNode implements IAppElement {
     }
 
     @Override
+    public IAppElement clone() {
+        Builder builder = new AppNode.Builder(getName());
+        builder.withConnections(this.getConnections())
+                .withInfos(this.getInfo())
+                .withMetricValues(this.getMetrics())
+                .withState(getState());
+        if (isVirtual) {
+            builder.isVirtual();
+        }
+
+
+        return builder.build();
+    }
+
+
+    @Override
     public boolean equals(Object o) {
         if (this == o) {
             return true;
@@ -180,6 +198,11 @@ public class AppNode implements IAppElement {
             return this;
         }
 
+        public Builder withMetricValues(Map<AppMetric, ObservableList<XYChart.Data<Date, Object>>> metrics) {
+            this.metrics.putAll(metrics);
+            return this;
+        }
+
         public Builder isInAbnormalState() {
             this.state = IAppElement.State.ANOMALY_DETECTED;
             return this;
@@ -190,13 +213,28 @@ public class AppNode implements IAppElement {
             return this;
         }
 
+        public Builder withState(IAppElement.State state) {
+            this.state = state;
+            return this;
+        }
+
         public Builder withInfo(ElementInfo info) {
             this.info.put(info.getType(), info);
             return this;
         }
 
+        public Builder withInfos(Map<ElementInfo.Type, ElementInfo> infos) {
+            this.info.putAll(infos);
+            return this;
+        }
+
         public Builder connectedTo(IAppElement node) {
             this.connectedTo.add(node);
+            return this;
+        }
+
+        public Builder withConnections(Set<IAppElement> connectedTo) {
+            this.connectedTo.addAll(connectedTo);
             return this;
         }
 

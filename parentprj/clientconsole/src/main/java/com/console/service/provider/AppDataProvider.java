@@ -4,14 +4,14 @@ import com.console.domain.*;
 import javafx.application.Platform;
 
 /**
- * @author fabry
+ * @author Fabrizio Faustinoni
  */
 public class AppDataProvider implements IDataProvider {
 
     /**
-     * TODO retreive from server
+     * TODO retrieve from server
      *
-     * @param callback
+     * @param callback The callback
      */
     public void getSystemState(final ICallback callback) {
 

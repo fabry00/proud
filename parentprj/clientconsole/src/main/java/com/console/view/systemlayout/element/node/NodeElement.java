@@ -1,13 +1,15 @@
-package com.console.view.systemlayout.element;
+package com.console.view.systemlayout.element.node;
 
 import com.console.domain.ElementInfo;
+import com.console.domain.IAppElement;
 import com.console.util.AppImage;
-
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
+import com.console.util.view.DragContext;
+import com.console.util.view.PannableCanvas;
+import com.console.view.systemlayout.ISystemLayoutManager;
+import com.console.view.systemlayout.element.Connection;
+import com.console.view.systemlayout.element.Helper;
+import com.console.view.systemlayout.element.ISystemElement;
+import com.mycompany.commons.DateUtil;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.geometry.Pos;
@@ -16,29 +18,21 @@ import javafx.scene.control.Label;
 import javafx.scene.control.Tooltip;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import javafx.scene.shape.Line;
 import javafx.scene.text.TextAlignment;
-import com.console.domain.IAppElement;
-import com.console.util.view.DragContext;
-import com.console.util.view.PannableCanvas;
-import com.console.view.systemlayout.ISystemLayoutManager;
-import com.mycompany.commons.DateUtil;
 
-import java.util.Arrays;
-
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
-import javafx.scene.input.MouseButton;
+import java.util.*;
 
 /**
- * @author fabry
+ * @author Fabrizio Faustinoni
  */
 public class NodeElement implements ISystemElement {
 
-    private static final String NODE_CSS = "com/console/view/systemlayout/element/node.css";
+    private static final String NODE_CSS = "com/console/view/systemlayout/element/node/node.css";
     private static final String NODE_CLASS = "system-node";
     private static final String SELECTED_CLASS = "system-node-selected";
     private static final int WIDTH = 84;
@@ -62,14 +56,14 @@ public class NodeElement implements ISystemElement {
     }
 
     @Override
-    public void setParent(ISystemElement parent) {
-        this.parent = parent;
-        helper.initParentEvents(parent.getContainer(), panel);
+    public ISystemElement getParent() {
+        return this.parent;
     }
 
     @Override
-    public ISystemElement getParent() {
-        return this.parent;
+    public void setParent(ISystemElement parent) {
+        this.parent = parent;
+        helper.initParentEvents(parent.getContainer(), panel);
     }
 
     @Override
@@ -91,6 +85,18 @@ public class NodeElement implements ISystemElement {
     @Override
     public Node getContainer() {
         return panel;
+    }
+
+    @Override
+    public ISystemElement clone() {
+        ISystemElement nodeElement = new NodeElement(node.clone(), layoutManager, canvasContainer);
+
+        return nodeElement;
+    }
+
+    @Override
+    public Collection<ISystemElement> getNodes() {
+        throw new UnsupportedOperationException("Not supported.");
     }
 
     private void initNode(double x, double y) {

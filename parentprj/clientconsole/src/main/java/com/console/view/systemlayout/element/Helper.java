@@ -3,9 +3,6 @@ package com.console.view.systemlayout.element;
 import com.console.util.view.DragContext;
 import com.console.util.view.PannableCanvas;
 import com.console.view.systemlayout.ISystemLayoutManager;
-import java.util.Arrays;
-import java.util.List;
-import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.scene.Cursor;
 import javafx.scene.Node;
@@ -13,17 +10,20 @@ import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Region;
 
+import java.util.Collections;
+import java.util.List;
+
 /**
  *
- * @author fabry
+ * @author Fabrizio Faustinoni
  */
-class Helper {
+public class Helper {
 
     public boolean changeLayour(MouseEvent event, ISystemLayoutManager layoutManager, ISystemElement elementClicked) {
         if (!event.getButton().equals(MouseButton.PRIMARY) || event.getClickCount() < 2) {
             return false;
         }
-        layoutManager.changeLayout(Arrays.asList(elementClicked));
+        layoutManager.changeLayout(Collections.singletonList(elementClicked));
         return true;
     }
 

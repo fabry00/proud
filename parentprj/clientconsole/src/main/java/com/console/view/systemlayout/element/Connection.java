@@ -6,12 +6,11 @@ import javafx.scene.shape.Line;
 import javafx.scene.shape.StrokeLineCap;
 
 /**
- *
- * @author fabry
+ * @author Fabrizio Faustinoni
  */
 public class Connection extends Line {
 
-    Connection(DoubleProperty startX, DoubleProperty startY, DoubleProperty endX, DoubleProperty endY) {
+    public Connection(DoubleProperty startX, DoubleProperty startY, DoubleProperty endX, DoubleProperty endY) {
         startXProperty().bind(startX);
         startYProperty().bind(startY);
         endXProperty().bind(endX);

@@ -1,36 +1,38 @@
 package com.console.view.systemlayout;
 
 import com.console.domain.*;
-import com.console.view.systemlayout.element.*;
 import com.console.service.appservice.ApplicationService;
 import com.console.util.view.PannableCanvas;
 import com.console.util.view.SceneGestures;
 import com.console.view.center.ITabManager;
 import com.console.view.graphdata.GraphdataView;
+import com.console.view.systemlayout.element.BreadCrumbManager;
+import com.console.view.systemlayout.element.ISystemElement;
+import com.console.view.systemlayout.element.SystemLayoutFactory;
+import com.console.view.systemlayout.element.VirtualLayerElement;
+import com.console.view.systemlayout.element.contextmenu.ContextMenuFactory;
+import javafx.application.Platform;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.*;
+import javafx.scene.Group;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.input.ScrollEvent;
+import javafx.scene.control.Alert.AlertType;
+import javafx.scene.input.*;
+import javafx.scene.layout.AnchorPane;
+import org.apache.log4j.Logger;
+import org.controlsfx.control.BreadCrumbBar;
 
 import javax.inject.Inject;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
-import javafx.application.Platform;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import javafx.scene.control.Alert.AlertType;
-import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
-import javafx.scene.input.MouseButton;
-import javafx.scene.layout.AnchorPane;
-import org.apache.log4j.Logger;
-import org.controlsfx.control.BreadCrumbBar;
 
 /**
- * Created by exfaff on 20/09/2016.
+ * System layout presenter
+ * Created by Fabrizio Faustinoni on 20/09/2016.
  */
 public class SystemlayoutPresenter implements Initializable, IAppStateListener, ISystemLayoutManager {
 
@@ -64,7 +66,7 @@ public class SystemlayoutPresenter implements Initializable, IAppStateListener, 
         initSystemLayout();
         initContextMenu();
         initEvents();
-        appService.getCurrentState().getEventManager().subscribeToEvent(this, AppEvent.STATE_CHANGED);;
+        appService.getCurrentState().getEventManager().subscribeToEvent(this, AppEvent.STATE_CHANGED);
     }
 
     @Override
@@ -86,6 +88,7 @@ public class SystemlayoutPresenter implements Initializable, IAppStateListener, 
         SystemLayoutFactory factory = new SystemLayoutFactory();
         factory.draw(this, canvas, elemesToDraw);
 
+        selectedNodes.clear();
     }
 
     @Override
@@ -127,13 +130,9 @@ public class SystemlayoutPresenter implements Initializable, IAppStateListener, 
     public ISystemElement getVirtualLayer(ObservableList<ISystemElement> layerNodes) {
         IAppElement layer = new AppLayer.Builder("virtual").isVirtual().build();
 
-        layerNodes.forEach((node)-> {
-            layer.getNodes().add(node.getAppElement());
-        });
-        ISystemElement layerElement = new VirtualLayerElement(layer, layerNodes,
-                0, 0, this, canvas);
+        layerNodes.forEach((node) -> layer.getNodes().add(node.getAppElement()));
 
-        return layerElement;
+        return new VirtualLayerElement(layer, layerNodes, 0, 0, this, canvas);
     }
 
     @FXML
@@ -194,9 +193,7 @@ public class SystemlayoutPresenter implements Initializable, IAppStateListener, 
 //            }
 //        }
 
-        elementsSelected.forEach((elem) -> {
-            elemesToDraw.addAll(elem.getAppElement());
-        });
+        elementsSelected.forEach((elem) -> elemesToDraw.addAll(elem.getAppElement()));
        /* appService.getCurrentState().getLayers().stream().forEach((elem) -> {
             elementsSelected.stream().filter((elementSelected)
                     -> (elementSelected.getAppElement().equals(elem))).forEach((_item) -> {
@@ -209,9 +206,7 @@ public class SystemlayoutPresenter implements Initializable, IAppStateListener, 
 
     private void clearNodeSelected() {
 
-        selectedNodes.forEach((node) -> {
-            node.unSelected();
-        });
+        selectedNodes.forEach(ISystemElement::unSelected);
         selectedNodes.clear();
     }
 
@@ -228,7 +223,7 @@ public class SystemlayoutPresenter implements Initializable, IAppStateListener, 
 
         Platform.runLater(() -> {
             // We need run later because the element is not been initialized yet
-            Scene scene = ((Node) ancorPaneSystem).getScene();
+            Scene scene = ancorPaneSystem.getScene();
             scene.addEventHandler(KeyEvent.KEY_PRESSED, (KeyEvent event) -> {
                 if (event.getCode().equals(KeyCode.CONTROL)) {
                     ctrlPressed = true;

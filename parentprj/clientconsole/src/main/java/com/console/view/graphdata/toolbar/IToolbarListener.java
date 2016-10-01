@@ -4,14 +4,14 @@ import com.console.domain.AppMetric;
 
 /**
  *
- * @author fabry
+ * @author Fabrizio Faustinoni
  */
 public interface IToolbarListener {
 
-    public void resetSeriesClicked();
+    void resetSeriesClicked();
 
-    public void metricSelected(AppMetric metric);
-    
-    public void nodesSelectedChanged();
+    void metricSelected(AppMetric metric);
+
+    void nodesSelectedChanged();
 
 }

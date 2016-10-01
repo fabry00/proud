@@ -4,9 +4,9 @@ import javafx.scene.Node;
 
 /**
  *
- * @author fabry
+ * @author Fabrizio Faustinoni
  */
 public interface ITabManager {
 
-    public void addTab(String title, Node content);
+    void addTab(String title, Node content);
 }

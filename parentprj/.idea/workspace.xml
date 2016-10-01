@@ -1,10 +1,94 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="1a576e72-a688-4138-af8e-57af49931494" name="Default" comment="">
+    <list default="true" id="1a576e72-a688-4138-af8e-57af49931494" name="Default" comment="updated selection nodes&#10;refactored code">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/clientconsole/src/main/java/com/console/view/systemlayout/element/contextmenu/KpiGraph.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/clientconsole/src/main/java/com/console/view/systemlayout/element/contextmenu/ZoomIn.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/clientconsole/clientconsole.iml" afterPath="$PROJECT_DIR$/clientconsole/clientconsole.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/clientconsole/src/main/java/com/console/view/status/StatusPresenter.java" afterPath="$PROJECT_DIR$/clientconsole/src/main/java/com/console/view/status/StatusPresenter.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/clientconsole/Dockerfiles/deploy/debian/Dockerfile" afterPath="$PROJECT_DIR$/clientconsole/Dockerfiles/deploy/debian/Dockerfile" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/clientconsole/Dockerfiles/dev/debian/Dockerfile" afterPath="$PROJECT_DIR$/clientconsole/Dockerfiles/dev/debian/Dockerfile" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/clientconsole/Dockerfiles/dev/debian/Dockerfile_old" afterPath="$PROJECT_DIR$/clientconsole/Dockerfiles/dev/debian/Dockerfile_old" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/clientconsole/src/main/java/com/console/domain/AppEvent.java" afterPath="$PROJECT_DIR$/clientconsole/src/main/java/com/console/domain/AppEvent.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/clientconsole/src/main/java/com/console/domain/AppLayer.java" afterPath="$PROJECT_DIR$/clientconsole/src/main/java/com/console/domain/AppLayer.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/clientconsole/src/main/java/com/console/domain/AppMetric.java" afterPath="$PROJECT_DIR$/clientconsole/src/main/java/com/console/domain/AppMetric.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/clientconsole/src/main/java/com/console/domain/AppNode.java" afterPath="$PROJECT_DIR$/clientconsole/src/main/java/com/console/domain/AppNode.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/clientconsole/src/main/java/com/console/domain/AppState.java" afterPath="$PROJECT_DIR$/clientconsole/src/main/java/com/console/domain/AppState.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/clientconsole/src/main/java/com/console/domain/ElementInfo.java" afterPath="$PROJECT_DIR$/clientconsole/src/main/java/com/console/domain/ElementInfo.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/clientconsole/src/main/java/com/console/domain/IAppElement.java" afterPath="$PROJECT_DIR$/clientconsole/src/main/java/com/console/domain/IAppElement.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/clientconsole/src/main/java/com/console/domain/IAppStateListener.java" afterPath="$PROJECT_DIR$/clientconsole/src/main/java/com/console/domain/IAppStateListener.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/clientconsole/src/main/java/com/console/domain/ICallback.java" afterPath="$PROJECT_DIR$/clientconsole/src/main/java/com/console/domain/ICallback.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/clientconsole/src/main/java/com/console/domain/PredictionType.java" afterPath="$PROJECT_DIR$/clientconsole/src/main/java/com/console/domain/PredictionType.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/clientconsole/src/main/java/com/console/domain/ServiceName.java" afterPath="$PROJECT_DIR$/clientconsole/src/main/java/com/console/domain/ServiceName.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/clientconsole/src/main/java/com/console/service/IService.java" afterPath="$PROJECT_DIR$/clientconsole/src/main/java/com/console/service/IService.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/clientconsole/src/main/java/com/console/service/appservice/ActionFactory.java" afterPath="$PROJECT_DIR$/clientconsole/src/main/java/com/console/service/appservice/ActionFactory.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/clientconsole/src/main/java/com/console/service/appservice/ActionNotFoundException.java" afterPath="$PROJECT_DIR$/clientconsole/src/main/java/com/console/service/appservice/ActionNotFoundException.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/clientconsole/src/main/java/com/console/service/appservice/AppEventManager.java" afterPath="$PROJECT_DIR$/clientconsole/src/main/java/com/console/service/appservice/AppEventManager.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/clientconsole/src/main/java/com/console/service/appservice/ApplicationService.java" afterPath="$PROJECT_DIR$/clientconsole/src/main/java/com/console/service/appservice/ApplicationService.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/clientconsole/src/main/java/com/console/service/appservice/CloseAction.java" afterPath="$PROJECT_DIR$/clientconsole/src/main/java/com/console/service/appservice/CloseAction.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/clientconsole/src/main/java/com/console/service/appservice/FullScreenAction.java" afterPath="$PROJECT_DIR$/clientconsole/src/main/java/com/console/service/appservice/FullScreenAction.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/clientconsole/src/main/java/com/console/service/appservice/IActionHandler.java" afterPath="$PROJECT_DIR$/clientconsole/src/main/java/com/console/service/appservice/IActionHandler.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/clientconsole/src/main/java/com/console/service/appservice/InitAction.java" afterPath="$PROJECT_DIR$/clientconsole/src/main/java/com/console/service/appservice/InitAction.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/clientconsole/src/main/java/com/console/service/appservice/NewMessageAction.java" afterPath="$PROJECT_DIR$/clientconsole/src/main/java/com/console/service/appservice/NewMessageAction.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/clientconsole/src/main/java/com/console/service/appservice/ProcessDataAction.java" afterPath="$PROJECT_DIR$/clientconsole/src/main/java/com/console/service/appservice/ProcessDataAction.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/clientconsole/src/main/java/com/console/service/appservice/StatusChangedAction.java" afterPath="$PROJECT_DIR$/clientconsole/src/main/java/com/console/service/appservice/StatusChangedAction.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/clientconsole/src/main/java/com/console/service/appservice/StopAction.java" afterPath="$PROJECT_DIR$/clientconsole/src/main/java/com/console/service/appservice/StopAction.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/clientconsole/src/main/java/com/console/service/backend/BackEndServiceException.java" afterPath="$PROJECT_DIR$/clientconsole/src/main/java/com/console/service/backend/BackEndServiceException.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/clientconsole/src/main/java/com/console/service/backend/IBackendService.java" afterPath="$PROJECT_DIR$/clientconsole/src/main/java/com/console/service/backend/IBackendService.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/clientconsole/src/main/java/com/console/service/backend/ThreadBackendService.java" afterPath="$PROJECT_DIR$/clientconsole/src/main/java/com/console/service/backend/ThreadBackendService.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/clientconsole/src/main/java/com/console/service/provider/AppDataProvider.java" afterPath="$PROJECT_DIR$/clientconsole/src/main/java/com/console/service/provider/AppDataProvider.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/clientconsole/src/main/java/com/console/service/provider/IDataProvider.java" afterPath="$PROJECT_DIR$/clientconsole/src/main/java/com/console/service/provider/IDataProvider.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/clientconsole/src/main/java/com/console/util/AppImage.java" afterPath="$PROJECT_DIR$/clientconsole/src/main/java/com/console/util/AppImage.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/clientconsole/src/main/java/com/console/util/AppPath.java" afterPath="$PROJECT_DIR$/clientconsole/src/main/java/com/console/util/AppPath.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/clientconsole/src/main/java/com/console/util/Configs.java" afterPath="$PROJECT_DIR$/clientconsole/src/main/java/com/console/util/Configs.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/clientconsole/src/main/java/com/console/util/MessageUtil.java" afterPath="$PROJECT_DIR$/clientconsole/src/main/java/com/console/util/MessageUtil.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/clientconsole/src/main/java/com/console/util/NodeUtil.java" afterPath="$PROJECT_DIR$/clientconsole/src/main/java/com/console/util/NodeUtil.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/clientconsole/src/main/java/com/console/util/view/DragContext.java" afterPath="$PROJECT_DIR$/clientconsole/src/main/java/com/console/util/view/DragContext.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/clientconsole/src/main/java/com/console/util/view/ILayoutManager.java" afterPath="$PROJECT_DIR$/clientconsole/src/main/java/com/console/util/view/ILayoutManager.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/clientconsole/src/main/java/com/console/util/view/NodeGestures.java" afterPath="$PROJECT_DIR$/clientconsole/src/main/java/com/console/util/view/NodeGestures.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/clientconsole/src/main/java/com/console/util/view/SceneGestures.java" afterPath="$PROJECT_DIR$/clientconsole/src/main/java/com/console/util/view/SceneGestures.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/clientconsole/src/main/java/com/console/util/view/ZoomableScrollPane.java" afterPath="$PROJECT_DIR$/clientconsole/src/main/java/com/console/util/view/ZoomableScrollPane.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/clientconsole/src/main/java/com/console/view/center/CenterPresenter.java" afterPath="$PROJECT_DIR$/clientconsole/src/main/java/com/console/view/center/CenterPresenter.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/clientconsole/src/main/java/com/console/view/center/CenterView.java" afterPath="$PROJECT_DIR$/clientconsole/src/main/java/com/console/view/center/CenterView.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/clientconsole/src/main/java/com/console/view/center/ITabManager.java" afterPath="$PROJECT_DIR$/clientconsole/src/main/java/com/console/view/center/ITabManager.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/clientconsole/src/main/java/com/console/view/center/center.css" afterPath="$PROJECT_DIR$/clientconsole/src/main/java/com/console/view/center/center.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/clientconsole/src/main/java/com/console/view/center/toolbar/IToolbarListener.java" afterPath="$PROJECT_DIR$/clientconsole/src/main/java/com/console/view/center/toolbar/IToolbarListener.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/clientconsole/src/main/java/com/console/view/center/toolbar/ToolbarPresenter.java" afterPath="$PROJECT_DIR$/clientconsole/src/main/java/com/console/view/center/toolbar/ToolbarPresenter.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/clientconsole/src/main/java/com/console/view/center/toolbar/ToolbarView.java" afterPath="$PROJECT_DIR$/clientconsole/src/main/java/com/console/view/center/toolbar/ToolbarView.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/clientconsole/src/main/java/com/console/view/graphdata/GraphdataPresenter.java" afterPath="$PROJECT_DIR$/clientconsole/src/main/java/com/console/view/graphdata/GraphdataPresenter.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/clientconsole/src/main/java/com/console/view/graphdata/GraphdataView.java" afterPath="$PROJECT_DIR$/clientconsole/src/main/java/com/console/view/graphdata/GraphdataView.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/clientconsole/src/main/java/com/console/view/graphdata/toolbar/IToolbarListener.java" afterPath="$PROJECT_DIR$/clientconsole/src/main/java/com/console/view/graphdata/toolbar/IToolbarListener.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/clientconsole/src/main/java/com/console/view/graphdata/toolbar/ToolbarPresenter.java" afterPath="$PROJECT_DIR$/clientconsole/src/main/java/com/console/view/graphdata/toolbar/ToolbarPresenter.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/clientconsole/src/main/java/com/console/view/graphdata/toolbar/ToolbarView.java" afterPath="$PROJECT_DIR$/clientconsole/src/main/java/com/console/view/graphdata/toolbar/ToolbarView.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/clientconsole/src/main/java/com/console/view/systemlayout/ISystemLayoutManager.java" afterPath="$PROJECT_DIR$/clientconsole/src/main/java/com/console/view/systemlayout/ISystemLayoutManager.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/clientconsole/src/main/java/com/console/view/systemlayout/SystemlayoutPresenter.java" afterPath="$PROJECT_DIR$/clientconsole/src/main/java/com/console/view/systemlayout/SystemlayoutPresenter.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/clientconsole/src/main/java/com/console/view/systemlayout/SystemlayoutView.java" afterPath="$PROJECT_DIR$/clientconsole/src/main/java/com/console/view/systemlayout/SystemlayoutView.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/clientconsole/src/main/java/com/console/view/systemlayout/element/BreadCrumbManager.java" afterPath="$PROJECT_DIR$/clientconsole/src/main/java/com/console/view/systemlayout/element/BreadCrumbManager.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/clientconsole/src/main/java/com/console/view/systemlayout/element/Connection.java" afterPath="$PROJECT_DIR$/clientconsole/src/main/java/com/console/view/systemlayout/element/Connection.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/clientconsole/src/main/java/com/console/view/systemlayout/element/Helper.java" afterPath="$PROJECT_DIR$/clientconsole/src/main/java/com/console/view/systemlayout/element/Helper.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/clientconsole/src/main/java/com/console/view/systemlayout/element/ISystemElement.java" afterPath="$PROJECT_DIR$/clientconsole/src/main/java/com/console/view/systemlayout/element/ISystemElement.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/clientconsole/src/main/java/com/console/view/systemlayout/element/SystemLayoutFactory.java" afterPath="$PROJECT_DIR$/clientconsole/src/main/java/com/console/view/systemlayout/element/SystemLayoutFactory.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/clientconsole/src/main/java/com/console/view/systemlayout/element/VirtualLayerElement.java" afterPath="$PROJECT_DIR$/clientconsole/src/main/java/com/console/view/systemlayout/element/VirtualLayerElement.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/clientconsole/src/main/java/com/console/view/unused/logo/LogoPresenter.java" afterPath="$PROJECT_DIR$/clientconsole/src/main/java/com/console/view/unused/logo/LogoPresenter.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/clientconsole/src/main/java/com/console/view/unused/logo/LogoView.java" afterPath="$PROJECT_DIR$/clientconsole/src/main/java/com/console/view/unused/logo/LogoView.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/clientconsole/src/main/java/com/console/view/unused/nodeview/NodePresenter.java" afterPath="$PROJECT_DIR$/clientconsole/src/main/java/com/console/view/unused/nodeview/NodePresenter.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/clientconsole/src/main/java/com/console/view/unused/nodeview/NodeView.java" afterPath="$PROJECT_DIR$/clientconsole/src/main/java/com/console/view/unused/nodeview/NodeView.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/clientconsole/src/main/java/com/console/view/unused/tree/TreePresenter.java" afterPath="$PROJECT_DIR$/clientconsole/src/main/java/com/console/view/unused/tree/TreePresenter.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/clientconsole/src/main/java/com/console/view/unused/tree/TreeView.java" afterPath="$PROJECT_DIR$/clientconsole/src/main/java/com/console/view/unused/tree/TreeView.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/clientconsole/src/test/java/com/console/AppDataProviderMock.java" afterPath="$PROJECT_DIR$/clientconsole/src/test/java/com/console/AppDataProviderMock.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/clientconsole/src/test/java/com/console/Helper.java" afterPath="$PROJECT_DIR$/clientconsole/src/test/java/com/console/Helper.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/clientconsole/src/test/java/com/console/domain/AppLayerTest.java" afterPath="$PROJECT_DIR$/clientconsole/src/test/java/com/console/domain/AppLayerTest.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/clientconsole/src/test/java/com/console/domain/AppNodeTest.java" afterPath="$PROJECT_DIR$/clientconsole/src/test/java/com/console/domain/AppNodeTest.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/clientconsole/src/test/java/com/console/domain/AppStateTest.java" afterPath="$PROJECT_DIR$/clientconsole/src/test/java/com/console/domain/AppStateTest.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/commons/src/main/java/com/mycompany/commons/DateUtil.java" afterPath="$PROJECT_DIR$/commons/src/main/java/com/mycompany/commons/DateUtil.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node/src/main/java/com/mycompany/nodeproducer/App.java" afterPath="$PROJECT_DIR$/node/src/main/java/com/mycompany/nodeproducer/App.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node/src/main/java/com/mycompany/nodeproducer/Message.java" afterPath="$PROJECT_DIR$/node/src/main/java/com/mycompany/nodeproducer/Message.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node/src/main/java/com/mycompany/nodeproducer/ResourceReader.java" afterPath="$PROJECT_DIR$/node/src/main/java/com/mycompany/nodeproducer/ResourceReader.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/clientconsole/src/main/java/com/console/view/systemlayout/element/ContextMenuFactory.java" afterPath="$PROJECT_DIR$/clientconsole/src/main/java/com/console/view/systemlayout/element/contextmenu/ContextMenuFactory.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/clientconsole/src/main/java/com/console/view/systemlayout/element/LayerElement.java" afterPath="$PROJECT_DIR$/clientconsole/src/main/java/com/console/view/systemlayout/element/layer/LayerElement.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/clientconsole/src/main/java/com/console/view/systemlayout/element/NodeElement.java" afterPath="$PROJECT_DIR$/clientconsole/src/main/java/com/console/view/systemlayout/element/node/NodeElement.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/clientconsole/src/main/java/com/console/view/systemlayout/element/layer.css" afterPath="$PROJECT_DIR$/clientconsole/src/main/java/com/console/view/systemlayout/element/layer/layer.css" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/clientconsole/src/main/java/com/console/view/systemlayout/element/node.css" afterPath="$PROJECT_DIR$/clientconsole/src/main/java/com/console/view/systemlayout/element/node/node.css" />
     </list>
     <ignored path="parentprj.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -33,11 +117,107 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="StatusPresenter.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/clientconsole/src/main/java/com/console/view/status/StatusPresenter.java">
+      <file leaf-file-name="CenterPresenter.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/clientconsole/src/main/java/com/console/view/center/CenterPresenter.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="238">
-              <caret line="82" column="35" selection-start-line="82" selection-start-column="35" selection-end-line="82" selection-end-column="35" />
+            <state relative-caret-position="144">
+              <caret line="73" column="31" selection-start-line="73" selection-start-column="31" selection-end-line="73" selection-end-column="31" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ToolbarPresenter.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/clientconsole/src/main/java/com/console/view/graphdata/toolbar/ToolbarPresenter.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="144">
+              <caret line="55" column="4" selection-start-line="55" selection-start-column="4" selection-end-line="55" selection-end-column="4" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="BreadCrumbManager.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/clientconsole/src/main/java/com/console/view/systemlayout/element/BreadCrumbManager.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-29">
+              <caret line="127" column="25" selection-start-line="127" selection-start-column="25" selection-end-line="127" selection-end-column="25" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AppDataProvider.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/clientconsole/src/main/java/com/console/service/provider/AppDataProvider.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="132">
+              <caret line="11" column="7" selection-start-line="11" selection-start-column="7" selection-end-line="11" selection-end-column="7" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="NodePresenter.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/clientconsole/src/main/java/com/console/view/unused/nodeview/NodePresenter.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="325">
+              <caret line="53" column="27" selection-start-line="53" selection-start-column="27" selection-end-line="53" selection-end-column="27" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ZoomIn.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/clientconsole/src/main/java/com/console/view/systemlayout/element/contextmenu/ZoomIn.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="221">
+              <caret line="63" column="45" selection-start-line="63" selection-start-column="45" selection-end-line="63" selection-end-column="45" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SystemlayoutPresenter.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/clientconsole/src/main/java/com/console/view/systemlayout/SystemlayoutPresenter.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="221">
+              <caret line="230" column="15" selection-start-line="230" selection-start-column="15" selection-end-line="230" selection-end-column="15" />
+              <folding>
+                <element signature="imports" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="App.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/node/src/main/java/com/mycompany/nodeproducer/App.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="255">
+              <caret line="42" column="11" selection-start-line="42" selection-start-column="11" selection-end-line="42" selection-end-column="11" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SystemLayoutFactory.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/clientconsole/src/main/java/com/console/view/systemlayout/element/SystemLayoutFactory.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="139">
+              <caret line="126" column="52" selection-start-line="126" selection-start-column="52" selection-end-line="126" selection-end-column="52" />
+              <folding>
+                <element signature="imports" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ISystemElement.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/clientconsole/src/main/java/com/console/view/systemlayout/element/ISystemElement.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="136">
+              <caret line="13" column="31" selection-start-line="13" selection-start-column="17" selection-end-line="13" selection-end-column="31" />
               <folding />
             </state>
           </provider>
@@ -50,6 +230,7 @@
       <list>
         <option value="package-info" />
         <option value="Enum" />
+        <option value="Interface" />
         <option value="Class" />
       </list>
     </option>
@@ -65,46 +246,57 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/clientconsole/src/test/java/com/console/view/DashboardTest.java" />
-        <option value="$PROJECT_DIR$/clientconsole/src/main/java/com/console/util/view/ILayoutManager.java" />
-        <option value="$PROJECT_DIR$/clientconsole/src/main/java/com/console/view/systemlayout/element/ContextMenuFactory.java" />
-        <option value="$PROJECT_DIR$/clientconsole/src/main/java/com/console/view/systemlayout/ISystemLayoutManager.java" />
-        <option value="$PROJECT_DIR$/clientconsole/src/main/java/com/console/domain/AppNode.java" />
-        <option value="$PROJECT_DIR$/clientconsole/src/main/java/com/console/domain/IAppElement.java" />
-        <option value="$PROJECT_DIR$/clientconsole/src/test/java/com/console/domain/AppLayerTest.java" />
-        <option value="$PROJECT_DIR$/clientconsole/src/test/java/com/console/domain/AppNodeTest.java" />
-        <option value="$PROJECT_DIR$/clientconsole/src/main/java/com/console/view/systemlayout/element/Helper.java" />
+        <option value="$PROJECT_DIR$/clientconsole/src/main/java/com/console/view/systemlayout/element/contextmenu/ContextMenuFactory.java" />
+        <option value="$PROJECT_DIR$/clientconsole/src/main/java/com/console/view/systemlayout/element/contextmenu/IContextAction.java" />
+        <option value="$PROJECT_DIR$/clientconsole/src/main/java/com/console/view/systemlayout/element/Connection.java" />
+        <option value="$PROJECT_DIR$/clientconsole/src/main/java/com/console/view/systemlayout/element/node/NodeElement.java" />
+        <option value="$PROJECT_DIR$/clientconsole/src/main/java/com/console/view/systemlayout/element/contextmenu/KpiGraph.java" />
         <option value="$PROJECT_DIR$/clientconsole/src/main/java/com/console/view/systemlayout/element/ISystemElement.java" />
-        <option value="$PROJECT_DIR$/clientconsole/src/main/java/com/console/view/systemlayout/element/VirtualLayerElement.java" />
-        <option value="$PROJECT_DIR$/clientconsole/src/main/java/com/console/view/systemlayout/element/NodeElement.java" />
-        <option value="$PROJECT_DIR$/clientconsole/src/main/java/com/console/service/appservice/FullScreenAction.java" />
+        <option value="$PROJECT_DIR$/clientconsole/src/main/java/com/console/domain/AppNode.java" />
+        <option value="$PROJECT_DIR$/clientconsole/Dockerfiles/deploy/debian/Dockerfile" />
+        <option value="$PROJECT_DIR$/clientconsole/src/main/java/com/console/domain/ElementInfo.java" />
         <option value="$PROJECT_DIR$/clientconsole/src/main/java/com/console/domain/AppEvent.java" />
-        <option value="$PROJECT_DIR$/clientconsole/src/main/java/com/console/service/appservice/ApplicationService.java" />
-        <option value="$PROJECT_DIR$/clientconsole/src/test/java/com/console/AppDataProviderMock.java" />
         <option value="$PROJECT_DIR$/clientconsole/src/main/java/com/console/domain/PredictionType.java" />
-        <option value="$PROJECT_DIR$/clientconsole/log4j.properties" />
-        <option value="$PROJECT_DIR$/log4j.properties" />
-        <option value="$PROJECT_DIR$/clientconsole/conf/log4j.properties" />
-        <option value="$PROJECT_DIR$/clientconsole/pom.xml" />
-        <option value="$PROJECT_DIR$/clientconsole/src/test/java/com/console/domain/AppStateTest.java" />
-        <option value="$PROJECT_DIR$/clientconsole/src/main/java/com/console/domain/AppState.java" />
+        <option value="$PROJECT_DIR$/clientconsole/src/main/java/com/console/util/view/DragContext.java" />
+        <option value="$PROJECT_DIR$/clientconsole/src/main/java/com/console/util/view/NodeGestures.java" />
+        <option value="$PROJECT_DIR$/clientconsole/src/main/java/com/console/util/MessageUtil.java" />
+        <option value="$PROJECT_DIR$/clientconsole/src/main/java/com/console/util/AppPath.java" />
+        <option value="$PROJECT_DIR$/clientconsole/src/main/java/com/console/service/backend/BackEndServiceException.java" />
+        <option value="$PROJECT_DIR$/clientconsole/src/main/java/com/console/view/systemlayout/SystemlayoutView.java" />
+        <option value="$PROJECT_DIR$/clientconsole/src/main/java/com/console/view/unused/nodeview/NodeView.java" />
+        <option value="$PROJECT_DIR$/clientconsole/src/main/java/com/console/service/IService.java" />
+        <option value="$PROJECT_DIR$/clientconsole/src/main/java/com/console/domain/ICallback.java" />
+        <option value="$PROJECT_DIR$/clientconsole/src/main/java/com/console/util/view/ILayoutManager.java" />
         <option value="$PROJECT_DIR$/clientconsole/src/main/java/com/console/domain/IAppStateListener.java" />
-        <option value="$PROJECT_DIR$/clientconsole/src/main/java/com/console/service/appservice/AppEventManager.java" />
-        <option value="$PROJECT_DIR$/clientconsole/src/main/java/com/console/view/systemlayout/element/LayerElement.java" />
-        <option value="$PROJECT_DIR$/clientconsole/src/main/java/com/console/view/systemlayout/SystemlayoutPresenter.java" />
-        <option value="$PROJECT_DIR$/clientconsole/src/main/java/com/console/view/systemlayout/element/BreadCrumbManager.java" />
-        <option value="$PROJECT_DIR$/clientconsole/src/main/java/com/console/view/systemlayout/element/SystemLayoutFactory.java" />
+        <option value="$PROJECT_DIR$/clientconsole/src/main/java/com/console/service/backend/IBackendService.java" />
+        <option value="$PROJECT_DIR$/clientconsole/src/main/java/com/console/view/center/toolbar/IToolbarListener.java" />
+        <option value="$PROJECT_DIR$/clientconsole/src/main/java/com/console/view/center/ITabManager.java" />
+        <option value="$PROJECT_DIR$/clientconsole/src/main/java/com/console/service/provider/IDataProvider.java" />
+        <option value="$PROJECT_DIR$/clientconsole/src/main/java/com/console/util/view/ZoomableScrollPane.java" />
+        <option value="$PROJECT_DIR$/clientconsole/src/main/java/com/console/view/graphdata/toolbar/IToolbarListener.java" />
+        <option value="$PROJECT_DIR$/clientconsole/src/main/java/com/console/service/appservice/IActionHandler.java" />
+        <option value="$PROJECT_DIR$/clientconsole/src/main/java/com/console/service/appservice/ActionNotFoundException.java" />
         <option value="$PROJECT_DIR$/clientconsole/src/main/java/com/console/service/provider/AppDataProvider.java" />
-        <option value="$PROJECT_DIR$/clientconsole/src/main/java/com/console/view/systemlayout/systemlayout.fxml" />
-        <option value="$PROJECT_DIR$/clientconsole/src/main/java/com/console/view/center/center.fxml" />
-        <option value="$PROJECT_DIR$/clientconsole/src/main/java/com/console/view/status/status.fxml" />
-        <option value="$PROJECT_DIR$/clientconsole/src/main/java/com/console/view/dashboard/dashboard_1.fxml" />
-        <option value="$PROJECT_DIR$/clientconsole/src/main/java/com/console/view/status/status.css" />
+        <option value="$PROJECT_DIR$/clientconsole/src/main/java/com/console/service/appservice/AppEventManager.java" />
+        <option value="$PROJECT_DIR$/clientconsole/src/main/java/com/console/domain/IAppElement.java" />
+        <option value="$PROJECT_DIR$/clientconsole/src/main/java/com/console/view/systemlayout/ISystemLayoutManager.java" />
+        <option value="$PROJECT_DIR$/node/src/main/java/com/mycompany/nodeproducer/ResourceReader.java" />
+        <option value="$PROJECT_DIR$/clientconsole/src/main/java/com/console/view/systemlayout/element/contextmenu/ZoomIn.java" />
+        <option value="$PROJECT_DIR$/clientconsole/src/test/java/com/console/AppDataProviderMock.java" />
+        <option value="$PROJECT_DIR$/clientconsole/src/main/java/com/console/view/unused/nodeview/NodePresenter.java" />
+        <option value="$PROJECT_DIR$/commons/src/main/java/com/mycompany/commons/DateUtil.java" />
+        <option value="$PROJECT_DIR$/clientconsole/src/main/java/com/console/domain/AppState.java" />
+        <option value="$PROJECT_DIR$/clientconsole/src/main/java/com/console/view/center/toolbar/ToolbarPresenter.java" />
+        <option value="$PROJECT_DIR$/clientconsole/src/main/java/com/console/domain/AppLayer.java" />
+        <option value="$PROJECT_DIR$/clientconsole/src/main/java/com/console/view/systemlayout/element/Helper.java" />
+        <option value="$PROJECT_DIR$/clientconsole/src/main/java/com/console/util/view/SceneGestures.java" />
+        <option value="$PROJECT_DIR$/clientconsole/src/main/java/com/console/service/appservice/ApplicationService.java" />
+        <option value="$PROJECT_DIR$/clientconsole/src/main/java/com/console/service/appservice/ActionFactory.java" />
+        <option value="$PROJECT_DIR$/clientconsole/src/main/java/com/console/view/systemlayout/SystemlayoutPresenter.java" />
+        <option value="$PROJECT_DIR$/node/src/main/java/com/mycompany/nodeproducer/App.java" />
+        <option value="$PROJECT_DIR$/clientconsole/src/main/java/com/console/view/systemlayout/element/SystemLayoutFactory.java" />
         <option value="$PROJECT_DIR$/clientconsole/src/main/java/com/console/view/center/CenterPresenter.java" />
-        <option value="$PROJECT_DIR$/clientconsole/src/main/java/com/console/view/dashboard/dashboard.fxml" />
-        <option value="$PROJECT_DIR$/clientconsole/src/main/java/com/console/view/status/status_1.css" />
-        <option value="$PROJECT_DIR$/clientconsole/src/main/java/com/console/view/dashboard/DashboardPresenter.java" />
-        <option value="$PROJECT_DIR$/clientconsole/src/main/java/com/console/view/status/StatusPresenter.java" />
+        <option value="$PROJECT_DIR$/clientconsole/src/main/java/com/console/view/systemlayout/element/BreadCrumbManager.java" />
       </list>
     </option>
   </component>
@@ -272,6 +464,166 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="parentprj" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="parentprj" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="clientconsole" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="console" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="view" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="parentprj" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="parentprj" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="clientconsole" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="console" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="view" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="systemlayout" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="parentprj" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="parentprj" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="clientconsole" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="console" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="view" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="systemlayout" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="element" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="parentprj" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="parentprj" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="clientconsole" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="console" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="view" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="systemlayout" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="element" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="contextmenu" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
       <pane id="Scratches" />
@@ -286,6 +638,10 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="F:\Projects\usi\proud\parentprj\clientconsole\src\main\java\com\console\view\systemlayout\element\node" />
+      <recent name="F:\Projects\usi\proud\parentprj\clientconsole\src\main\java\com\console\view\systemlayout\element\layer" />
+    </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="com.console.view.systemlayout.element" />
     </key>
@@ -735,6 +1091,14 @@
       <option name="presentableId" value="Default" />
       <updated>1474956487794</updated>
     </task>
+    <task id="LOCAL-00001" summary="removed transaction">
+      <created>1475336221199</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1475336221199</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -783,22 +1147,23 @@
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32902467" sideWeight="0.4967213" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25531915" sideWeight="0.4967213" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.27129337" sideWeight="0.49344262" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3280757" sideWeight="0.5065574" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3295082" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3438486" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.34369886" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32902467" sideWeight="0.49344262" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.29868227" sideWeight="0.49473685" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.30862328" sideWeight="0.49473685" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32176656" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39930955" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39905363" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25163934" sideWeight="0.50526315" order="5" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -806,7 +1171,6 @@
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24959612" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Coverage" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32956383" sideWeight="0.5" order="4" side_tool="true" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32220945" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -822,37 +1186,30 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="removed transaction" />
-    <option name="LAST_COMMIT_MESSAGE" value="removed transaction" />
+    <MESSAGE value="updated selection nodes" />
+    <MESSAGE value="updated selection nodes&#10;refactored code" />
+    <option name="LAST_COMMIT_MESSAGE" value="updated selection nodes&#10;refactored code" />
+    <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
+    <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
+    <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/clientconsole/src/main/java/com/console/view/systemlayout/element/VirtualLayerElement.java</url>
-          <line>56</line>
-          <properties />
-          <option name="timeStamp" value="2" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/clientconsole/src/main/java/com/console/view/systemlayout/element/Helper.java</url>
-          <line>25</line>
-          <properties />
-          <option name="timeStamp" value="10" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/clientconsole/src/main/java/com/console/view/systemlayout/element/BreadCrumbManager.java</url>
-          <line>109</line>
+          <line>110</line>
           <properties />
           <option name="timeStamp" value="14" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/clientconsole/src/main/java/com/console/view/systemlayout/element/BreadCrumbManager.java</url>
-          <line>86</line>
+          <line>87</line>
           <properties />
           <option name="timeStamp" value="16" />
         </line-breakpoint>
       </breakpoints>
-      <option name="time" value="17" />
+      <option name="time" value="19" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -861,308 +1218,434 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/clientconsole/src/test/java/com/console/domain/AppLayerTest.java">
+    <entry file="file://$PROJECT_DIR$/clientconsole/src/main/java/com/console/view/systemlayout/element/node/NodeElement.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="273">
-          <caret line="50" column="0" selection-start-line="50" selection-start-column="0" selection-end-line="50" selection-end-column="0" />
+        <state relative-caret-position="-641">
+          <caret line="91" column="65" selection-start-line="91" selection-start-column="65" selection-end-line="91" selection-end-column="65" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#2559#2560#0" expanded="true" />
+            <element signature="e#2598#2599#0" expanded="true" />
+            <element signature="e#3036#3037#0" expanded="true" />
+            <element signature="e#3109#3110#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/clientconsole/src/main/java/com/console/view/unused/nodeview/node.fxml">
+    <entry file="file://$PROJECT_DIR$/clientconsole/src/main/java/com/console/view/systemlayout/element/contextmenu/KpiGraph.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-      <provider editor-type-id="JavaFX-Scene-Builder">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/clientconsole/src/main/java/com/console/view/unused/nodeview/NodeView.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
+        <state relative-caret-position="102">
+          <caret line="6" column="3" selection-start-line="6" selection-start-column="3" selection-end-line="6" selection-end-column="21" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/clientconsole/src/main/java/com/console/view/unused/nodeview/NodePresenter.java">
+    <entry file="file://$PROJECT_DIR$/clientconsole/src/main/java/com/console/domain/AppNode.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="18" column="13" selection-start-line="18" selection-start-column="13" selection-end-line="18" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/clientconsole/src/main/java/com/console/view/systemlayout/element/ISystemElement.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="578">
-          <caret line="38" column="0" selection-start-line="38" selection-start-column="0" selection-end-line="38" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/clientconsole/src/main/java/com/console/view/systemlayout/element/VirtualLayerElement.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="35" column="19" selection-start-line="35" selection-start-column="19" selection-end-line="35" selection-end-column="19" />
+        <state relative-caret-position="102">
+          <caret line="12" column="14" selection-start-line="12" selection-start-column="14" selection-end-line="12" selection-end-column="14" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/clientconsole/src/main/java/com/console/view/systemlayout/element/NodeElement.java">
+    <entry file="file://$PROJECT_DIR$/clientconsole/Dockerfiles/deploy/debian/Dockerfile">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="765">
-          <caret line="81" column="17" selection-start-line="81" selection-start-column="17" selection-end-line="81" selection-end-column="17" />
+        <state relative-caret-position="269">
+          <caret line="33" column="45" selection-start-line="33" selection-start-column="45" selection-end-line="33" selection-end-column="45" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/clientconsole/src/main/java/com/console/domain/State.java">
+    <entry file="file://$PROJECT_DIR$/clientconsole/src/main/java/com/console/domain/ElementInfo.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
-          <caret line="8" column="12" selection-start-line="8" selection-start-column="12" selection-end-line="8" selection-end-column="12" />
+          <caret line="8" column="0" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/clientconsole/src/main/java/com/console/service/appservice/FullScreenAction.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="18" column="0" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_101/javafx-src.zip!/javafx/beans/property/SimpleStringProperty.java" />
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_101/javafx-src.zip!/javafx/beans/property/StringProperty.java" />
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_101/javafx-src.zip!/javafx/beans/property/StringPropertyBase.java" />
     <entry file="file://$PROJECT_DIR$/clientconsole/src/main/java/com/console/domain/AppEvent.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" column="20" selection-start-line="5" selection-start-column="12" selection-end-line="5" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_101/src.zip!/java/util/Map.java" />
-    <entry file="file://$PROJECT_DIR$/clientconsole/src/test/java/com/console/AppDataProviderMock.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="17" column="34" selection-start-line="17" selection-start-column="34" selection-end-line="17" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/clientconsole/src/main/java/com/console/service/appservice/ApplicationService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="42" column="45" selection-start-line="42" selection-start-column="45" selection-end-line="42" selection-end-column="45" />
+        <state relative-caret-position="51">
+          <caret line="3" column="20" selection-start-line="3" selection-start-column="20" selection-end-line="3" selection-end-column="20" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/clientconsole/src/main/java/com/console/domain/PredictionType.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="14" column="25" selection-start-line="14" selection-start-column="25" selection-end-line="14" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/clientconsole/log4j.properties" />
-    <entry file="file://$PROJECT_DIR$/log/application.log" />
-    <entry file="file://$PROJECT_DIR$/clientconsole/build.sh">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="20" selection-start-line="2" selection-start-column="20" selection-end-line="2" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/log4j.properties" />
-    <entry file="file://$PROJECT_DIR$/clientconsole/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="358">
-          <caret line="172" column="20" selection-start-line="172" selection-start-column="20" selection-end-line="172" selection-end-column="20" />
+        <state relative-caret-position="51">
+          <caret line="3" column="21" selection-start-line="3" selection-start-column="21" selection-end-line="3" selection-end-column="21" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/clientconsole/conf/log4j.properties">
+    <entry file="file://$PROJECT_DIR$/clientconsole/src/main/java/com/console/util/view/DragContext.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="11" column="47" selection-start-line="11" selection-start-column="47" selection-end-line="11" selection-end-column="47" />
+        <state relative-caret-position="34">
+          <caret line="2" column="0" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/clientconsole/src/test/java/com/console/domain/AppStateTest.java">
+    <entry file="file://$PROJECT_DIR$/clientconsole/src/main/java/com/console/util/view/NodeGestures.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="481">
-          <caret line="211" column="35" selection-start-line="211" selection-start-column="35" selection-end-line="211" selection-end-column="35" />
+        <state relative-caret-position="34">
+          <caret line="2" column="0" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_101/src.zip!/java/lang/Override.java" />
-    <entry file="file://$PROJECT_DIR$/clientconsole/src/main/java/com/console/service/appservice/AppEventManager.java">
+    <entry file="file://$PROJECT_DIR$/clientconsole/src/main/java/com/console/util/MessageUtil.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="393">
-          <caret line="50" column="20" selection-start-line="50" selection-start-column="20" selection-end-line="50" selection-end-column="20" />
+        <state relative-caret-position="153">
+          <caret line="9" column="0" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/clientconsole/src/main/java/com/console/service/appservice/InitAction.java">
+    <entry file="file://$PROJECT_DIR$/clientconsole/src/main/java/com/console/util/AppPath.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="527">
-          <caret line="37" column="45" selection-start-line="37" selection-start-column="45" selection-end-line="37" selection-end-column="45" />
+        <state relative-caret-position="238">
+          <caret line="14" column="20" selection-start-line="14" selection-start-column="20" selection-end-line="14" selection-end-column="20" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/clientconsole/src/main/java/com/console/domain/AppState.java">
+    <entry file="file://$PROJECT_DIR$/node/src/main/java/com/mycompany/nodeproducer/Message.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2346">
-          <caret line="169" column="21" selection-start-line="169" selection-start-column="16" selection-end-line="169" selection-end-column="24" />
+        <state relative-caret-position="102">
+          <caret line="6" column="0" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/clientconsole/src/main/java/com/console/service/backend/BackEndServiceException.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="11" column="21" selection-start-line="11" selection-start-column="21" selection-end-line="11" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/clientconsole/src/main/java/com/console/view/systemlayout/SystemlayoutView.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="8" column="20" selection-start-line="8" selection-start-column="20" selection-end-line="8" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/clientconsole/src/main/java/com/console/view/unused/nodeview/NodeView.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" column="12" selection-start-line="5" selection-start-column="12" selection-end-line="5" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/clientconsole/src/main/java/com/console/service/IService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="8" column="4" selection-start-line="8" selection-start-column="4" selection-end-line="8" selection-end-column="4" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/clientconsole/src/main/java/com/console/domain/ICallback.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="10" column="4" selection-start-line="10" selection-start-column="4" selection-end-line="10" selection-end-column="4" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/clientconsole/src/main/java/com/console/util/view/ILayoutManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="8" column="4" selection-start-line="8" selection-start-column="4" selection-end-line="8" selection-end-column="4" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/clientconsole/src/main/java/com/console/domain/IAppStateListener.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
-          <caret line="8" column="40" selection-start-line="8" selection-start-column="25" selection-end-line="8" selection-end-column="40" />
+          <caret line="8" column="4" selection-start-line="8" selection-start-column="4" selection-end-line="8" selection-end-column="4" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_101/javafx-src.zip!/javafx/scene/input/MouseEvent.java" />
+    <entry file="file://$PROJECT_DIR$/clientconsole/src/main/java/com/console/service/backend/IBackendService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="10" column="4" selection-start-line="10" selection-start-column="4" selection-end-line="10" selection-end-column="4" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/clientconsole/src/main/java/com/console/view/center/toolbar/IToolbarListener.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="8" column="0" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/clientconsole/src/main/java/com/console/view/center/ITabManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="10" column="4" selection-start-line="10" selection-start-column="4" selection-end-line="10" selection-end-column="4" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/clientconsole/src/main/java/com/console/service/provider/IDataProvider.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="10" column="4" selection-start-line="10" selection-start-column="4" selection-end-line="10" selection-end-column="4" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/clientconsole/src/main/java/com/console/util/view/ZoomableScrollPane.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="14" column="12" selection-start-line="14" selection-start-column="12" selection-end-line="14" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/clientconsole/src/main/java/com/console/view/graphdata/toolbar/IToolbarListener.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="14" column="4" selection-start-line="14" selection-start-column="4" selection-end-line="14" selection-end-column="4" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/clientconsole/src/main/java/com/console/service/appservice/IActionHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="11" column="4" selection-start-line="11" selection-start-column="4" selection-end-line="11" selection-end-column="4" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/clientconsole/src/main/java/com/console/service/appservice/ActionNotFoundException.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="12" column="4" selection-start-line="12" selection-start-column="4" selection-end-line="12" selection-end-column="4" />
+          <folding>
+            <element signature="e#274#275#0" expanded="true" />
+            <element signature="e#335#336#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/clientconsole/src/main/java/com/console/service/appservice/AppEventManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="48" column="72" selection-start-line="48" selection-start-column="72" selection-end-line="48" selection-end-column="72" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/clientconsole/src/main/java/com/console/domain/IAppElement.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="22" column="4" selection-start-line="22" selection-start-column="4" selection-end-line="22" selection-end-column="4" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/clientconsole/src/main/java/com/console/view/systemlayout/ISystemLayoutManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="314">
+          <caret line="24" column="4" selection-start-line="24" selection-start-column="4" selection-end-line="24" selection-end-column="4" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/node/src/main/java/com/mycompany/nodeproducer/ResourceReader.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-170">
+          <caret line="25" column="4" selection-start-line="25" selection-start-column="4" selection-end-line="25" selection-end-column="4" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/clientconsole/src/test/java/com/console/AppDataProviderMock.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="104" column="61" selection-start-line="104" selection-start-column="61" selection-end-line="104" selection-end-column="61" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/commons/src/main/java/com/mycompany/commons/DateUtil.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="145">
+          <caret line="19" column="69" selection-start-line="19" selection-start-column="69" selection-end-line="19" selection-end-column="69" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/clientconsole/src/main/java/com/console/domain/AppState.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="126">
+          <caret line="169" column="31" selection-start-line="169" selection-start-column="31" selection-end-line="169" selection-end-column="31" />
+          <folding>
+            <element signature="e#2849#2850#0" expanded="true" />
+            <element signature="e#2890#2891#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/clientconsole/src/main/java/com/console/view/center/toolbar/ToolbarPresenter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="55" column="4" selection-start-line="55" selection-start-column="4" selection-end-line="55" selection-end-column="4" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/clientconsole/src/main/java/com/console/domain/AppLayer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="45" column="8" selection-start-line="45" selection-start-column="8" selection-end-line="45" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/clientconsole/src/main/java/com/console/view/systemlayout/element/Helper.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="28" column="0" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
+        <state relative-caret-position="127">
+          <caret line="26" column="58" selection-start-line="26" selection-start-column="58" selection-end-line="26" selection-end-column="58" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/clientconsole/src/main/java/com/console/util/view/SceneGestures.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="95" column="5" selection-start-line="95" selection-start-column="5" selection-end-line="95" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/clientconsole/src/main/java/com/console/service/appservice/ActionFactory.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="29" column="4" selection-start-line="29" selection-start-column="4" selection-end-line="29" selection-end-column="4" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/clientconsole/src/main/java/com/console/service/appservice/ApplicationService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-731">
+          <caret line="21" column="29" selection-start-line="21" selection-start-column="29" selection-end-line="21" selection-end-column="29" />
+          <folding>
+            <element signature="e#1117#1118#0" expanded="true" />
+            <element signature="e#1147#1148#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/clientconsole/src/main/java/com/console/view/unused/tree/TreePresenter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="109" column="40" selection-start-line="109" selection-start-column="25" selection-end-line="109" selection-end-column="40" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/clientconsole/src/main/java/com/console/view/systemlayout/element/ISystemElement.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="13" column="31" selection-start-line="13" selection-start-column="17" selection-end-line="13" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/clientconsole/src/main/java/com/console/view/systemlayout/SystemlayoutPresenter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="230" column="15" selection-start-line="230" selection-start-column="15" selection-end-line="230" selection-end-column="15" />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/node/src/main/java/com/mycompany/nodeproducer/App.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="42" column="11" selection-start-line="42" selection-start-column="11" selection-end-line="42" selection-end-column="11" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/clientconsole/src/main/java/com/console/view/systemlayout/element/SystemLayoutFactory.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="139">
+          <caret line="126" column="52" selection-start-line="126" selection-start-column="52" selection-end-line="126" selection-end-column="52" />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/clientconsole/src/main/java/com/console/view/center/CenterPresenter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="144">
+          <caret line="73" column="31" selection-start-line="73" selection-start-column="31" selection-end-line="73" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/clientconsole/src/main/java/com/console/view/graphdata/toolbar/ToolbarPresenter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="144">
+          <caret line="55" column="4" selection-start-line="55" selection-start-column="4" selection-end-line="55" selection-end-column="4" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/clientconsole/src/main/java/com/console/view/systemlayout/element/BreadCrumbManager.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="748">
-          <caret line="89" column="17" selection-start-line="89" selection-start-column="17" selection-end-line="89" selection-end-column="17" />
+        <state relative-caret-position="-29">
+          <caret line="127" column="25" selection-start-line="127" selection-start-column="25" selection-end-line="127" selection-end-column="25" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/clientconsole/src/main/java/com/console/service/provider/AppDataProvider.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="41">
-          <caret line="141" column="37" selection-start-line="141" selection-start-column="37" selection-end-line="141" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/clientconsole/src/main/java/com/console/view/systemlayout/element/SystemLayoutFactory.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="38" column="41" selection-start-line="38" selection-start-column="41" selection-end-line="38" selection-end-column="41" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_101/javafx-src.zip!/javafx/event/Event.java" />
-    <entry file="file://$PROJECT_DIR$/clientconsole/src/main/java/com/console/view/systemlayout/element/LayerElement.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="251">
-          <caret line="172" column="12" selection-start-line="172" selection-start-column="12" selection-end-line="172" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/clientconsole/src/main/java/com/console/view/systemlayout/SystemlayoutPresenter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3366">
-          <caret line="231" column="0" selection-start-line="231" selection-start-column="0" selection-end-line="231" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#3185#3186#0" expanded="true" />
-            <element signature="e#3247#3248#0" expanded="true" />
-            <element signature="e#3678#3679#0" expanded="true" />
-            <element signature="e#3714#3715#0" expanded="true" />
-            <element signature="e#4821#4822#0" expanded="true" />
-            <element signature="e#4865#4866#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/clientconsole/src/main/java/com/console/view/systemlayout/systemlayout.fxml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="161">
-          <caret line="11" column="34" selection-start-line="11" selection-start-column="19" selection-end-line="11" selection-end-column="34" />
-        </state>
-      </provider>
-      <provider editor-type-id="JavaFX-Scene-Builder">
-        <state />
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_101/javafx-src.zip!/javafx/scene/layout/BorderPane.java" />
-    <entry file="file://$PROJECT_DIR$/clientconsole/src/main/java/com/console/view/center/center_2.fxml" />
-    <entry file="file://$PROJECT_DIR$/clientconsole/src/main/java/com/console/view/dashboard/dashboard_2.fxml" />
-    <entry file="file://$PROJECT_DIR$/clientconsole/src/main/java/com/console/view/center/center.fxml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="12" column="20" selection-start-line="12" selection-start-column="20" selection-end-line="12" selection-end-column="20" />
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="JavaFX-Scene-Builder">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/clientconsole/src/main/java/com/console/view/center/CenterPresenter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1020">
-          <caret line="74" column="9" selection-start-line="74" selection-start-column="9" selection-end-line="74" selection-end-column="9" />
+        <state relative-caret-position="132">
+          <caret line="11" column="7" selection-start-line="11" selection-start-column="7" selection-end-line="11" selection-end-column="7" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/clientconsole/src/main/java/com/console/view/dashboard/dashboard.fxml">
+    <entry file="file://$PROJECT_DIR$/clientconsole/src/main/java/com/console/view/unused/nodeview/NodePresenter.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="612">
-          <caret line="36" column="36" selection-start-line="36" selection-start-column="36" selection-end-line="36" selection-end-column="36" />
+        <state relative-caret-position="325">
+          <caret line="53" column="27" selection-start-line="53" selection-start-column="27" selection-end-line="53" selection-end-column="27" />
           <folding />
         </state>
       </provider>
-      <provider editor-type-id="JavaFX-Scene-Builder">
-        <state />
-      </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/clientconsole/src/main/java/com/console/view/status/status.css">
+    <entry file="file://$PROJECT_DIR$/clientconsole/src/main/java/com/console/view/systemlayout/element/contextmenu/ZoomIn.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="221">
-          <caret line="13" column="1" selection-start-line="13" selection-start-column="1" selection-end-line="13" selection-end-column="1" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/clientconsole/src/main/java/com/console/view/status/status_1.css" />
-    <entry file="file://$PROJECT_DIR$/clientconsole/src/main/java/com/console/view/dashboard/configuration.properties" />
-    <entry file="file://$PROJECT_DIR$/clientconsole/src/main/java/com/console/view/dashboard/DashboardPresenter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="192">
-          <caret line="106" column="32" selection-start-line="106" selection-start-column="32" selection-end-line="106" selection-end-column="32" />
+          <caret line="63" column="45" selection-start-line="63" selection-start-column="45" selection-end-line="63" selection-end-column="45" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/clientconsole/src/main/java/com/console/view/status/status.fxml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="19" selection-start-line="8" selection-start-column="19" selection-end-line="8" selection-end-column="19" />
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="JavaFX-Scene-Builder">
-        <state />
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_102/javafx-src.zip!/javafx/animation/Animation.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="537">
-          <caret line="900" column="16" selection-start-line="900" selection-start-column="16" selection-end-line="900" selection-end-column="16" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/clientconsole/src/main/java/com/console/view/status/StatusPresenter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="82" column="35" selection-start-line="82" selection-start-column="35" selection-end-line="82" selection-end-column="35" />
-          <folding />
         </state>
       </provider>
     </entry>

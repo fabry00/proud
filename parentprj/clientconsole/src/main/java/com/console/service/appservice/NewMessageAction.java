@@ -1,13 +1,12 @@
 package com.console.service.appservice;
 
 import com.console.domain.AppAction;
-import com.console.domain.AppState;
 import com.console.domain.ICallback;
 import org.apache.log4j.Logger;
 
 /**
  *
- * @author fabry
+ * @author Fabrizio Faustinoni
  */
 class NewMessageAction implements IActionHandler {
 

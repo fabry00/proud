@@ -9,7 +9,7 @@ import java.util.Date;
 
 /**
  *
- * @author fabry
+ * @author Fabrizio Faustinoni
  */
 public class DateUtil {
 
@@ -17,8 +17,7 @@ public class DateUtil {
 
     public String getNow() {
         LocalDateTime datetime = LocalDateTime.ofInstant(Instant.now(), ZoneOffset.UTC);
-        String formatted = DateTimeFormatter.ofPattern(FORMAT).format(datetime);
-        return formatted;
+        return DateTimeFormatter.ofPattern(FORMAT).format(datetime);
     }
 
     public String formatDate(Date date) {

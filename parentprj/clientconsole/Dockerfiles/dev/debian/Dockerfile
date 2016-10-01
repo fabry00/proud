@@ -51,7 +51,7 @@ RUN echo "===> Cloning project"
 RUN apt-get install -y git && \
     mkdir /home/user/projects && \
     cd /home/user/projects && \
-    git clone https://github.com/fabry00/clientconsole
+    git clone https://github.com/Fabrizio Faustinoni00/clientconsole
 
 USER user
 ENV HOME /home/user

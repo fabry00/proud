@@ -5,7 +5,7 @@ import javafx.scene.layout.AnchorPane;
 
 /**
  *
- * @author fabry
+ * @author Fabrizio Faustinoni
  */
 public class NodeUtil {
 

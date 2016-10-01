@@ -2,24 +2,22 @@ package com.console.domain;
 
 import com.console.Helper;
 import com.mycompany.commons.DateUtil;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Set;
 import javafx.beans.property.BooleanProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.chart.XYChart;
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.junit.*;
+
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Set;
+
 import static org.junit.Assert.*;
 
 /**
  *
- * @author exfaff
+ * @author Fabrizio Faustinoni
  */
 public class AppNodeTest {
 

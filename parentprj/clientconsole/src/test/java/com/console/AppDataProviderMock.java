@@ -1,17 +1,12 @@
 package com.console;
 
+import com.console.domain.*;
 import com.console.service.appservice.AppEventManager;
-import com.console.service.provider.*;
-import com.console.domain.AppLayer;
-import com.console.domain.ICallback;
-import com.console.domain.AppNode;
-import com.console.domain.AppState;
-import com.console.domain.ElementInfo;
-import com.console.domain.IAppElement;
+import com.console.service.provider.IDataProvider;
 
 /**
  *
- * @author fabry
+ * @author Fabrizio Faustinoni
  */
 public class AppDataProviderMock implements IDataProvider {
 
@@ -20,7 +15,7 @@ public class AppDataProviderMock implements IDataProvider {
     /**
      * TODO retreive from server
      *
-     * @param callback
+     * @param callback The callback
      */
     @Override
     public void getSystemState(final ICallback callback) {
@@ -107,7 +102,7 @@ public class AppDataProviderMock implements IDataProvider {
                 .withInfo(new ElementInfo(ElementInfo.Type.IP, "192.168.1.119"))
                 .build();
 
-        IAppElement app12 = new AppNode.Builder("App" + (appI++))
+        IAppElement app12 = new AppNode.Builder("App" + (appI))
                 .withInfo(new ElementInfo(ElementInfo.Type.IP, "192.168.1.120"))
                 .isFailureDetected()
                 .build();

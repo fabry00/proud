@@ -4,9 +4,9 @@ import com.console.domain.ICallback;
 
 /**
  *
- * @author exfaff
+ * @author Fabrizio Faustinoni
  */
 public interface IDataProvider {
 
-    public void getSystemState(final ICallback callback);
+    void getSystemState(final ICallback callback);
 }
