@@ -1,6 +1,6 @@
 package com.mycompany.nodeproducer;
 
-import com.mycompany.commons.ConfigUtils;
+import com.proud.commons.ConfigUtils;
 import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
 

@@ -1,23 +1,22 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <modelVersion>4.0.0</modelVersion>
 
-    <groupId>clientconsole</groupId>
-    <artifactId>clientconsole</artifactId>   
-    <packaging>jar</packaging>
-    <name>clientconsole</name>
-    
     <parent>
-        <groupId>com.mycompany</groupId>
-        <artifactId>parentprj</artifactId>
+        <groupId>com.proud</groupId>
+        <artifactId>proud</artifactId>
         <version>1.0-SNAPSHOT</version>
     </parent>
-    
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>clientconsole</artifactId>
+
+
     <properties>
         <javafx.version>2.2</javafx.version>
         <macos.identifier>com.console</macos.identifier>
         <vendor>vendor</vendor>
-        <exec.mainClass>com.console.App</exec.mainClass>
+        <exec.mainClass>com.proud.console.App</exec.mainClass>
         <final.build.name>clientconsole</final.build.name>
         <keystore>${basedir}/keystore/mykeystore.ks</keystore>
         <keystore.alias>clientconsole</keystore.alias>
@@ -26,9 +25,9 @@
     
     <dependencies>
         <dependency>
-            <groupId>com.mycompany</groupId>
+            <groupId>com.proud</groupId>
             <artifactId>commons</artifactId>
-            <version>${mycompany.version}</version>
+            <version>${proud.version}</version>
         </dependency>
         <!-- This is for the simulator-->
         <dependency>

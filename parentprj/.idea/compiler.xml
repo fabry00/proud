@@ -25,6 +25,7 @@
         <module name="clientconsole" />
         <module name="commons" />
         <module name="node" />
+        <module name="proudserver" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
@@ -32,6 +33,8 @@
       <module name="commons" target="1.8" />
       <module name="node" target="1.8" />
       <module name="parentprj" target="1.8" />
+      <module name="proud" target="1.8" />
+      <module name="proudserver" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>

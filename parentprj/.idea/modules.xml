@@ -5,7 +5,8 @@
       <module fileurl="file://$PROJECT_DIR$/clientconsole/clientconsole.iml" filepath="$PROJECT_DIR$/clientconsole/clientconsole.iml" />
       <module fileurl="file://$PROJECT_DIR$/commons/commons.iml" filepath="$PROJECT_DIR$/commons/commons.iml" />
       <module fileurl="file://$PROJECT_DIR$/node/node.iml" filepath="$PROJECT_DIR$/node/node.iml" />
-      <module fileurl="file://$PROJECT_DIR$/parentprj.iml" filepath="$PROJECT_DIR$/parentprj.iml" />
+      <module fileurl="file://$PROJECT_DIR$/proud.iml" filepath="$PROJECT_DIR$/proud.iml" />
+      <module fileurl="file://$PROJECT_DIR$/proudserver/proudserver.iml" filepath="$PROJECT_DIR$/proudserver/proudserver.iml" />
     </modules>
   </component>
 </project>

@@ -1,6 +1,6 @@
 package com.mycompany.nodeproducer;
 
-import com.mycompany.commons.DateUtil;
+import com.proud.commons.DateUtil;
 import org.apache.log4j.Logger;
 import org.hyperic.sigar.CpuPerc;
 import org.hyperic.sigar.Mem;
