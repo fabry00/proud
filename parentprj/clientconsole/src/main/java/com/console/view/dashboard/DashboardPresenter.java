@@ -27,6 +27,7 @@ import java.util.ResourceBundle;
  */
 public class DashboardPresenter implements Initializable {
 
+
     private final Logger logger = Logger.getLogger(DashboardPresenter.class);
 
     @FXML
@@ -85,6 +86,11 @@ public class DashboardPresenter implements Initializable {
         appService.dispatch(new AppAction<>(ActionType.FULL_SCREEN, true));
     }
 
+    @FXML
+    public void handleAbout() {
+        new About().show(appService);
+    }
+
     public ApplicationService getAppService() {
         return appService;
     }
@@ -106,7 +112,7 @@ public class DashboardPresenter implements Initializable {
         /*notificationPane = new NotificationPane();
         notificationPane.getStyleClass().add(NotificationPane.STYLE_CLASS_DARK);
         centerPane.getChildren().add(notificationPane);*/
-        Node center = (Node) new CenterView().getView();
+        Node center = new CenterView().getView();
         util.ancorToPane(center, 0.0);
         centerPane.getChildren().add(center);
     }

@@ -67,7 +67,7 @@ public class GraphdataPresenter implements Initializable, IToolbarListener {
         removeAllSeries();
         // Fire node nodesSelectedChanged to re-add all the series with the right metric
         nodesSelectedChanged();
-        chart.setTitle(metric.getTitle());
+        chart.setTitle(metric.getDesc());
 
     }
 
@@ -99,20 +99,20 @@ public class GraphdataPresenter implements Initializable, IToolbarListener {
         // setAutoRanging(false); setLowerBoud(..
 
         // To change the format for the data try this: (not tested)
-        /**
-         * final DateAxis xAxis = new DateAxis(); final NumberAxis yAxis = new
-         * NumberAxis(); xAxis.setLabel("Date"); yAxis.setLabel("Events");
-         *
-         * final LineChart<Date,Number> lineChart = new LineChart<>(xAxis,
-         * yAxis); lineChart.setTitle("Events");
-         *
-         * SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MMM/yyyy");
-         *
-         *
-         * XYChart.Series<Date,Number> series = new XYChart.Series<>();
-         * series.setName("Events this Year"); series.getData().add(new
-         * XYChart.Data(dateFormat.parse("11/Jan/2014"), 23));
-         */
+
+//          final DateAxis xAxis = new DateAxis(); final NumberAxis yAxis = new
+//          NumberAxis(); xAxis.setLabel("Date"); yAxis.setLabel("Events");
+//
+//          final LineChart<Date,Number> lineChart = new LineChart<>(xAxis,
+//          yAxis); lineChart.setTitle("Events");
+//
+//          SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MMM/yyyy");
+//
+//
+//          XYChart.Series<Date,Number> series = new XYChart.Series<>();
+//          series.setName("Events this Year"); series.getData().add(new
+//          XYChart.Data(dateFormat.parse("11/Jan/2014"), 23));
+//
         if (chart.getXAxis() instanceof NumberAxis) {
             // Force if to show or not always the zero element
             ((NumberAxis) chart.getXAxis()).setForceZeroInRange(false);
@@ -120,7 +120,7 @@ public class GraphdataPresenter implements Initializable, IToolbarListener {
 
         chart.setData(seriesList);
 
-        chart.setTitle(tbPresenter.getSelectedMetric().getTitle());
+        chart.setTitle(tbPresenter.getSelectedMetric().getDesc());
     }
 
     @Override
@@ -182,9 +182,7 @@ public class GraphdataPresenter implements Initializable, IToolbarListener {
         }
 
         // Remove series
-        serieToRemove.stream().forEach((i) -> {
-            seriesList.remove(seriesList.get(i));
-        });
+        serieToRemove.forEach((i) -> seriesList.remove(seriesList.get(i)));
     }
 
     private void removeAllSeries() {
@@ -192,9 +190,7 @@ public class GraphdataPresenter implements Initializable, IToolbarListener {
         for (int i = 0; i < seriesList.size(); i++) {
             serieToRemove.add(i);
         }
-        serieToRemove.stream().forEach((i) -> {
-            seriesList.remove(seriesList.get(i));
-        });
+        serieToRemove.forEach((i) -> seriesList.remove(seriesList.get(i)));
     }
 
     private String getSerieName(IAppElement node) {
@@ -213,9 +209,7 @@ public class GraphdataPresenter implements Initializable, IToolbarListener {
     private void initChartTooltip() {
 
         ObjectProperty<Point2D> mouseLocationInScene = new SimpleObjectProperty<>();
-        chart.addEventHandler(MouseEvent.MOUSE_MOVED, evt -> {
-            mouseLocationInScene.set(new Point2D(evt.getSceneX(), evt.getSceneY()));
-        });
+        chart.addEventHandler(MouseEvent.MOUSE_MOVED, evt -> mouseLocationInScene.set(new Point2D(evt.getSceneX(), evt.getSceneY())));
 
         final DateUtil util = new DateUtil();
         labelValues.textProperty().bind(Bindings.createStringBinding(() -> {

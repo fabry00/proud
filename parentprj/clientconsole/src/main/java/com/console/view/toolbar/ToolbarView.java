@@ -1,4 +1,4 @@
-package com.console.view.center.toolbar;
+package com.console.view.toolbar;
 
 import com.airhacks.afterburner.views.FXMLView;
 
