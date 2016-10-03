@@ -1,6 +1,7 @@
 package com.proud.console.service.provider;
 
 import com.proud.console.domain.*;
+import com.proud.domain.PredictionType;
 import javafx.application.Platform;
 
 /**

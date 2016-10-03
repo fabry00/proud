@@ -1,6 +1,6 @@
 package com.mycompany.nodeproducer;
 
-import com.proud.commons.DateUtil;
+import com.proud.commons.DateUtils;
 import org.apache.log4j.Logger;
 import org.hyperic.sigar.CpuPerc;
 import org.hyperic.sigar.Mem;
@@ -21,7 +21,7 @@ class ResourceReader implements Runnable {
     private final MsgProducer sender;
     private final String nodeName;
     private final Sigar sigar = new Sigar();
-    private final DateUtil dateUtil = new DateUtil();
+    private final DateUtils dateUtils = new DateUtils();
 
     ResourceReader(Properties nodeProperties, MsgProducer sender) {
         this.sender = sender;
@@ -35,10 +35,10 @@ class ResourceReader implements Runnable {
 
         logger.debug(nodeName + " CPU VALUE: " + cpu + " factor: " + " ram: " + ram);
 
-        Date xValue = dateUtil.getNowDate();
+        Date xValue = dateUtils.getNowDate();
 
         Message message = new Message();
-        message.msg = "[" + dateUtil.formatDate(xValue) + "] " + nodeName
+        message.msg = "[" + dateUtils.formatDate(xValue) + "] " + nodeName
                 + " CPU VALUE: " + cpu + " factor: " + " ram: " + ram;
 
         sender.send(message);

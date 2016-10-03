@@ -1,7 +1,8 @@
 package com.proud.console.view.dashboard;
 
+import com.proud.commons.AppHelper;
+import com.proud.commons.ConfigUtils;
 import com.proud.console.service.appservice.ApplicationService;
-import com.proud.console.util.Configs;
 import javafx.geometry.Pos;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
@@ -22,7 +23,8 @@ class About {
     private static final String RIGHT_RESERVED = "All rights reserved";
 
     public void show(ApplicationService appService) {
-        final String appVersion = appService.getAppConfigs().getProperty(Configs.VERSION);
+        final String appVersion = appService.getAppConfigs().getProperty(ConfigUtils.KEY_VERSION);
+        AppHelper helper = new AppHelper();
 
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         Label logo = new Label("PrOud");
@@ -35,8 +37,8 @@ class About {
         alert.setTitle(ABOUT);
         String sep = System.getProperty("line.separator");
         String content = VERSION + appVersion + sep;
-        content += JRE + System.getProperty("java.version") + sep;
-        content += JVM + System.getProperty("java.vm.name") + sep;
+        content += JRE + helper.getJRE() + sep;
+        content += JVM + helper.getJVM() + sep;
         alert.setHeaderText(content);
 
         int currentYear = Calendar.getInstance().get(Calendar.YEAR);

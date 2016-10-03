@@ -15,8 +15,15 @@ public class ConfigUtils {
 
     private final Logger logger = Logger.getLogger(ConfigUtils.class);
 
+    public static final String APP_CONFIGS = "appconfigurations.properties";
+    public static final String KEY_VERSION = "app.version";
+    public static final String KEY_FORCE_TIME_ZONE = "timezone.forceTimeZone";
+    public static final String KEY_TIME_ZONE = "timezone.zone";
+    public static final String DEFAULT_FORCE_TIME_ZONE = "false";
+    public static final String DEFAULT_TIME_ZONE = "UTC";
+
     /**
-     * Get a propery file not packed withn the jar
+     * Get a propery file not packed within the jar
      *
      * @param propFile
      * @return

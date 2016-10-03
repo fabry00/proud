@@ -1,6 +1,7 @@
 package com.proud.console.domain;
 
 import com.proud.console.service.appservice.AppEventManager;
+import com.proud.domain.PredictionType;
 import javafx.beans.Observable;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;

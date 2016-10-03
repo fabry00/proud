@@ -1,6 +1,6 @@
 package com.proud.console.domain;
 
-import com.proud.commons.DateUtil;
+import com.proud.commons.DateUtils;
 import com.proud.console.Helper;
 import javafx.beans.property.BooleanProperty;
 import javafx.collections.FXCollections;
@@ -82,7 +82,7 @@ public class AppNodeTest {
     @Test
     public void testGetMetric() {
         System.out.println("getMetric");
-        DateUtil util = new DateUtil();
+        DateUtils util = new DateUtils();
         Date now = util.getNowDate();
         AppMetric type = AppMetric.CPU;
         IAppElement instance = helper.getNode("Node");
@@ -101,7 +101,7 @@ public class AppNodeTest {
     public void testGetMetrics() {
         System.out.println("getMetrics");
         IAppElement instance = helper.getNode("Node");
-        DateUtil util = new DateUtil();
+        DateUtils util = new DateUtils();
         Date now = util.getNowDate();
         instance.addMetricValue(AppMetric.CPU, now, 5);
         instance.addMetricValue(AppMetric.MEMORY, now, 10);

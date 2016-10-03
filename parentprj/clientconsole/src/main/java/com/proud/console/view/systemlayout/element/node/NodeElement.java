@@ -1,6 +1,6 @@
 package com.proud.console.view.systemlayout.element.node;
 
-import com.proud.commons.DateUtil;
+import com.proud.commons.DateUtils;
 import com.proud.console.domain.ElementInfo;
 import com.proud.console.domain.IAppElement;
 import com.proud.console.util.AppImage;
@@ -217,7 +217,7 @@ public class NodeElement implements ISystemElement {
         tooltipText += "IP Address: ";
         tooltipText += node.getInfo().get(ElementInfo.Type.IP).getValue() + sep;
         tooltipText += "Last KPI received: " + sep;
-        tooltipText += new DateUtil().getNow();
+        tooltipText += new DateUtils().getNow();
 
         Tooltip tooltip = new Tooltip(tooltipText);
 

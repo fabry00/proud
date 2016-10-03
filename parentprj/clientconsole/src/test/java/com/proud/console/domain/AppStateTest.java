@@ -4,6 +4,7 @@ import com.proud.console.AppDataProviderMock;
 import com.proud.console.Helper;
 import com.proud.console.service.appservice.AppEventManager;
 import com.proud.console.service.provider.IDataProvider;
+import com.proud.domain.PredictionType;
 import javafx.collections.ObservableList;
 import org.junit.*;
 

@@ -1,6 +1,6 @@
 package com.proud.console.view.graphdata;
 
-import com.proud.commons.DateUtil;
+import com.proud.commons.DateUtils;
 import com.proud.console.domain.AppMetric;
 import com.proud.console.domain.IAppElement;
 import com.proud.console.service.appservice.ApplicationService;
@@ -211,7 +211,7 @@ public class GraphdataPresenter implements Initializable, IToolbarListener {
         ObjectProperty<Point2D> mouseLocationInScene = new SimpleObjectProperty<>();
         chart.addEventHandler(MouseEvent.MOUSE_MOVED, evt -> mouseLocationInScene.set(new Point2D(evt.getSceneX(), evt.getSceneY())));
 
-        final DateUtil util = new DateUtil();
+        final DateUtils util = new DateUtils();
         labelValues.textProperty().bind(Bindings.createStringBinding(() -> {
             if (mouseLocationInScene.isNull().get()) {
                 return "";

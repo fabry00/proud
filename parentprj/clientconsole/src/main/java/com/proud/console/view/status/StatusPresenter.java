@@ -1,10 +1,10 @@
 package com.proud.console.view.status;
 
+import com.proud.commons.ConfigUtils;
 import com.proud.console.domain.AppEvent;
 import com.proud.console.domain.IAppStateListener;
-import com.proud.console.domain.PredictionType;
+import com.proud.domain.PredictionType;
 import com.proud.console.service.appservice.ApplicationService;
-import com.proud.console.util.Configs;
 import javafx.animation.FadeTransition;
 import javafx.animation.SequentialTransition;
 import javafx.animation.Timeline;
@@ -85,7 +85,7 @@ public class StatusPresenter implements Initializable, IAppStateListener {
     }
 
     private void setLeftItems() {
-        final String appVersion = appService.getAppConfigs().getProperty(Configs.VERSION);
+        final String appVersion = appService.getAppConfigs().getProperty(ConfigUtils.KEY_VERSION);
         Label versionLabel = new Label("Version: " + appVersion);
         Label failurePrediction = new Label("FAILURE PREDICTION");
         failurePredictionStatus = new Label("NOT_DETECTED");

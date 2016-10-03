@@ -1,6 +1,6 @@
 package com.proud.console.service.backend;
 
-import com.proud.commons.DateUtil;
+import com.proud.commons.DateUtils;
 import com.proud.console.domain.*;
 import com.proud.console.service.appservice.ApplicationService;
 import com.proud.console.util.MessageUtil;
@@ -96,7 +96,7 @@ public class ThreadBackendService implements IBackendService {
         private final String ip;
         private final Double factor;
         private final Sigar sigar = new Sigar();
-        private final DateUtil dateUtil = new DateUtil();
+        private final DateUtils dateUtils = new DateUtils();
         private boolean failureDetected = false;
   
         private Simulator(ApplicationService appService,
@@ -122,7 +122,7 @@ public class ThreadBackendService implements IBackendService {
             logger.debug("Sim:" + node + " CPU VALUE: " + cpu + " factor: "
                     + factor + " tot cpu: " + cpu2 + " ram: " + ram);
 
-            Date xValue = dateUtil.getNowDate();
+            Date xValue = dateUtils.getNowDate();
             AppNode.Builder builder = new AppNode.Builder(node)
                     .withInfo(new ElementInfo(ElementInfo.Type.IP, ip))
                     .withMetricValue(AppMetric.CPU, xValue, cpu2)

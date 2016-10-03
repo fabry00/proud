@@ -1,6 +1,6 @@
 package com.proud.console.util;
 
-import com.proud.commons.DateUtil;
+import com.proud.commons.DateUtils;
 
 /**
  * Utilities application message
@@ -9,7 +9,7 @@ import com.proud.commons.DateUtil;
 public class MessageUtil {
 
     public String getMsg(String msg) {
-        DateUtil util = new DateUtil();
+        DateUtils util = new DateUtils();
         String builder = "[ " + util.getNow() + " ] " + msg;
         return builder;
     }
