@@ -3,10 +3,13 @@
 **Detection date:**
 _`Insert here the date in yyyy/mm/dd`_
 
-**Step to reproduce:**
-_`Insert here the list of steps to reproduce the bug`_
-
 **Description:**
 
 ??
+
+**Step to reproduce:**
+
+*  step1
+*  step2
+*  .....
  
