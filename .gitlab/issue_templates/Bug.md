@@ -1,3 +1,5 @@
+/label ~bug 
+
 **Software version:** _`Insert here the version`_
 
 **Detection date:**
