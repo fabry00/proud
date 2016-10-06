@@ -52,6 +52,7 @@ public class ConfigUtils {
      * @return
      */
     public Properties getInternalProp(ClassLoader loader, String propFile) {
+        logger.debug("loading internal properties file: "+propFile);
         Properties configProperties = new Properties();
         try (InputStream in = loader.getResourceAsStream(propFile)) {
             configProperties.load(in);
