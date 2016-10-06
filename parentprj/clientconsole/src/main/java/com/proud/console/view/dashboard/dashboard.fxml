@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<BorderPane xmlns:fx="http://javafx.com/fxml/1" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308"
+            minHeight="600.0" minWidth="800.0" prefHeight="800.0" prefWidth="1024.0" styleClass="background"
+            xmlns="http://javafx.com/javafx/8.0.102"
+            fx:controller="com.proud.console.view.dashboard.DashboardPresenter">
+    <top>
+        <MenuBar>
+            <Menu mnemonicParsing="false" text="File">
+                <MenuItem mnemonicParsing="false" onAction="#handleExit" text="Close"/>
+            </Menu>
+            <Menu mnemonicParsing="false" text="View">
+                <MenuItem mnemonicParsing="false" onAction="#handleChangeTheme" text="Change Theme"/>
+                <MenuItem mnemonicParsing="false" onAction="#handleFullScreen" text="Full screen"/>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Help">
+                <MenuItem mnemonicParsing="false" onAction="#handleAbout" text="About"/>
+            </Menu>
+        </MenuBar>
+    </top>
+    <bottom>
+        <AnchorPane fx:id="bottomPane" prefHeight="30.0" prefWidth="600.0">
+        </AnchorPane>
+    </bottom>
+    <center>
+        <AnchorPane fx:id="centerPane"/>
+    </center>
+</BorderPane>

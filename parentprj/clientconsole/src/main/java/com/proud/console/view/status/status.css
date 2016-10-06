@@ -1,0 +1,14 @@
+.system-status-label{
+    -fx-background-radius: 4em;
+    -fx-min-width: 100px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 3, 0, 0, 0);
+    -fx-background-color: grey;
+}
+
+.system-status-label-fine{
+    -fx-background-color: green;
+}
+
+.system-status-label-error{
+    -fx-background-color: red;
+}

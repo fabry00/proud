@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.layout.*?>
+<?import java.net.URL?>
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" id="AnchorPane" prefHeight="35.0" prefWidth="600.0"
+            styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8.0.60"
+            fx:controller="com.proud.console.view.graphdata.toolbar.ToolbarPresenter">
+    <stylesheets>
+        <URL value="@toolbar.css" />
+    </stylesheets>
+    <children>
+        <ToolBar fx:id="graphToolbar" layoutY="7.0" prefHeight="35.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+    </children>
+</AnchorPane>
