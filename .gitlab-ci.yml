@@ -1,5 +1,4 @@
 image: kaiwinter/docker-java8-maven
-job1:
- script:
- -"cd parentprj && mvn install -B"
- -"cat target/site/jacoco/index.html"
+
+build:
+  script: "cd parentprj && mvn install -B && cat target/site/jacoco/index.html"
