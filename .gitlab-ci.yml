@@ -1,4 +1,16 @@
 image: kaiwinter/docker-java8-maven
 
-build:
+stages:
+  - build_and_test
+  - deploy
+
+build_prj:
+  type: build_and_test
   script: "cd parentprj && mvn install -B && cat proud-coverage/target/coverage-report/html/jacoco-multi/index.html"
+
+staging:
+  type: deploy
+  script:
+  - "echo deploying "
+  only:
+  - master
