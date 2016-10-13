@@ -14,17 +14,22 @@
     <properties>
         <build.directory.clientconsole>../clientconsole/target</build.directory.clientconsole>
         <build.directory.commons>../commons/target</build.directory.commons>
+        <build.directory.proudserver>../proudserver/target</build.directory.proudserver>
 
         <classes.directory.clientconsole>../clientconsole/target/classes/com/proud</classes.directory.clientconsole>
         <classes.directory.commons>../commons/target/classes/com/proud</classes.directory.commons>
+        <classes.directory.proudserver>../proudserver/target/classes/com/proud</classes.directory.proudserver>
 
         <sources.directory.clientconsole>../clientconsole/src/main/java</sources.directory.clientconsole>
         <sources.directory.commons>../commons/src/main/java</sources.directory.commons>
+        <sources.directory.proudserver>../proudserver/src/main/java</sources.directory.proudserver>
 
         <generated-sources.directory.clientconsole>../clientconsole/target/generated-sources/annotations
         </generated-sources.directory.clientconsole>
         <generated-sources.directory.commons>../commons/target/generated-sources/annotations
         </generated-sources.directory.commons>
+        <generated-sources.directory.proudserver>../proudserver/target/generated-sources/annotations
+        </generated-sources.directory.proudserver>
     </properties>
 
     <build>
@@ -81,16 +86,21 @@
                                         <fileset dir="${build.directory.commons}">
                                             <include name="jacoco.exec"/>
                                         </fileset>
+                                        <fileset dir="${build.directory.proudserver}">
+                                            <include name="jacoco.exec"/>
+                                        </fileset>
                                     </executiondata>
                                     <structure name="jacoco-multi Coverage Project">
                                         <group name="jacoco-multi">
                                             <classfiles>
                                                 <fileset dir="${classes.directory.clientconsole}"/>
                                                 <fileset dir="${classes.directory.commons}"/>
+                                                <fileset dir="${classes.directory.proudserver}"/>
                                             </classfiles>
                                             <sourcefiles encoding="UTF-8">
                                                 <fileset dir="${sources.directory.clientconsole}"/>
                                                 <fileset dir="${sources.directory.commons}"></fileset>
+                                                <fileset dir="${sources.directory.proudserver}"></fileset>
                                             </sourcefiles>
                                         </group>
                                     </structure>
