@@ -6,7 +6,7 @@ stages:
 
 build_prj:
   type: build_and_test
-  script: "cd parentprj && mvn install -B && cat proud-coverage/target/coverage-report/html/jacoco-multi/index.html"
+  script: "xhost + && cd parentprj && mvn install -B && cat proud-coverage/target/coverage-report/html/jacoco-multi/index.html"
 
 staging:
   type: deploy
