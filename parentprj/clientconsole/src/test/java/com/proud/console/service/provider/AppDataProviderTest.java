@@ -1,20 +1,22 @@
 package com.proud.console.service.provider;
 
-import com.proud.console.FxUtilTest;
-import com.proud.console.domain.*;
+import com.proud.console.domain.AppState;
+import com.proud.console.domain.ICallback;
+import com.proud.console.domain.State;
 import com.proud.domain.PredictionType;
 import org.junit.Test;
 
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicReference;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.fail;
 
 /**
  * Test AppDataProvider
  * Created by Fabrizio Faustinon on 13/10/2016.
  */
-public class AppDataProviderTest extends FxUtilTest {
+public class AppDataProviderTest {
 
     @Test
     public void getSystemState() throws InterruptedException {
