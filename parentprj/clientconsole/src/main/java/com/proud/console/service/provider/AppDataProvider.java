@@ -16,7 +16,7 @@ public class AppDataProvider implements IDataProvider {
      */
     public void getSystemState(final ICallback callback) {
 
-        Platform.runLater(() -> {
+        //Platform.runLater(() -> {
             AppState state = new AppState.Builder(null)
                     .failurePrediction(PredictionType.DETECTED)
                     .build();
@@ -166,7 +166,7 @@ public class AppDataProvider implements IDataProvider {
             state.addLayer(physicalLayer);
 
             callback.success(state);
-        });
+        //});
 
     }
 }
