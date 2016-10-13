@@ -42,8 +42,6 @@ public class DashboardPresenter implements Initializable {
     @Inject
     private ApplicationService appService;
 
-    private NotificationPane notificationPane;
-
     private NodeUtil util = new NodeUtil();
 
     @Override
@@ -109,9 +107,6 @@ public class DashboardPresenter implements Initializable {
 
     private void setCenterPane() {
 
-        /*notificationPane = new NotificationPane();
-        notificationPane.getStyleClass().add(NotificationPane.STYLE_CLASS_DARK);
-        centerPane.getChildren().add(notificationPane);*/
         Node center = new CenterView().getView();
         util.anchorToPane(center, 0.0);
         centerPane.getChildren().add(center);

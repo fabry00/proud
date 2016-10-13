@@ -6,7 +6,7 @@ import javafx.scene.Node;
  *
  * @author Fabrizio Faustinoni
  */
-public interface ITabManager {
+public interface ITabsManager {
 
     void addTab(String title, Node content);
 }

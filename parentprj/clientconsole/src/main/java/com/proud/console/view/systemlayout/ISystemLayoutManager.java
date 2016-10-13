@@ -20,7 +20,7 @@ public interface ISystemLayoutManager extends ILayoutManager {
 
     void removeSelectedNode(ISystemElement node);
 
-    void showKpiLayout(String title, List<ISystemElement> elementToShow);
+    void showKpiAnomalies(String title, List<ISystemElement> elementToShow);
 
     ISystemElement getVirtualLayer(ObservableList<ISystemElement> layerNodes);
 }

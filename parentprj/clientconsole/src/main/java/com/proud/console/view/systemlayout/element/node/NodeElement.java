@@ -237,7 +237,7 @@ public class NodeElement implements ISystemElement {
                 return;
             }
 
-            if (!helper.showKpiLayout(event, layoutManager, node.getName(), Arrays.asList(element))) {
+            if (!helper.showKpiAnomalies(event, layoutManager, node.getName(), Arrays.asList(element))) {
                 // Layout not changed --> add node as selected
                 if (!isSelected) {
                     layoutManager.addSelectedNode(element);

@@ -14,7 +14,6 @@ import java.util.Collections;
 import java.util.List;
 
 /**
- *
  * @author Fabrizio Faustinoni
  */
 public class Helper {
@@ -27,12 +26,12 @@ public class Helper {
         return true;
     }
 
-    public boolean showKpiLayout(MouseEvent event, ISystemLayoutManager layoutManager,
-            String title, List<ISystemElement> elems) {
+    public boolean showKpiAnomalies(MouseEvent event, ISystemLayoutManager layoutManager,
+                                    String title, List<ISystemElement> elems) {
         if (!event.getButton().equals(MouseButton.PRIMARY) || event.getClickCount() < 2) {
             return false;
         }
-        layoutManager.showKpiLayout(title, elems);
+        layoutManager.showKpiAnomalies(title, elems);
         return true;
     }
 
@@ -70,7 +69,7 @@ public class Helper {
     }
 
     public void onMousePressedNode(MouseEvent event, ISystemLayoutManager layoutManager,
-            DragContext nodeDragContext) {
+                                   DragContext nodeDragContext) {
 
         // left mouse button => dragging
         if (!event.isPrimaryButtonDown() || layoutManager.isLayoutLocked()) {

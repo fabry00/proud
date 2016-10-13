@@ -9,7 +9,7 @@ import org.apache.log4j.Logger;
  * Manages the tabs
  * Created by fabry on 02/10/2016.
  */
-class TabsManager implements ITabManager {
+class TabsManager implements ITabsManager {
 
     private final Logger logger = Logger.getLogger(TabsManager.class);
     private final TabPane tabsPane;
@@ -25,8 +25,8 @@ class TabsManager implements ITabManager {
         logger.debug("Add Tab with id: " + idTab);
         Tab tab = null;
         for (Tab openedTab : tabsPane.getTabs()) {
-            //logger.debug(openedTab.getText());
             if (openedTab.getId().equals(idTab)) {
+                logger.debug("Tab already opened");
                 tab = openedTab;
                 break;
             }
@@ -36,10 +36,9 @@ class TabsManager implements ITabManager {
             tab = new Tab(idTab, content);
             tab.closableProperty().set(true);
             tab.setId(idTab);
-
+            tabsPane.getTabs().add(tab);
         }
 
-        tabsPane.getTabs().add(tab);
         tabsPane.getSelectionModel().select(tab);
     }
 }

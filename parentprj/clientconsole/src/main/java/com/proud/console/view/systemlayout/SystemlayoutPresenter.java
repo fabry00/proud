@@ -4,7 +4,7 @@ import com.proud.console.domain.*;
 import com.proud.console.service.appservice.ApplicationService;
 import com.proud.console.util.view.PannableCanvas;
 import com.proud.console.util.view.SceneGestures;
-import com.proud.console.view.center.ITabManager;
+import com.proud.console.view.center.ITabsManager;
 import com.proud.console.view.graphdata.GraphdataView;
 import com.proud.console.view.systemlayout.element.BreadCrumbManager;
 import com.proud.console.view.systemlayout.element.ISystemElement;
@@ -58,7 +58,7 @@ public class SystemlayoutPresenter implements Initializable, IAppStateListener, 
     private boolean ctrlPressed = false;
     private PannableCanvas canvas;
     private BreadCrumbManager crumbManager;
-    private ITabManager tabManager;
+    private ITabsManager tabManager;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -92,7 +92,7 @@ public class SystemlayoutPresenter implements Initializable, IAppStateListener, 
     }
 
     @Override
-    public void showKpiLayout(String title, List<ISystemElement> elementToShow) {
+    public void showKpiAnomalies(String title, List<ISystemElement> elementToShow) {
         logger.debug("show Kpi Layout");
         GraphdataView view = new GraphdataView();
         tabManager.addTab(title, view.getView());
@@ -146,7 +146,7 @@ public class SystemlayoutPresenter implements Initializable, IAppStateListener, 
         dlg.show();
     }
 
-    public void setTabManager(ITabManager tabManager) {
+    public void setTabManager(ITabsManager tabManager) {
         this.tabManager = tabManager;
     }
 

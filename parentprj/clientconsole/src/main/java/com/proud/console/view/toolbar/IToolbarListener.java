@@ -9,7 +9,7 @@ import java.util.List;
  * Toolbar listener interface
  * @author Fabrizio Faustinoni
  */
-interface IToolbarListener {
+public interface IToolbarListener {
 
     void showKpi(List<IAppElement> nodes, List<AppMetric> metrics);
 

@@ -81,33 +81,6 @@ public class ToolbarPresenter implements Initializable {
         this.listeners.add(listener);
     }
 
-    public String[] getMetricsList(Class<? extends Enum<?>> e) {
-        return Arrays.stream(e.getEnumConstants()).map(Enum::name).toArray(String[]::new);
-    }
-
-    /* public void addItem(NodeData node) {
-        if (!nodesInComboBox.contains(node)) {
-            nodesInComboBox.add(node);
-        }
-    }*/
-    public boolean isChecked(AppNode node) {
-
-        //return nodeChooser.checkModelProperty().get().isChecked(node);
-        return false;
-    }
-
-    private List<IAppElement> getNodesSelected() {
-       /* List<IAppElement> nodesSelected = new ArrayList<>();
-        nodesSelected.showKpi(nodeChooser.checkModelProperty().get().getCheckedItems());
-        return Collections.unmodifiableList(nodesSelected);*/
-        return null;
-    }
-
-    public AppMetric getSelectedMetric() {
-        //  return AppMetric.valueOf(metricSelector.getSelectionModel().getSelectedItem());
-        return null;
-    }
-
     private void addNodesChooser() {
 
         nodeChooser = new ComboBox<>(appService.getCurrentState().getNodes());
@@ -133,34 +106,9 @@ public class ToolbarPresenter implements Initializable {
         comboContainer.getChildren().add(metricSelector);
     }
 
-    private void resetSeries() {
-        /*listeners.forEach((listener) -> {
-            Platform.runLater(() -> listener.resetSeriesClicked());
-        });*/
-    }
-
     private void showKpi() {
         IAppElement node = ComboFxUtil.getComboBoxValue(nodeChooser);
         AppMetric metric = ComboFxUtil.getComboBoxValue(metricSelector);
         listeners.forEach((listener) -> Platform.runLater(() -> listener.showKpi(Collections.singletonList(node), Collections.singletonList(metric))));
     }
-
-    private void removeAll() {
-        System.out.println("Event already fired");
-        //nodeChooser.checkModelProperty().get().clearChecks();
-    }
-
-    private void metricSelected() {
-        /*AppMetric metric = AppMetric.valueOf(metricSelector.getSelectionModel().getSelectedItem());
-        listeners.forEach((listener) -> {
-            Platform.runLater(() -> listener.metricSelected(metric));
-        });*/
-    }
-
-    private void nodesSelectedChange() {
-        /*listeners.forEach((listener) -> {
-            Platform.runLater(() -> listener.nodesSelectedChanged());
-        });*/
-    }
-
 }
