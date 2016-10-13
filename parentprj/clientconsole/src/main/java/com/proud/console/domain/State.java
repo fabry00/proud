@@ -8,14 +8,14 @@ import javafx.scene.paint.Color;
  */
 public enum State {
 
-    UNKWOWN("Unknown", Color.GRAY),
+    UNKNOWN("Unknown", Color.GRAY),
     NOT_STARTED("", Color.GRAY),
-    STARTING("Starting", Color.YELLOWGREEN),
+   // STARTING("Starting", Color.YELLOWGREEN),
     STARTED("Started", Color.GREEN),
     STOPPED("Stopped", Color.GRAY),
-    WAITING("Waiting", Color.YELLOW),
-    NEWDATARECEIVED("Receiving", Color.GREEN),
-    CLOSING("Closing", Color.YELLOW),
+   // WAITING("Waiting", Color.YELLOW),
+    //NEWDATARECEIVED("Receiving", Color.GREEN),
+   // CLOSING("Closing", Color.YELLOW),
     ERROR("Error", Color.GRAY),
     ABNORMAL_NODE_STATE("Anomaly detected", Color.RED);
 

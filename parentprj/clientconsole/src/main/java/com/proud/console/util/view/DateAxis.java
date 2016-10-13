@@ -128,6 +128,11 @@ public final class DateAxis extends Axis<Date> {
         }
 
         @Override
+        protected void fireValueChangedEvent() {
+            super.fireValueChangedEvent();
+        }
+
+        @Override
         public Object getBean() {
             return DateAxis.this;
         }

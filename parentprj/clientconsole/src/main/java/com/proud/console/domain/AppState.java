@@ -28,7 +28,7 @@ public final class AppState {
             = FXCollections.synchronizedObservableList(FXCollections.observableArrayList());
     private final ObservableList<IAppElement> layers
             = FXCollections.synchronizedObservableList(FXCollections.observableArrayList());
-    private State state = State.UNKWOWN;
+    private State state = State.UNKNOWN;
     private final StringProperty stateProperty = new SimpleStringProperty(state.getLabel());
     private PredictionType failurePrediction = PredictionType.NOT_DETECTED;
     private PredictionType systemFailure = PredictionType.NOT_DETECTED;
@@ -201,7 +201,7 @@ public final class AppState {
     public static class Builder {
 
         private final AppEventManager evtManager;
-        private final State state = State.UNKWOWN;
+        private final State state = State.UNKNOWN;
         private PredictionType failurePrediction = PredictionType.NOT_DETECTED;
         private PredictionType systemFailure = PredictionType.NOT_DETECTED;
 
