@@ -3,9 +3,8 @@ package com.proud.console.view.center;
 
 import com.proud.console.domain.AppMetric;
 import com.proud.console.domain.IAppElement;
-import com.proud.console.view.graphdata.GraphdataView;
+import com.proud.console.view.kpigraph.kpigraphView;
 import com.proud.console.view.toolbar.IToolbarListener;
-import javafx.scene.control.Button;
 import org.apache.log4j.Logger;
 
 import java.util.List;
@@ -14,13 +13,13 @@ import java.util.List;
  * Toolbar listener
  * Created by Fabrizio Faustinoni on 02/10/2016.
  */
-public class ToolbarListener implements IToolbarListener {
+class ToolbarListener implements IToolbarListener {
 
     private final Logger logger = Logger.getLogger(ToolbarListener.class);
 
     private final ITabsManager tabsManger;
 
-    public ToolbarListener(ITabsManager tabsManager) {
+    ToolbarListener(ITabsManager tabsManager) {
         this.tabsManger = tabsManager;
     }
 
@@ -29,7 +28,9 @@ public class ToolbarListener implements IToolbarListener {
         logger.debug("showKPi of nodes: " + nodes + " metrics: " + metrics);
         String title = getTitle(nodes, metrics);
         logger.debug("Title: "+title);
-        GraphdataView view = new GraphdataView();
+        kpigraphView view = new kpigraphView();
+        view.getRealPresenter().setNodes(nodes);
+        view.getRealPresenter().setMetrics(metrics);
         tabsManger.addTab(title,view.getView());
     }
 

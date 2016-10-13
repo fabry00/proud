@@ -7,7 +7,7 @@ import java.util.concurrent.atomic.AtomicLong;
 
 /**
  * Info controlelr
- * Created by fabry on 02/10/2016.
+ * Created by Fabrizio Faustinoni on 02/10/2016.
  */
 public class InfoController {
     private static final String template = "Hello, %s!";

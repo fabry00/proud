@@ -7,7 +7,7 @@ import org.apache.log4j.Logger;
 
 /**
  * Manages the tabs
- * Created by fabry on 02/10/2016.
+ * Created by Fabrizio Faustinoni on 02/10/2016.
  */
 class TabsManager implements ITabsManager {
 

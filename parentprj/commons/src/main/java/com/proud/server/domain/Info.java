@@ -2,7 +2,7 @@ package com.proud.server.domain;
 
 /**
  * Info class
- * Created by fabry on 02/10/2016.
+ * Created by Fabrizio Faustinoni on 02/10/2016.
  */
 public class Info {
 

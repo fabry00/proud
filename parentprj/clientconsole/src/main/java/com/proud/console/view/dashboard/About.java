@@ -11,7 +11,7 @@ import java.util.Calendar;
 
 /**
  * About dialog
- * Created by fabry on 02/10/2016.
+ * Created by Fabrizio Faustinoni on 02/10/2016.
  */
 class About {
     private static final String ABOUT = "About";

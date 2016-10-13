@@ -5,7 +5,7 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 /**
- * Created by fabry on 13/10/2016.
+ * Created by Fabrizio Faustinoni on 13/10/2016.
  */
 public class AppActionTest {
 
