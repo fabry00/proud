@@ -25,6 +25,7 @@
         <module name="clientconsole" />
         <module name="commons" />
         <module name="node" />
+        <module name="proud-coverage" />
         <module name="proudserver" />
       </profile>
     </annotationProcessing>
@@ -34,6 +35,7 @@
       <module name="node" target="1.8" />
       <module name="parentprj" target="1.8" />
       <module name="proud" target="1.8" />
+      <module name="proud-coverage" target="1.8" />
       <module name="proudserver" target="1.8" />
     </bytecodeTargetLevel>
   </component>

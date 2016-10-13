@@ -2,4 +2,4 @@
 .iws
 tasks.xml
 .idea/workspace.xml
-/target/
+*/target/*
