@@ -103,7 +103,7 @@ public class DashboardPresenter implements Initializable {
     private void setBottomPane() {
         StatusView view = new StatusView();
         AnchorPane statusView = (AnchorPane) view.getView();
-        util.ancorToPane(statusView, 0.0);
+        util.anchorToPane(statusView, 0.0);
         bottomPane.getChildren().add(statusView);
     }
 
@@ -113,23 +113,23 @@ public class DashboardPresenter implements Initializable {
         notificationPane.getStyleClass().add(NotificationPane.STYLE_CLASS_DARK);
         centerPane.getChildren().add(notificationPane);*/
         Node center = new CenterView().getView();
-        util.ancorToPane(center, 0.0);
+        util.anchorToPane(center, 0.0);
         centerPane.getChildren().add(center);
     }
 
     private void setLeftPane() {
         AnchorPane logo = (AnchorPane) new LogoView().getView();
-        util.ancorToPaneLeft(logo, 0.0);
-        util.ancorToPaneRight(logo, 0.0);
-        util.ancorToPaneTop(logo, 0.0);
+        util.anchorToPaneLeft(logo, 0.0);
+        util.anchorToPaneRight(logo, 0.0);
+        util.anchorToPaneTop(logo, 0.0);
         logo.setPadding(new Insets(0));
         leftPane.getChildren().add(logo);
 
         AnchorPane tree = (AnchorPane) new TreeView().getView();
-        util.ancorToPaneTop(tree, logo.getPrefHeight());
-        util.ancorToPaneLeft(tree, 0.0);
-        util.ancorToPaneRight(tree, 0.0);
-        util.ancorToPaneBottom(tree, 0.0);
+        util.anchorToPaneTop(tree, logo.getPrefHeight());
+        util.anchorToPaneLeft(tree, 0.0);
+        util.anchorToPaneRight(tree, 0.0);
+        util.anchorToPaneBottom(tree, 0.0);
         tree.setPadding(new Insets(0));
         leftPane.getChildren().add(tree);
     }

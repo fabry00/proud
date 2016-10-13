@@ -38,9 +38,9 @@ public class CenterPresenter implements Initializable {
 
     private void initToolbar() {
         Parent pane = new ToolbarView().getView();
-        util.ancorToPaneLeft(pane, 0.0);
-        util.ancorToPaneTop(pane, 0.0);
-        util.ancorToPaneRight(pane, 0.0);
+        util.anchorToPaneLeft(pane, 0.0);
+        util.anchorToPaneTop(pane, 0.0);
+        util.anchorToPaneRight(pane, 0.0);
         topPane.getChildren().add(pane);
     }
 
@@ -49,10 +49,10 @@ public class CenterPresenter implements Initializable {
         view.getRealPresenter().setTabManager(new TabsManager(tabsPane));
         Parent pane = view.getView();
 
-        util.ancorToPaneLeft(pane, 0.0);
-        util.ancorToPaneTop(pane, 0.0);
-        util.ancorToPaneRight(pane, 0.0);
-        util.ancorToPaneBottom(pane, 0.0);
+        util.anchorToPaneLeft(pane, 0.0);
+        util.anchorToPaneTop(pane, 0.0);
+        util.anchorToPaneRight(pane, 0.0);
+        util.anchorToPaneBottom(pane, 0.0);
 
         systemTab.getChildren().add(pane);
 

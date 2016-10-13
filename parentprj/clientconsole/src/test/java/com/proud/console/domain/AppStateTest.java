@@ -59,7 +59,7 @@ public class AppStateTest {
     public void testGetState() {
         System.out.println("getState");
         AppState instance = new AppState.Builder(new AppEventManager()).build();
-        assertEquals(State.UNKWOWN, instance.getState());
+        assertEquals(State.UNKNOWN, instance.getState());
     }
 
     /**
@@ -69,7 +69,7 @@ public class AppStateTest {
     public void testGetStateProp() {
         System.out.println("getStateProp");
         AppState instance = new AppState.Builder(new AppEventManager()).build();
-        assertEquals(State.UNKWOWN.getLabel(), instance.getStateProp().get());
+        assertEquals(State.UNKNOWN.getLabel(), instance.getStateProp().get());
     }
 
     /**
@@ -210,4 +210,6 @@ public class AppStateTest {
         assertEquals(instance.getNodesInAbnormalState().size(), currentState.getNodesInAbnormalState().size());
         assertEquals(instance.getStateProp().get(), currentState.getStateProp().get());
     }
+
+
 }

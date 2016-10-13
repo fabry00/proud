@@ -16,7 +16,7 @@ public class AppDataProvider implements IDataProvider {
      */
     public void getSystemState(final ICallback callback) {
 
-        Platform.runLater(() -> {
+        //Platform.runLater(() -> {
             AppState state = new AppState.Builder(null)
                     .failurePrediction(PredictionType.DETECTED)
                     .build();
@@ -130,7 +130,7 @@ public class AppDataProvider implements IDataProvider {
 
             IAppElement physicalLayer = new AppLayer.Builder("Physical Machines").build();
             IAppElement cloudService = new AppLayer.Builder("Cloud Service").build();
-            IAppElement virtualLayer = new AppLayer.Builder("Virual Machines").build();
+            IAppElement virtualLayer = new AppLayer.Builder("Virtual Machines").build();
             IAppElement appLayer = new AppLayer.Builder("Application").build();
 
             physicalLayer.getNodes().addAll(homer, lisa, marge);
@@ -166,7 +166,7 @@ public class AppDataProvider implements IDataProvider {
             state.addLayer(physicalLayer);
 
             callback.success(state);
-        });
+        //});
 
     }
 }

@@ -83,9 +83,9 @@ public class GraphdataPresenter implements Initializable, IToolbarListener {
         AnchorPane tbPane = (AnchorPane) tbView.getView();
         graphToolbarPane.getChildren().add(tbPane);
         NodeUtil util = new NodeUtil();
-        util.ancorToPaneLeft(tbPane, 0.0);
-        util.ancorToPaneTop(tbPane, 0.0);
-        util.ancorToPaneRight(tbPane, 0.0);
+        util.anchorToPaneLeft(tbPane, 0.0);
+        util.anchorToPaneTop(tbPane, 0.0);
+        util.anchorToPaneRight(tbPane, 0.0);
         tbPresenter = tbView.getRealPresenter();
         tbPresenter.subscribe(this);
     }
