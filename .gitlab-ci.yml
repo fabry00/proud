@@ -1,4 +1,4 @@
 image: kaiwinter/docker-java8-maven
 
 build:
-  script: "cd parentprj && mvn install -B && cat clientconsole/target/site/jacoco/index.html"
+  script: "cd parentprj && mvn install -B && cat proud-coverage/target/coverage-report/html/jacoco-multi/index.html"
