@@ -1,26 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <!-- To open con scene builder comment the following line and change xAxis to Numeric-->
-
 <?import com.proud.console.util.view.DateAxis?>
+
+<?import java.net.URL?>
 <?import javafx.scene.chart.AreaChart?>
 <?import javafx.scene.chart.NumberAxis?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.*?>
-<?import java.net.URL?>
-<AnchorPane xmlns:fx="http://javafx.com/fxml/1" id="AnchorPane" prefHeight="400.0" prefWidth="600.0"
-            styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8.0.60"
-            fx:controller="com.proud.console.view.kpigraph.kpigraphPresenter">
+<?import javafx.scene.layout.AnchorPane?>
+<?import org.controlsfx.control.StatusBar?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.proud.console.view.kpigraph.kpigraphPresenter">
     <stylesheets>
         <URL value="@kpigraph.css" />
     </stylesheets>
     <children>
         <AnchorPane fx:id="graphToolbarPane" prefHeight="35.0" prefWidth="600.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-        </AnchorPane>
-        <Label fx:id="labelValues" alignment="CENTER" prefHeight="25.0" prefWidth="251.0" text="X: - Y: -" textAlignment="CENTER" AnchorPane.leftAnchor="550.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="40.0" />
+         <children>
+            <StatusBar fx:id="statusBar" layoutY="3.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+         </children></AnchorPane>
         <AreaChart fx:id="chart" layoutX="62.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="70.0">
             <xAxis>
-                <DateAxis side="BOTTOM" />
+                <DateAxis side="BOTTOM"/>
             </xAxis>
             <yAxis>
                 <NumberAxis side="LEFT" />

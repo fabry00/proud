@@ -7,6 +7,7 @@ import com.proud.console.service.appservice.ApplicationService;
 import javafx.beans.binding.Bindings;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -17,18 +18,21 @@ import javafx.scene.chart.AreaChart;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.Label;
+import javafx.scene.control.Separator;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
 import org.apache.log4j.Logger;
+import org.controlsfx.control.StatusBar;
 
 import javax.inject.Inject;
 import java.net.URL;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
 
 /**
- *
  * @author Fabrizio Faustinoni
  */
 public class kpigraphPresenter implements Initializable {
@@ -44,18 +48,40 @@ public class kpigraphPresenter implements Initializable {
     private AreaChart chart;
     @FXML
     private AnchorPane graphToolbarPane;
-    @FXML
-    private Label labelValues;
 
-    private List<IAppElement> nodes;
-    private List<AppMetric> metrics;
+    @FXML
+    private StatusBar statusBar;
+
+    private Label labelValues;
+    private List<IAppElement> nodes = Collections.emptyList();
+    private List<AppMetric> metrics = Collections.emptyList();
+    private SimpleStringProperty title = new SimpleStringProperty();
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         logger.debug("Initialize");
 
+        initStatusBar();
         initChart();
         initChartTooltip();
+    }
+
+    private void initStatusBar() {
+        setLeftItems();
+        setRightItems();
+    }
+
+    private void setRightItems() {
+        statusBar.textProperty().bind(title);
+    }
+
+    private void setLeftItems() {
+        labelValues = new Label("");
+
+        HBox rightBox = new HBox();
+        rightBox.setSpacing(3);
+        rightBox.getChildren().addAll(labelValues, new Separator());
+        statusBar.getRightItems().add(rightBox);
     }
 
     private void initChart() {
@@ -70,6 +96,10 @@ public class kpigraphPresenter implements Initializable {
         chart.setData(seriesList);
 
         //chart.setTitle(tbPresenter.getSelectedMetric().getDesc());
+    }
+
+    private void updateStatusTitle() {
+        title.set("Nodes: " + this.nodes + "   |   Metrics: " + this.metrics);
     }
 
     private void initChartTooltip() {
@@ -87,15 +117,17 @@ public class kpigraphPresenter implements Initializable {
             double yInYAxis = chart.getYAxis().sceneToLocal(mouseLocationInScene.get()).getY();
             double y = (double) chart.getYAxis().getValueForDisplay(yInYAxis);
 
-            return "Date: "+util.formatDate(x) + "  Value: " + String.format("%1$,.2f", y);
+            return "Date: " + util.formatDate(x) + "  Value: " + String.format("%1$,.2f", y);
         }, mouseLocationInScene));
     }
 
     public void setNodes(List<IAppElement> nodes) {
         this.nodes = nodes;
+        updateStatusTitle();
     }
 
     public void setMetrics(List<AppMetric> metrics) {
         this.metrics = metrics;
+        updateStatusTitle();
     }
 }
